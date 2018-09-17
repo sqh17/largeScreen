@@ -19,7 +19,6 @@
 		<link rel="stylesheet" type="text/css" href="css/jc2.css" />
 		<link rel="stylesheet" type="text/css" href="css/hqk.css" />
 		<link rel="stylesheet" type="text/css" href="css/dp3_jkyj2.css" />
-		<link rel="stylesheet" type="text/css" href="css/g.css" />
 		<style type="text/css">
 
 		</style>
@@ -36,7 +35,6 @@
 		<script src="js/echarts.min.js"></script>
 		<script src="js/china.js"></script>
 		<script src="js/loading.js"></script>
-		<script src="js/jc.js" type="text/javascript" charset="utf-8"></script>
 		<script language="javascript">
 			// 在全局范围内创建主动画控制器与子动画控制器
 			var myAC_main1 = new animateControl("main1_ani_");
@@ -45,8 +43,7 @@
 			//var myAC_child3 = new animateControl("child3_ani_");
 			// 在文档结构加载完成之后，载入swiper幻灯片，并初始化所有的动画控制器
 			$(document).ready(function() {
-				//第二屏
-				// 第 1 个子swiper幻灯片 
+				// 第 1 个子swiper幻灯片
 				var mySwiper_child1 = new Swiper('.swiper-container-child1', {
 					direction: 'horizontal',
 					grabCursor: true,
@@ -54,9 +51,13 @@
 					onInit: function(swiper) {
 						//console.log(swiper)
 						myAC_child1.init(swiperAnimateParam_child1, swiper);
+						jc_setmap('china_map');
+						var dp2_tx_huang_arr = ['9.5', '4186', '566', '292'];
 						var $wrapper = $(swiper.wrapper);
 						var myVideo = $('#myVideo');
-						jc_setmap('china_map');
+						$wrapper.find('.dp2_tx_huang').each(function(i) {
+							$(this).text(dp2_tx_huang_arr[i])
+						});
 						$wrapper.find('.dp2_video').hover(
 							function() {
 								$('.video_play').show();
@@ -65,6 +66,7 @@
 								$('.video_play').hide();
 							}
 						);
+						$wrapper.find('.dp2_tx_hong').text('北京公司');
 						$wrapper.find('.video_play').on('click', function() {
 							if(!myVideo.paused) {
 								myVideo.get(0).pause();
@@ -81,7 +83,6 @@
 						//alert(swiper.activeIndex)
 					},
 				});
-				//第三屏
 				// 第 2 个子swiper幻灯片 
 				var mySwiper_child2 = new Swiper('.swiper-container-child2', {
 					direction: 'horizontal',
@@ -91,442 +92,272 @@
 						myAC_child2.init(swiperAnimateParam_child2, swiper);
 						var $wrapper = $(swiper.wrapper);
 						//------------假数据start-------------
-						dp3_data = {};
-						jc_jiadata(); //生成假数据
-						//假数据方法
-						function jc_jiadata() {
-							dp3_data = {
-								//党员队伍
-								dydw: [],
-								//党员队伍--饼图
-								dydw_pie_zzdy: [],
-								dydw_pie_ybdy: [],
-								dydw_pie_fzdx: [],
-								dydw_pie_jjfz: [],
-								dydw_pie_rdsqr: [],
-								//党员队伍--柱状图
-								dydw_bar_zzdy: [],
-								dydw_bar_ybdy: [],
-								dydw_bar_fzdx: [],
-								dydw_bar_jjfz: [],
-								dydw_bar_rdsqr: [],
-								//组织变化
-								zzbh: [],
-								//三会情况
-								shqk: [],
-								//三会情况--柱状图
-								shqk_bar_zbdydh: [],
-								shqk_bar_zbwyh: [],
-								shqk_bar_dxzh: [],
-								//监控预警--柱状图
-								hjjk_dw:[],
-								hjjk_dzb:[],
-//								jkyj_bar: {
-//									hong: {
-//										num: '970',
-//										num1: '680',
-//										percent: '90%'
-//									},
-//									lan: {
-//										num: '880',
-//										num1: '68',
-//										percent: '100%'	
-//									}
-//								},
-								//监控预警——党费缴纳
-								jkyj_dfjn: {
-									huang: {
-										num: '8',
-										percent: '50%'
-									}
-									// lan: {
-									// 	num: '二',
-									// 	percent: '100%'
-									// }
+						var dp3_data = {
+							//党员队伍
+							dydw: [],
+							//党员队伍--饼图
+							dydw_pie_zzdy: ['2154', '3854', '7515'],
+							dydw_pie_ybdy: ['3154', '4854', '4515'],
+							dydw_pie_fzdx: ['4154', '5854', '1515'],
+							dydw_pie_jjfz: ['5154', '8854', '2515'],
+							dydw_pie_rdsqr: ['6154', '9854', '8515'],
+							//党员队伍--柱状图
+							dydw_bar_zzdy: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_ybdy: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_fzdx: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_jjfz: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_rdsqr: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							//组织变化
+							zzbh: [],
+							//三会情况
+							shqk: [],
+							//三会情况--柱状图
+							shqk_bar_zbdydh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							shqk_bar_zbwyh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							shqk_bar_dxzh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							//监控预警--柱状图
+							jkyj_bar: {
+								hong: {
+									num: '702',
+									percent: '100%'
 								},
-								//监控预警--党员集体参加学习情况
-								jkyj_xxqk: {
-									num: '3.5',
-									// percent: '20%',
-								},
-								jkyj_dyjtcjxxqk: {
-									xdata: [],
-									ydata: []
-								},
-								//监控预警中心组学习情况——折线图
-								jkyj_zxzxxqk: {
-									xdata: [],
-									ydata1: [],
-								    ydata2: []
-								},
-								//党组织书记讲党课情况
-								jkyj_dzzsjjdkqk: {
-									xdata: [],
-									ydata: []
-								},
-								//三会一课数据							
-								shykData: [{
-									xdata: ['北京', '天津0', '河北0', '冀北0', '山西0', '山东0', '上海0', '江西0', '浙江0', '安徽0', '福建0', '湖北0', '湖南0', '河南0', '江西0', '湖北0', '湖南0', '河南0', '江西0'],
-									joindata: [96, 91, 80, 91, 99, 90, 90, 96, 92, 91, 97, 91, 100, 90, 95, 90, 99, 90, 88],
-									componentdata: [90, 70, 75, 87, 85, 70, 79, 72, 75, 71, 77, 70, 88, 70, 75, 80, 88, 77, 80]
-								}, {
-									xdata: ['北京1', '天津1', '河北1', '冀北1', '山西1', '山东1', '上海1', '江西1', '浙江1', '安徽1', '福建1', '湖北1', '湖南1', '河南1', '江西1', '湖北1', '湖南1', '河南1', '江西1'],
-									joindata: [95, 99, 85, 88, 95, 80, 93, 88, 96, 85, 90, 92, 100, 100, 95, 99, 90, 88, 98],
-									componentdata: [86, 73, 75, 80, 75, 82, 79, 90, 69, 81, 87, 90, 88, 90, 85, 80, 77, 77, 90]
-								}, {
-									xdata: ['北京2', '天津2', '河北2', '冀北2', '山西2', '山东2', '上海2', '江西2', '浙江2', '安徽2', '福建2', '湖北2', '湖南2', '河南2', '江西2', '湖北2', '湖南2', '河南2', '江西2'],
-									joindata: [90, 100, 95, 91, 99, 89, 100, 96, 92, 91, 97, 91, 100, 90, 95, 90, 89, 80, 88],
-									componentdata: [86, 73, 85, 85, 85, 82, 79, 82, 85, 81, 87, 83, 90, 80, 85, 80, 78, 67, 80]
-								}, {
-									xdata: ['北京3', '天津3', '河北3', '冀北3', '山西3', '山东3', '上海3', '江西3', '浙江3', '安徽3', '福建3', '湖北3', '湖南3', '河南3', '江西3', '湖北3', '湖南3', '河南3', '江西3'],
-									joindata: [98, 99, 95, 91, 99, 92, 100, 92, 95, 91, 97, 91, 100, 90, 95, 90, 88, 90, 100],
-									componentdata: [80, 83, 85, 70, 78, 80, 82, 80, 85, 78, 87, 80, 78, 80, 85, 80, 80, 77, 69]
-								}],
-								xjdxslfbArr: [{
-									xData: ['北京公司0北京公司0', '天津公司0', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[12, 12, 10, 5, 0, 14, 5, 12, 5, 6, 3, 1, 4, 15, 0, 16],
-										[11, 10, 2, 3, 0, 12, 15, 16, 0, 15, 0, 14, 12, 13, 14, 16]
-									],
-								}, {
-									xData: ['北京公司1北京公司1', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[10, 10, 10, 5, 0, 4, 5, 8, 5, 6, 3, 1, 4, 8, 0, 6],
-										[1, 0, 10, 8, 0, 2, 5, 16, 0, 5, 0, 14, 12, 13, 4, 16]
-									],
-								}, {
-									xData: ['北京公司2北京公司2', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[1, 2, 6, 5, 10, 14, 5, 12, 5, 6, 13, 10, 4, 15, 0, 16],
-										[11, 10, 2, 3, 5, 12, 15, 16, 0, 15, 0, 14, 12, 13, 14, 16]
-									],
-								}, {
-									xData: ['北京公司3北京公司3', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[2, 1, 10, 5, 9, 14, 0, 12, 9, 6, 3, 10, 4, 15, 10, 16],
-										[11, 10, 2, 3, 0, 12, 15, 16, 0, 15, 0, 14, 12, 13, 14, 16]
-									],
-								}, {
-									xData: ['北京公司4北京公司4', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司'],
-									yData: [
-										[2, 1, 10, 5, 9, 14, 10, 12, 9, 6, 3, 10, 4],
-										[11, 10, 2, 3, 10, 12, 15, 16, 0, 15, 0, 14, 12]
-									],
-								}, ],
-								gdwhjwclArr: [{
-									xData: ['北京公司0北京公司0', '天津公司0', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[12, 12, 10, 5, 0, 14, 5, 12, 5, 6, 3, 1, 4, 15, 0, 16]
-									],
-								}, {
-									xData: ['北京公司1北京公司1', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[10, 10, 10, 5, 0, 4, 5, 8, 5, 6, 3, 1, 4, 8, 0, 6]
-									],
-								}, {
-									xData: ['北京公司2北京公司2', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[1, 2, 6, 5, 10, 14, 5, 12, 5, 6, 13, 10, 4, 15, 0, 16]
-									],
-								}, {
-									xData: ['北京公司3北京公司3', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司', '河南公司', '江西公司', '新疆公司'],
-									yData: [
-										[2, 1, 10, 5, 9, 14, 0, 12, 9, 6, 3, 10, 4, 15, 10, 16]
-									],
-								}, {
-									xData: ['北京公司4北京公司4', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司', '浙江公司', '安徽公司', '福建公司', '湖北公司', '湖南公司'],
-									yData: [
-										[2, 1, 10, 5, 9, 14, 10, 12, 9, 6, 3, 10, 4]
-									]
-								}, ],
-								shykListsData: [{
-									xData: ['北京公司0北京公司0', '天津公司0', '河北公司', '冀北公司冀北公司冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-									participantRate: [12, 12, 10, 5, 0, 14, 5, 12],
-									finishRate: [5, 6, 3, 1, 4, 8, 0, 6],
-								}, {
-									xData: ['北京公司1北京公司1', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-									participantRate: [10, 10, 10, 5, 0, 4, 5, 8],
-									finishRate: [12, 12, 10, 5, 0, 14, 5, 12]
-								}, {
-									xData: ['北京公司2北京公司2', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-									participantRate: [10, 14, 5, 12, 5, 6, 13, 10],
-									finishRate: [9, 14, 0, 10, 4, 15, 10, 16],
-								}, {
-									xData: ['北京公司3北京公司3', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-									participantRate: [5, 6, 3, 1, 4, 8, 0, 6],
-									finishRate: [2, 1, 10, 5, 9, 14, 0, 12, ],
-								}, {
-									xData: ['北京公司4北京公司4', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司'],
-									participantRate: [1, 2, 6, 5, 10, 14],
-									finishRate: [10, 10, 10, 5, 0, 4],
-								}, ]
-							};
-							$.ajax({
-								type: 'get',
-								url: '/dangjian/largescreen/rest/largescreenData/queryData',
-								data: {
-									largescreenId: "7D4AEEAFA79841F4964864741A304A9F",
-									JsonObjectCodes: "page03_dydw_sum,page03_dydw_bzt,page03_dydw_ztt,page03_zzbh,page03_shyk_dydh,page03_shyk_zbwyh,page03_shyk_dxzh,page03_shyk_dy,page03_shqk_detail,page03_shqk_sum,page03_gdwwchjl,page03_hjjk_dw,page03_hjjk_dzb,page03_dyjtcjxxqk,page03_dwsjjdkcs,page03_zxzxx,page03_xjdx,page03_parfee"
-								},
-								//dataType: 'json',
-								async: false,
-								success: function(data) {
-									console.log(data)
-									if(data.successful == 'true' || data.successful == true) {
-										var data2 = data.resultValue;
-										var dydw_bar_data = data2.page03_dydw_bzt;
-										var dydw_pie=data2.page03_dydw_ztt;
-										var shqk_bar_data = data2.page03_shqk_detail;
-										//党员队伍
-										dp3_data.dydw=data2.page03_dydw_sum;
-										dp3_data.dydw_pie_
-										zzdy=dydw_pie.YBDY2ZSDY;
-										dp3_data.dydw_pie_ybdy=dydw_pie.RDSQR_YBDY;
-										dp3_data.dydw_pie_fzdx=dydw_pie.RDSQR_FZDX;
-										dp3_data.dydw_pie_jjfz=dydw_pie.RDSQR_JJFZ;
-										dp3_data.dydw_pie_rdsqr=dydw_pie.RDSQR_RDSQR;
-										ajax_zhudata(dydw_bar_data, 'YBDY2ZSDY', dp3_data.dydw_bar_zzdy, 10);
-										ajax_zhudata(dydw_bar_data,'RDSQR_YBDY',dp3_data.dydw_bar_ybdy,10);
-										ajax_zhudata(dydw_bar_data,'RDSQR_FZDX',dp3_data.dydw_bar_fzdx,10);
-										ajax_zhudata(dydw_bar_data,'RDSQR_JJFZ',dp3_data.dydw_bar_jjfz,10);
-										ajax_zhudata(dydw_bar_data,'RDSQR_RDSQR',dp3_data.dydw_bar_rdsqr,10);
-										//组织变化
-										dp3_data.zzbh=data2.page03_zzbh;
-										//三会情况
-										dp3_data.shqk=data2.page03_shqk_sum;
-										ajax_zhudata(shqk_bar_data,'DYDH',dp3_data.shqk_bar_zbdydh,10);
-										ajax_zhudata(shqk_bar_data,'ZBWYH',dp3_data.shqk_bar_zbwyh,10);
-										ajax_zhudata(shqk_bar_data,'DXZH',dp3_data.shqk_bar_dxzh,10);
-										//监控预警										
-										dp3_data.hjjk_dw=data2.page03_hjjk_dw;
-										dp3_data.hjjk_dzb=data2.page03_hjjk_dzb;
-										//党费缴纳
-										dp3_data.jkyj_dfjn.huang.num='9';
-									    dp3_data.jkyj_dfjn.huang.percent=data2.page03_parfee.PARFEE;
-									    //集体学习情况
-									    var dyjtcjxxqk= data2.page03_dyjtcjxxqk;
-									    for(var i=0;i<dyjtcjxxqk.length;i++){
-									    	dp3_data.jkyj_dyjtcjxxqk.xdata.push(dyjtcjxxqk[i].CM);
-									    	dp3_data.jkyj_dyjtcjxxqk.ydata.push(dyjtcjxxqk[i].XXSJ);
-									    }
-									    //学习情况
-									    
-									    //中心组学习情况
-									    var zxzxxqk=data2.page03_zxzxx  
-									    for(var i=0;i<zxzxxqk.length;i++){
-									    	dp3_data.jkyj_zxzxxqk.xdata.push(zxzxxqk[i].CM);
-									    	dp3_data.jkyj_zxzxxqk.ydata1.push(zxzxxqk[i].JTXX);
-									    	dp3_data.jkyj_zxzxxqk.ydata2.push(zxzxxqk[i].ZTDY);
-									    }
-									    //讲党课情况
-									    var jdkxxqk=data2.page03_dwsjjdkcs 
-									    for(var i=0;i<jdkxxqk.length;i++){
-									    	dp3_data.jkyj_dzzsjjdkqk.xdata.push(jdkxxqk[i].CM);
-									    	dp3_data.jkyj_dzzsjjdkqk.ydata.push(jdkxxqk[i].DKCS);
-									    }	
-										jc_setdata();
-										function ajax_zhudata(data, name, zhuname, num) {
-											var x_arr = [];
-											var y_arr = [];
-											for(var i = 0; i < data.length; i++) {
-												x_arr.push(data[i].PAR_SHORT_NAME);
-												y_arr.push(data[i][name]);
-											};
-											var point_length = Math.ceil(x_arr.length / num);
-											var zhuname = zhuname;
-											for(var k = 0; k < point_length; k++) {
-												zhuname[k] = {
-													xdata: [],
-													ydata: []
-												};
-												if(k == point_length || point_length == '1') {
-													for(var i = k * num; i < x_arr.length; i++) {
-														zhuname[k].xdata.push(x_arr[i]);
-														zhuname[k].ydata.push(y_arr[i]);
-													}
-												} else {
-													for(var i = k * num; i < k * num + num; i++) {
-														zhuname[k].xdata.push(x_arr[i]);
-														zhuname[k].ydata.push(y_arr[i]);
-													}
-												};
-											};
-										};
-										};
-									console.log(dp3_data)
+								lan: {
+									num: '72',
+									percent: '100%'
 								}
-							});
-							//				//党员队伍
-							//				for(var i = 0; i < 5; i++) {
-							//					dp3_data.dydw.push(jc_randomNum2(0, 99));
-							//				};
-							//				//党员队伍柱状图
-							//				for(var i = 0; i < dp3_data.dydw_bar_zzdy.length; i++) {
-							//					for(var k = 0; k < 10; k++) {
-							//						dp3_data.dydw_bar_zzdy[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.dydw_bar_zzdy[i].ydata.push(jc_randomNum2(0, 9999));
-							//						dp3_data.dydw_bar_fzdx[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.dydw_bar_fzdx[i].ydata.push(jc_randomNum2(0, 9999));
-							//						dp3_data.dydw_bar_jjfz[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.dydw_bar_jjfz[i].ydata.push(jc_randomNum2(0, 9999));
-							//						dp3_data.dydw_bar_rdsqr[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.dydw_bar_rdsqr[i].ydata.push(jc_randomNum2(0, 9999));
-							//					}
-							//				};
-							//				//党员队伍柱状图——预备党员
-							//				for(var i = 0; i < dp3_data.dydw_bar_ybdy.length; i++) {
-							//					for(var k = 0; k < 10; k++) {
-							//						dp3_data.dydw_bar_ybdy[i].xdata.push('北京公司' + jc_randomNum2(0, 99));
-							//						dp3_data.dydw_bar_ybdy[i].ydata.push(jc_randomNum2(0, 9999));
-							//					}
-							//				}
-							//				//组织变化
-							//				for(var i = 0; i < 2; i++) {
-							//					dp3_data.zzbh.push(jc_randomNum2(0, 99));
-							//				}
-							//				//三会情况
-							//				for(var i = 0; i < 3; i++) {
-							//					dp3_data.shqk.push(jc_randomNum2(0, 99));
-							//				}
-							//				//三会情况柱状图
-							//				for(var i = 0; i < dp3_data.shqk_bar_zbwyh.length; i++) {
-							//					for(var k = 0; k < 16; k++) {
-							//						dp3_data.shqk_bar_zbwyh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.shqk_bar_zbwyh[i].ydata.push(jc_randomNum2(0, 9999));
-							//						dp3_data.shqk_bar_zbdydh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.shqk_bar_zbdydh[i].ydata.push(jc_randomNum2(0, 9999));
-							//						dp3_data.shqk_bar_dxzh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
-							//						dp3_data.shqk_bar_dxzh[i].ydata.push(jc_randomNum2(0, 9999));
-							//					};
-							//				}
+							},
+							//监控预警——党费缴纳
+							jkyj_dfjn: {
+								huang: {
+									num: '8',
+									percent: '100%'
+								},
+								lan: {
+									num: '二',
+									percent: '100%'
+								}
+							},
+							//监控预警--党员集体参加学习情况
+							jkyj_xxqk: {
+								num: '3.5',
+								percent: '20%',
+							},
+							jkyj_dyjtcjxxqk: {
+								xdata: ['7月', '8月', '9月', '10月', '11月', '12月'],
+								ydata: [25, 38, 19, 30, 22, 30]
+							},
+							//监控预警中心组学习情况——折线图
+							jkyj_zxzxxqk: {
+								xdata: ['1月', '2月', '3月', '4月', '5月', '6月'],
+								ydata: [20, 8, 20, 10, 32, 18]
+							},
+							//党组织书记讲党课情况
+							jkyj_dzzsjjdkqk: {
+								xdata: ['17年10月', '17年11月', '17年12月', '18年1月', '18年2月', '18年3月', '18年4月', '18年5月', '18年6月', '18年7月'],
+								ydata: [30, 20, 36, 25, 39, 28, 32, 15, 28, 10]
+							},
+						};
+						//党员队伍
+						for(var i = 0; i < 5; i++) {
+							dp3_data.dydw.push(jc_randomNum2(0, 99));
+						};
+						//党员队伍柱状图
+						for(var i = 0; i < dp3_data.dydw_bar_zzdy.length; i++) {
+							for(var k = 0; k < 10; k++) {
+								dp3_data.dydw_bar_zzdy[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_zzdy[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_fzdx[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_fzdx[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_jjfz[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_jjfz[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_rdsqr[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_rdsqr[i].ydata.push(jc_randomNum2(0, 9999));
+							}
+						};
+						//党员队伍柱状图——预备党员
+						for(var i = 0; i < dp3_data.dydw_bar_ybdy.length; i++) {
+							for(var k = 0; k < 10; k++) {
+								dp3_data.dydw_bar_ybdy[i].xdata.push('北京公司' + jc_randomNum2(0, 99));
+								dp3_data.dydw_bar_ybdy[i].ydata.push(jc_randomNum2(0, 9999));
+							}
+						}
+						//组织变化
+						for(var i = 0; i < 4; i++) {
+							dp3_data.zzbh.push(jc_randomNum2(0, 99));
+						}
+						//三会情况
+						for(var i = 0; i < 3; i++) {
+							dp3_data.shqk.push(jc_randomNum2(0, 99));
+						}
+						//三会情况柱状图
+						for(var i = 0; i < dp3_data.shqk_bar_zbwyh.length; i++) {
+							for(var k = 0; k < 16; k++) {
+								dp3_data.shqk_bar_zbwyh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_zbwyh[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.shqk_bar_zbdydh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_zbdydh[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.shqk_bar_dxzh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_dxzh[i].ydata.push(jc_randomNum2(0, 9999));
+							};
 						}
 						//---------假数据end----------
-						//下拉框
-						$('#dp3_xiala_box .dp3_title_top').click(function(event) {
-							//var index = $(this).index();
-							var $xiala_items = $(this).find('.dp3_xiala_items');
-							event.stopPropagation(); /*阻止事件冒泡*/
-							if($(this).find('li').length == 0) {
-								return;
-							} else {
-								if($xiala_items.is(':hidden')) {
-									$xiala_items.show();
-								} else {
-									$xiala_items.hide();
-								}
-							}
-						});
-						//						$(window).click(function(event) {
-						//							event.stopPropagation(); /*阻止事件冒泡*/
-						//							$('.dp3_xiala_items').hide();
-						//						});
-						$('.dp3_xiala_items').on("click", "li", function() {
-								//alert(1)
-								var txt = $(this).text();
-								var parentindex = $(this).closest('.dp3_title_top').index();
-								event.stopPropagation(); /*阻止事件冒泡*/
-								//console.log(txt)
-								$(this).addClass('hover').siblings().removeClass('hover');
-								$(this).closest('.dp3_title_top').find('.dp3_title_text').text(txt);
-								$(this).closest('.dp3_xiala_items').hide();
-								//请求下一级数据
-								var $ul = $wrapper.find('#dp3_xiala_box .dp3_title_top').eq(parentindex + 1).find('ul');
-								$ul.empty();
-								$.ajax({
-									type: 'get',
-									//url: '/dangjian/tuanmgr/rest/tuan_pphd/getTuanType',
-									data: {
-										rn: new Date().getTime(),
-										txt: txt
-									},
-									//dataType: 'json',
-									//contentType: 'apllication/json; charset=utf-8',
-									success: function(data) {
-										xiala_data = [
-											['国家电网公司党组'],
-											['省公司党组1', '省公司党组2', '省公司党组3', '省公司党组4'],
-											['市公司党组', '市公司党组2', '市公司党组3', '市公司党组4'],
-											['县公司党组1', '县公司党组2', '县公司党组3', '县公司党组4']
-										];
-										if(parentindex == '3') {
-											return
-										};
-										var dom = '';
-										for(var i = 0; i < xiala_data[parentindex + 1].length; i++) {
-											dom += '<li>' + xiala_data[parentindex + 1][i] + '</li>'
-										};
-										$ul.append(dom);
-									}
+						console.log(dp3_data)
+							//党员队伍
+							//党员队伍--数字
+						for(var i = 0; i < 5; i++) {
+							$('#dp3_dydw_iconbox .span_hong').eq(i).text(dp3_data.dydw[i]);
+						};
+						//党员队伍--饼图
+						jc_setpie('jc_dp3pie', dp3_data.dydw_pie_zzdy);
+						//党员队伍--柱子
+						dp3_zhuzi('#zhuzi_dydw', dp3_data.dydw_bar_zzdy[0], 5);
+						dp3_zhuzi_point('#zhuzi_dydw', dp3_data.dydw_bar_zzdy);
+						//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,5]}, 5);
+						//组织变化
+						//组织变化--数字
+						for(var i = 0; i < 4; i++) {
+							$('.dp3_zzbh_txt .span_hong').eq(i).text(dp3_data.zzbh[i]);
+						};
+						//三会情况
+						//三会情况--数字
+						for(var i = 0; i < 3; i++) {
+							$('.dp3_shqk_box .span_hong').eq(i).text(dp3_data.shqk[i]);
+						};
+						//三会情况--柱子
+						dp3_zhuzi('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh[0], 2);
+						dp3_zhuzi_point('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh);
+						//监控预警
+						//监控预警--柱子
+						jc_jkyj_bar('#dp3_hjjk_hong', 'hong');
+						jc_jkyj_bar('#dp3_hjjk_lan', 'lan');
 
-								});
+						function jc_jkyj_bar(id, name) {
+							var data = dp3_data.jkyj_bar[name];
+							$(id + ' .dp3_hjjk_percent_hong').height(data.percent);
+							$(id + ' .dp3_hjjk_hong_num').text(data.num);
+							$(id + ' .dp3_hjjk_hong_percent').text(data.percent);
+						};
+						//监控预警--党员集体参加学习情况
+						$('#dp3_xxqk_txt_p_num').text(dp3_data.jkyj_xxqk.num);
+						$('#dp3_xxqk_txt_p_percent').text(dp3_data.jkyj_xxqk.percent);
+						g_dyjtcjxxqk('dfjn_xxqk_chart', dp3_data.jkyj_dyjtcjxxqk);
+						//监控预警--党费缴纳
+						jc_jkyj_dfjn('#dp3_dfjn_huang_left', 'huang');
+						jc_jkyj_dfjn('#dp3_dfjn_lan_left', 'lan');
 
-							})
-							//第三屏首次回显数据
-						$.ajax({
-							type: 'get',
-							//url: '/dangjian/tuanmgr/rest/tuan_pphd/getTuanType',
-							// data:{rn:new Date().getTime()},
-							//dataType: 'json',
-							contentType: 'apllication/json; charset=utf-8',
-							success: function(data) {
-								//dp3_data=data
-
-							}
-						});
-						
-
-						//定时刷新第三屏内容
+						function jc_jkyj_dfjn(id, name) {
+							var data = dp3_data.jkyj_dfjn[name];
+							$(id).width(parseInt(data.percent) * 1540 / 100 + 200 - 80);
+							$(id + ' .dfjn_w').width(parseInt(data.percent) * 1540 / 100);
+							$(id + ' .dfjn_num').text(data.num);
+							$(id + ' .percent').text(data.percent);
+						};
+						//监控预警--中心组学习情况
+						g_zxzxxqk('zxzxxqk_chart', dp3_data.jkyj_zxzxxqk);
+						//监控预警--党组织书记讲党课情况
+						g_dzzsjjdkqk('jdkqk_chart', dp3_data.jkyj_dzzsjjdkqk);
+						//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,8]}, 5);
+						//                      setInterval(function() {
+						//                              jc_setpie('jc_dp3pie', jc_set_zhuzidata(3).ydata);
+						//                              dp3_zhuzi('#zhuzi_dydw', jc_set_zhuzidata(10), 5);
+						//                              dp3_zhuzi('#dp3_zhuzi_shqk', jc_set_zhuzidata(16), 2);
+						//          
+						//						refreshCount('#zhuzi_dydw');
+						//						function refreshCount(id) {
+						//							
+						//							$(id + ' .dp3_zhu_icon_box').hover(
+						//								function() {
+						//									window.clearInterval(jc_jsq);
+						//								},
+						//								function() {
+						//									setTimeout(function(){
+						//									   window.setInterval(jc_1, 2000)	
+						//									},2000)
+						//								}
+						//							);
+						//							function jc_1(){
+						//								$(id + " .icon_next").click();
+						//							}
+						//						}
 						setInterval(function() {
-								$.ajax({
-									type: 'get',
-									//url: '/dangjian/tuanmgr/rest/tuan_pphd/getTuanType',
-									//data:{rn:new Date().getTime()},
-									//dataType: 'json',
-									//contentType: 'apllication/json; charset=utf-8',
-									success: function(data) {
-										//假数据
-										jc_jiadata();
-										dp3_data.dydw_bar_zzdy = [{
-											xdata: ['天津1', '天津2'],
-											ydata: [100, 20]
-										}, {
-											xdata: ['天津3', '天津4'],
-											ydata: [80, 40]
-										}];
-										dp3_data.jkyj_bar = {
-											hong: {
-												num: '701',
-												percent: '50%'
-											},
-											lan: {
-												num: '78',
-												percent: '80%'
-											}
-										};
-										dp3_data.shykData = [{
-												xdata: ['北京11', '天津01', '河北01'],
-												joindata: [85, 81, 80],
-												componentdata: [80, 80, 85]
-											}, {
-												xdata: ['北京1', '天津1', '河北1'],
-												joindata: [95, 99, 85],
-												componentdata: [86, 73, 75]
-											}],
-											jc_setdata();
-									}
-								});
-							}, 200000000)
-							//定时轮播柱形图
-						setInterval(function() {
-								$wrapper.find(".icon_next").click();
-								//$wrapper.find("#dp3_zhuzi_shqk .icon_next").click();
+								$("#zhuzi_dydw .icon_next").click();
+								$("#dp3_zhuzi_shqk .icon_next").click();
 							}, 2000)
-							//tabs切换
+							//tabs切换	
 						$wrapper.find('#dp3_tabs1 .dp3_title,#dp3_tabs2 .dp3_title').click(function() {
 							$(this).addClass('hover').siblings().removeClass('hover');
 							if($(this).parent().attr('id') == 'dp3_tabs1') { //党员队伍tabs
 								var index = $(this).index();
-								//console.log(index)
+								console.log(index)
 								switch(index) {
 									case 0:
 										jc_dydw('zzdy');
@@ -576,433 +407,6 @@
 							}
 						});
 
-						//第三屏设置数据方法
-
-						// 三会一课列表
-						shyk_bar_package('shyk_list_page_zbdydh', dp3_data.shykListsData, 'right_shyk_lists_zbdydh')
-
-						var data11 = [{
-							xData: ['北京公司01北京公司0', '天津公司0', '河北公司', '冀北公司冀北公司冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [12, 12, 10, 5, 0, 14, 5, 12],
-							finishRate: [5, 6, 3, 1, 4, 8, 0, 6],
-						}, {
-							xData: ['北京公司1北京公司1', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [10, 10, 10, 5, 0, 4, 5, 8],
-							finishRate: [12, 12, 10, 5, 0, 14, 5, 12]
-						}, {
-							xData: ['北京公司2北京公司2', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [10, 14, 5, 12, 5, 6, 13, 10],
-							finishRate: [9, 14, 0, 10, 4, 15, 10, 16],
-						}]
-						shyk_bar_package('shyk_list_page_zbwyh', data11, 'right_shyk_lists_zbwyh')
-
-						var data22 = [{
-							xData: ['北京公司02北京公司0', '天津公司0', '河北公司', '冀北公司冀北公司冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [12, 12, 10, 5, 0, 14, 5, 12],
-							finishRate: [5, 6, 3, 1, 4, 8, 0, 6],
-						}, {
-							xData: ['北京公司3北京公司3', '天津公司天津公司', '河北公司', '冀北公司', '山西公司'],
-							participantRate: [5, 6, 3, 1, 4],
-							finishRate: [2, 1, 10, 5, 9],
-						}]
-						shyk_bar_package('shyk_list_page_dxzh', data22, 'right_shyk_lists_dxzh')
-
-						var data33 = [{
-							xData: ['北京公司03北京公司0', '天津公司0', '河北公司', '冀北公司冀北公司冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [12, 12, 10, 5, 0, 14, 10, 16],
-							finishRate: [5, 6, 3, 1, 4, 8, 10, 9],
-						}, {
-							xData: ['北京公司1北京公司1', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [10, 10, 10, 5, 0, 4, 5, 8],
-							finishRate: [12, 12, 10, 5, 0, 14, 5, 12]
-						}, {
-							xData: ['北京公司2北京公司2', '天津公司天津公司', '河北公司', '冀北公司', '山西公司', '山东公司', '上海公司', '江西公司江西公司'],
-							participantRate: [10, 14, 5, 12, 5, 6, 13, 10],
-							finishRate: [9, 14, 0, 10, 4, 15, 10, 16],
-						}, {
-							xData: ['北京公司3北京公司3', '天津公司天津公司', '河北公司', '冀北公司', '山西公司'],
-							participantRate: [5, 6, 3, 1, 4],
-							finishRate: [2, 1, 10, 5, 9],
-						}]
-						shyk_bar_package('shyk_list_page_dk', data33, 'right_shyk_lists_dk')
-
-						// 各单位换届完成率// 数据回显+分页渲染+按钮点击
-						all_bar_package('gdwyxcg_page', 'gdwyxcg_con', 'gdwyxcg_yAxis', ['换届完成率'], dp3_data.gdwhjwclArr, 1)
-
-						// 各单位先进典型数量分布// 数据回显+分页渲染+按钮点击
-						all_bar_package('xjdxslfb_page', 'xjdxslfb_con', 'xjdxslfb_yAxis', ['个人', '集体'], dp3_data.xjdxslfbArr, 1)
-
-						function jc_setdata() {
-							//tabs复位
-							$wrapper.find('#dp3_tabs1 .dp3_title').eq(0).click();
-							$wrapper.find('#dp3_tabs2 .dp3_title').eq(0).click();
-							//党员队伍
-							//党员队伍--数字
-							for(var i = 0; i < 5; i++) {
-								$wrapper.find('#dp3_dydw_iconbox .span_hong').eq(i).text(dp3_data.dydw[i]);
-							};
-							//党员队伍--饼图
-							jc_setpie('jc_dp3pie', dp3_data.dydw_pie_zzdy);
-							//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,5]}, 5);
-							//组织变化
-							//组织变化--数字
-							for(var i = 0; i < 2; i++) {
-								$wrapper.find('#dp3_zzbh_txt .span_hong').eq(i).text(dp3_data.zzbh[i]);
-							};
-							//三会情况
-							//三会情况--数字
-							for(var i = 0; i < 3; i++) {
-								$wrapper.find('.dp3_shqk_box .span_hong').eq(i).text(dp3_data.shqk[i]);
-							};
-							//监控预警
-							//监控预警--柱子
-							jc_jkyj_bar('#dp3_hjjk_hong', 'hjjk_dw');
-							jc_jkyj_bar('#dp3_hjjk_lan','hjjk_dzb');
-							//监控预警--党员集体参加学习情况
-							$('#dp3_xxqk_txt_p_num').text(dp3_data.jkyj_xxqk.num);
-							// $('#dp3_xxqk_txt_p_percent').text(dp3_data.jkyj_xxqk.percent);
-							g_dyjtcjxxqk('dfjn_xxqk_chart', dp3_data.jkyj_dyjtcjxxqk);
-							//监控预警--党费缴纳
-							//jc_jkyj_dfjn('#dp3_dfjn_huang_left', 'huang');
-							// jc_jkyj_dfjn('#dp3_dfjn_lan_left', 'lan');
-							//监控预警--中心组学习情况
-							g_zxzxxqk('zxzxxqk_chart', dp3_data.jkyj_zxzxxqk);
-							//监控预警--党组织书记讲党课情况
-							g_dzzsjjdkqk('jdkqk_chart', dp3_data.jkyj_dzzsjjdkqk);
-
-							//柱子
-							//党员队伍--柱子
-							dp3_zhuzi('#zhuzi_dydw', dp3_data.dydw_bar_zzdy[0], 5);
-							dp3_zhuzi_point('#zhuzi_dydw', dp3_data.dydw_bar_zzdy);
-							//三会情况--柱子
-							dp3_zhuzi('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh[0], 2);
-							dp3_zhuzi_point('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh);
-							//三会一课
-
-							// 							shyk_lineCharts('myCharts', dp3_data.shykData[0].xdata, dp3_data.shykData[0].joindata, dp3_data.shykData[0].componentdata);
-							// 							page_select('shyk_page', dp3_data.shykData);
-
-							// 							gdwhjwcl_lineCharts('gdwhjwcl_charts', dp3_data.shykData[0].xdata, dp3_data.shykData[0].componentdata);
-							// 							page_select('gdwhjwcl_page', dp3_data.shykData);
-
-							//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,8]}, 5);
-							//                      setInterval(function() {
-							//                              jc_setpie('jc_dp3pie', jc_set_zhuzidata(3).ydata);
-							//                              dp3_zhuzi('#zhuzi_dydw', jc_set_zhuzidata(10), 5);
-							//                              dp3_zhuzi('#dp3_zhuzi_shqk', jc_set_zhuzidata(16), 2);
-							//          
-							//						refreshCount('#zhuzi_dydw');
-							//						function refreshCount(id) {
-							//							
-							//							$(id + ' .dp3_zhu_icon_box').hover(
-							//								function() {
-							//									window.clearInterval(jc_jsq);
-							//								},
-							//								function() {
-							//									setTimeout(function(){
-							//									   window.setInterval(jc_1, 2000)	
-							//									},2000)
-							//								}
-							//							);
-							//							function jc_1(){
-							//								$(id + " .icon_next").click();
-							//							}
-							//						}
-
-						};
-
-						// 三会一课tabs点击hover
-						$wrapper.find('.right_shyk_lists').find('div').on('click', function() {
-							$(this).addClass('hover').siblings().removeClass('hover');
-							var index = $(this).index();
-							$wrapper.find('.shyk-list').eq(index).show().siblings('.shyk-list').hide();
-
-						})
-
-						// --------------------------右侧上方列表 start------------------------------------------------------
-						
-						function shyk_click_page(pageId, data, xId) {
-							//向后
-							$wrapper.find('#' + pageId).on("click", ".icon_next", function() {
-								var _this = $(this).siblings('.icon_circle.hover').index();
-								$(this).parent().find('i.hover').removeClass('hover').next().addClass('hover');
-								if(_this == data.length) {
-									_this = 0;
-									$(this).siblings('.icon_circle').eq(0).addClass('hover');
-								}
-								shyk_data_show(xId, data, _this);
-							});
-							//向前
-							$wrapper.find('#' + pageId).on("click", ".icon_prev", function() {
-								var _this = $(this).siblings('.icon_circle.hover').index() - 2;
-								$(this).parent().find('i.hover').removeClass('hover').prev().addClass('hover');
-								if(_this == -1) {
-									_this = data.length - 1;
-									$(this).siblings('.icon_circle').eq(data.length - 1).addClass('hover');
-								}
-								shyk_data_show(xId, data, _this);
-							});
-							//圆点
-							$wrapper.find('#' + pageId).on('click', '.icon_circle', function(e) {
-								var _this = $(this).index() - 1;
-								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
-								shyk_data_show(xId, data, _this);
-							});
-						}
-						// 数据回显
-						function shyk_data_show(xId, data, index) {//console.log(data.length, $wrapper.find('#' + xId + ' .center_each').length)
-							var participantMax = Math.ceil(Math.max.apply(null, data[index].participantRate) / 4) * 4
-							var finishMax = Math.ceil(Math.max.apply(null, data[index].finishRate) / 4) * 4
-							var compareMax = participantMax > finishMax ? participantMax : finishMax;
-
-							$wrapper.find('#' + xId + ' .center_each').each(function(i) {
-								$(this).find('.shyk-list-bar-left .center_col_top').height(0);
-								$(this).find('.shyk-list-bar-left .center_col_top .hideData').text('');
-								$(this).find('.shyk-list-bar-right .center_col_top').height(0);
-								$(this).find('.shyk-list-bar-right .center_col_top .hideData').text('');
-								$(this).find('.company_name').text('');
-								$(this).find('.shyk-list-bar-left .center_col_top').height(`${data[index].finishRate[i]/compareMax*100}%`);
-								$(this).find('.shyk-list-bar-left .center_col_top .hideData').text(`${data[index].finishRate[i]}`);
-								$(this).find('.shyk-list-bar-right .center_col_top').height(`${data[index].participantRate[i]/compareMax*100}%`);
-								$(this).find('.shyk-list-bar-right .center_col_top .hideData').text(`${data[index].participantRate[i]}`);
-								$(this).find('.company_name').text(data[index].xData[i]);
-
-							})
-
-							//x轴
-							$wrapper.find('#' + xId + ' .company_name').each(function(i) {
-								if($(this).text().length > 9) {
-									$(this).css('lineHeight', '1')
-								} else {
-									$(this).css('lineHeight', '100px')
-								}
-							})
-							$wrapper.find('#' + xId + ' .center_each').each(function(i) {
-								if($(this).find('.shyk-list-bar-left').find('.hideData').text() == 0 || $(this).find('.shyk-list-bar-left').find('.hideData').text() == 'undefined') {
-									$(this).find('.shyk-list-bar-left').find('.center_col_top').hide()
-								} else {
-									$(this).find('.shyk-list-bar-left').find('.center_col_top').show()
-								}
-								if($(this).find('.shyk-list-bar-right').find('.hideData').text() == 0 || $(this).find('.shyk-list-bar-right').find('.hideData').text() == 'undefined') {
-									$(this).find('.shyk-list-bar-right').find('.center_col_top').hide()
-								} else {
-									$(this).find('.shyk-list-bar-right').find('.center_col_top').show()
-								}
-							})
-						}
-
-						// 封装
-						function shyk_bar_package(pageId, data, xId) {
-							shyk_click_page(pageId, data, xId);
-							var id = pageId;
-							page_select(id, data)
-						}
-
-						// --------------------------右侧上方列表 end -------------------------------------------------------
-
-						//---------------------------右侧 下方叠加柱状图和右侧中间一维柱状图 start-------------------------------------
-
-						/*
-						 * 求一个数组中嵌套的两个或三个数组相同索引对应的值得和
-						 * eg： [[1,2,3,4],[5,6,7,8]]   => [6,8,10,12]
-						 * eg:[[1,2,3,4],[1,2,3,4],[1,2,3,4] => [3,6,9,12]
-						 * eg: [[1,2,3,4]]   => [1,2,3,4]
-						 * */
-						function sum_arr(arr) {
-							if(arr.length == 2) {
-								var newArr = arr[0].map(function(value, index) {
-									return value + arr[1][index]
-								});
-								return newArr
-							} else if(arr.length == 3) {
-								var newArr = arr[0].map(function(value, index) {
-									return value + arr[1][index] + arr[2][index]
-								});
-								return newArr
-							} else if(arr.length == 1) {
-								var newArr = arr[0].map(function(value, index) {
-									return value
-								});
-								return newArr
-							}
-
-						}
-
-						// 柱状图点击分页
-						/*
-						    pageId ： 分页的父元素的id
-						    xDataId : 对应x轴的各个数据父元素的ID。
-						    yAxisId ： y轴的刻度值的父元素的id
-						    legend： 图例
-						    data:数据，必须是对象数组，对象里属性名为：xData和yData,
-						    index：当前的索引
-						*/
-						function click_page(pageId, xDataId, yAxisId, legend, data) {
-							//向后
-							$wrapper.find('#' + pageId).on("click", ".icon_next", function() {
-								var _this = $(this).siblings('.icon_circle.hover').index();
-								$(this).parent().find('i.hover').removeClass('hover').next().addClass('hover');
-								if(_this == data.length) {
-									_this = 0;
-									$(this).siblings('.icon_circle').eq(0).addClass('hover');
-								}
-								dataShow(xDataId, yAxisId, legend, data, _this);
-							});
-							//向前
-							$wrapper.find('#' + pageId).on("click", ".icon_prev", function() {
-								var _this = $(this).siblings('.icon_circle.hover').index() - 2;
-								$(this).parent().find('i.hover').removeClass('hover').prev().addClass('hover');
-								if(_this == -1) {
-									_this = data.length - 1;
-									$(this).siblings('.icon_circle').eq(data.length - 1).addClass('hover');
-								}
-								dataShow(xDataId, yAxisId, legend, data, _this);
-							});
-							//圆点
-							$wrapper.find('#' + pageId).on('click', '.icon_circle', function(e) {
-								var _this = $(this).index() - 1;
-								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
-								dataShow(xDataId, yAxisId, legend, data, _this);
-							});
-						}
-
-						// 数据回显
-						/*
-						    xDataId : 对应x轴的各个数据父元素的ID。
-						    yAxisId ： y轴的刻度值的父元素的id
-						    legend： 图例
-						    data:数据，必须是对象数组，对象里属性名为：xData和yData,
-						    index：当前的索引
-						*/
-						function dataShow(xDataId, yAxisId, legend, data, index) {
-							var sumData = sum_arr(data[index].yData);
-							var YAxisMax = Math.ceil(Math.max.apply(null, sumData) / 4) * 4; // 获取sumData的最大值
-							//x轴
-							$wrapper.find('#' + xDataId).find('.company_name').each(function(i) {
-								$(this).text('');
-								$(this).attr('title', '');
-								$(this).attr('title', data[index].xData[i]);
-								$(this).text(data[index].xData[i]);
-								if($(this).text().length <= 4) {
-									sub = data[index].xData[i];
-									$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
-										lineHeight: '120px',
-									})
-									$(this).text(sub);
-								} else if($(this).text().length > 4 && $(this).text().length <= 8) {
-									sub = data[index].xData[i].substring(0, 4) + '\n' + data[index].xData[i].substring(4, 8);;
-									$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
-										lineHeight: '1.3',
-									})
-									$(this).text(sub);
-								} else {
-									sub = data[index].xData[i].substring(0, 4) + '\n' + data[index].xData[i].substring(4, 7) + '..';
-									$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
-										lineHeight: '1.3',
-									})
-									$(this).text(sub);
-								}
-
-							})
-							// y轴刻度
-							if(legend.length != 1) {
-								$wrapper.find('#' + yAxisId).find('li').each(function(i) {
-									$wrapper.find('#' + yAxisId + ' li').eq(i).text(YAxisMax * (1 - 0.25 * i))
-								})
-							}
-
-							// x轴各个值
-							if(legend.length == 2) {
-								$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.count_item').text('');
-
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(Math.round(data[index].yData[0][i] / YAxisMax * 100) + '%');
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.count_item').text(data[index].yData[0][i]);
-
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').height(0);
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').find('.count_item').text('');
-
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').height(Math.round(data[index].yData[1][i] / YAxisMax * 100) + '%');
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').find('.count_item').text(data[index].yData[1][i]);
-								})
-							} else if(legend.length == 1) {
-								$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.hideData').text('');
-
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(Math.round(data[index].yData[0][i] / YAxisMax * 100) + '%');
-									$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.hideData').text(data[index].yData[0][i]);
-								})
-							}
-
-							$wrapper.find('#' + xDataId + ' .center_each').each(function(i) {
-								if(legend.length == 2) {
-									if($(this).find('.center_col_cen .count_item').text() == 0 || $(this).find('.center_col_cen .count_item').text() == 'undefined') {
-										$(this).find('.center_col_cen').hide();
-									} else {
-										$(this).find('.center_col_cen').show();
-									}
-									if($(this).find('.center_col_top .count_item').text() == 0 || $(this).find('.center_col_top .count_item').text() == 'undefined') {
-										$(this).find('.center_col_top').hide();
-									} else {
-										$(this).find('.center_col_top').show();
-									}
-								} else if(legend.length == 1) {
-									if($(this).find('.hideData').text() == 0 || $(this).find('hideData').text() == 'undefined') {
-										$(this).find('.center_col_top').hide();
-									} else {
-										$(this).find('.center_col_top').show()
-									}
-								}
-							})
-						}
-						// 分页
-						function page_select(id, data) {
-							$wrapper.find('#' + id).empty();
-							var dom = '<i class="icon_prev"></i>';
-							for(var i = 0; i < data.length; i++) {
-								if(i == 0) {
-									dom += '<i class="icon_circle hover"></i>'
-								} else if(i == data.length - 1) {
-									dom += '<i class="icon_circle" style="padding-right:0"></i>'
-								} else {
-									dom += '<i class="icon_circle"></i>'
-								}
-							};
-							dom += '<i class="icon_next"></i>';
-							$wrapper.find('#' + id).append(dom);
-
-						};
-						// 封装
-						function all_bar_package(pageId, xDataId, yAxisId, legend, data, index) {
-							click_page(pageId, xDataId, yAxisId, legend, data);
-							dataShow(xDataId, yAxisId, legend, data, index);
-							page_select(pageId, data)
-						}
-
-						//-----------------------------叠加柱状图和右侧中间一维柱状图end ------------------------------------------------------------
-						function jc_jkyj_bar(id, name) {
-							var data = dp3_data[name];
-							if(data[2]<10){
-								var minheight=50+data[2];
-							}else{
-								var minheight=data[2];
-							}
-							$(id + ' .dp3_hjjk_percent_hong').height(minheight+'%');
-							$(id + ' .dp3_hjjk_hong_num .num').text(data[0]);
-							$(id + ' .dp3_hjjk_hong_num1 .num').text(data[1]);
-							$(id + ' .dp3_hjjk_hong_percent .num').text(data[2]);
-						};
-
-						function jc_jkyj_dfjn(id, name) {
-							var data = dp3_data.jkyj_dfjn[name];
-							//$(id).width(parseInt(data.percent) * 2040 / 100 + 200 - 80);
-							$(id + ' .dfjn_w').width(parseInt(data.percent) * 2040 / 100);
-							$(id + ' .dfjn_num').text(data.num);
-							$(id + ' .percent').text(data.percent);
-						};
-
 						function dp3_zhuzi(id, zhu_data, ybeinum) {
 							//最大值
 							var ydatamax = Math.max.apply(null, zhu_data.ydata);
@@ -1024,7 +428,6 @@
 								};
 							}
 							//x轴名字回显
-							$wrapper.find(id + ' .dp3_zhu_x li').empty(); //清空 复位
 							$wrapper.find(id + ' .dp3_zhu_x li').each(function(i) {
 								$(this).text(zhu_data.xdata[i]);
 							});
@@ -1045,12 +448,6 @@
 									var percent = parseFloat((zhu_data.ydata[i] * 100 / (num * ybeinum)));
 									var $top = $(this).find('.bar-main-top');
 									var $down = $(this).find('.bar-main-down');
-									//清空 复位
-									$(this).find('.bar-num').text(' ');
-									$(this).find('.bar-main').height(0);
-									$top.hide();
-									$down.hide();
-									//清空结束
 									$(this).find('.bar-num').text(zhu_data.ydata[i]);
 									//console.log(num * ybeinum) y轴最大坐标值
 									$(this).find('.bar-main').height(percent + '%');
@@ -1068,9 +465,6 @@
 						function dp3_zhuzi_point(id, zhu_data_arr) {
 							var index;
 							$(id + ' .dp3_zhu_icon_box').empty();
-							if(zhu_data_arr.length=='1'){
-							 return;
-							};
 							var dom = '<i class="icon_prev"></i>';
 							for(var i = 0; i < zhu_data_arr.length; i++) {
 								if(i == 0) {
@@ -1082,9 +476,9 @@
 								}
 							};
 							dom += '<i class="icon_next"></i>';
-							$wrapper.find(id + ' .dp3_zhu_icon_box').append(dom);
+							$(id + ' .dp3_zhu_icon_box').append(dom);
 							//向后
-							$wrapper.find(id + " .icon_prev").click(function() {
+							$(id + " .icon_prev").click(function() {
 									index = $(this).siblings('.icon_circle.hover').index() - 1;
 									var $circle = $(this).parent().find('.icon_circle');
 									if(index == 0) {
@@ -1096,7 +490,7 @@
 									}
 								})
 								//向前
-							$wrapper.find(id + " .icon_next").click(function() {
+							$(id + " .icon_next").click(function() {
 								index = $(this).siblings('.icon_circle.hover').index() - 1;
 								var $circle = $(this).parent().find('.icon_circle');
 								if(index == zhu_data_arr.length - 1) {
@@ -1108,12 +502,13 @@
 								}
 							});
 							//圆点
-							$wrapper.find(id + " .icon_circle").click(function() {
+							$(id + " .icon_circle").click(function() {
 								index = $(this).index() - 1;
 								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
 								dp3_zhuzi(id, zhu_data_arr[index], 5);
 							});
 						};
+
 					},
 					onSlideChangeEnd: function(swiper) {
 						myAC_child2.play();
@@ -1133,7 +528,6 @@
 				//                      //alert(swiper.activeIndex)
 				//                  },
 				//              });
-				//第一屏
 				// 主swiper幻灯片
 				var mySwiper = new Swiper('.swiper-container-main1', {
 					//              direction: 'normal',
@@ -1141,7 +535,7 @@
 					loop: true,
 					threshold: 1200,
 					//onlyExternal : true,
-					// autoplay: 8500,
+					autoplay: 8500,
 					prevButton: '.swiper-button-prev',
 					nextButton: '.swiper-button-next',
 					onInit: function(swiper) {
@@ -1150,7 +544,6 @@
 						myAC_main1.addChild(3, myAC_child2);
 						//myAC_main1.addChild(4, myAC_child3);
 						var comtainer = document.getElementById('jc_content');
-						var $wrapper = $(swiper.wrapper);
 						comtainer.onmouseenter = function() {
 							swiper.stopAutoplay();
 						};
@@ -1171,7 +564,30 @@
 	<body>
 		<div class="swiper-container swiper-container-main1" id="jc_content">
 			<div class="swiper-wrapper">
-				<div id="dp1" class="swiper-slide dp1_content" data-swiper-autoplay="8500">
+				<div class="swiper-slide" data-swiper-autoplay="8500">
+					<div class="main1_ani_25_1">
+						<div class="dp1_1_1 dp1_textbox">
+							<span class="big">14</span>年
+						</div>
+						<div class="dp1_1_2 dp1_textbox">
+							第<span class="big">2</span>位
+						</div>
+						<div class="dp1_2 dp1_textbox">
+							<span class="big">8295</span>亿元
+						</div>
+						<div class="dp1_3_1 dp1_textbox">
+							<span class="big">160.9</span>万人
+						</div>
+						<div class="dp1_3_2 dp1_textbox">
+							<span class="big">26</span>个
+						</div>
+						<div class="dp1_3_3 dp1_textbox">
+							<span class="big">88</span>％
+						</div>
+						<div class="dp1_4 dp1_textbox">
+							<span class="big">11</span>亿
+						</div>
+					</div>
 					<div class="dp1_bg main1_ani_00">
 					</div>
 					<div class="dp1_gsgk_box main1_ani_01">
@@ -1261,50 +677,27 @@
 					<div class="dp1_gsgk_part1 main1_ani_25">
 						<img src="img/dp1_gsgk_part1.png" />
 					</div>
-					<div class="main1_ani_25_1">
-						<div class="dp1_1_1 dp1_textbox">
-							<span name="page01_sd01" class="big"></span>年
-						</div>
-						<div class="dp1_1_2 dp1_textbox">
-							第<span name="page01_sd02" class="big"></span>位
-						</div>
-						<div class="dp1_2 dp1_textbox">
-							<span name="page01_sd03" class="big"></span>亿元
-						</div>
-						<div class="dp1_3_1 dp1_textbox">
-							<span name="page01_sd04" class="big"></span>万人
-						</div>
-						<div class="dp1_3_2 dp1_textbox">
-							<span name="page01_sd05" class="big"></span>个
-						</div>
-						<div class="dp1_3_3 dp1_textbox">
-							<span name="page01_sd06" class="big"></span>％
-						</div>
-						<div class="dp1_4 dp1_textbox">
-							<span name="page01_sd07" class="big"></span>亿
-						</div>
-					</div>
 					<div class="dp1_gsgk_part2 main1_ani_26">
 						<img src="img/dp1_gsgk_part2.png" />
 						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;">
 							<li>
 								<div class="dp1_textbox">
-									第<span name="page01_sd02" class="big"></span>位
+									第<span class="big">2</span>位
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd06" class="big"></span>%以上
+									<span class="big">88</span>%以上
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd07" class="big"></span>亿人
+									<span class="big">11</span>亿人
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd16" class="big"></span>亿千瓦时
+									<span class="big">23933.9</span>亿千瓦时
 								</div>
 							</li>
 						</ul>
@@ -1314,22 +707,22 @@
 						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;box-sizing:border-box;padding-top: 55px;">
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd04" class="big"></span>万人
+									<span class="big">160.9</span>万人
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd09" class="big"></span>亿元
+									<span class="big">34.3</span>亿元
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd11" class="big"></span>亿元
+									<span class="big">39161.6</span>亿元
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd17" class="big"></span>亿元
+									<span class="big">14328</span>亿元
 								</div>
 							</li>
 						</ul>
@@ -1339,53 +732,53 @@
 						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;padding-top: 54px;box-sizing:border-box;">
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd08" class="big"></span>亿元
+									<span class="big">542.7</span>亿元
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd10" class="big"></span>亿元
+									<span class="big">2270.0</span>亿元
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd12" class="big"></span>%
+									<span class="big">99.957</span>%
 								</div>
 							</li>
 							<li>
 								<div class="dp1_textbox">
-									<span name="page01_sd18" class="big"></span>%
+									<span class="big">99.833</span>%
 								</div>
 							</li>
 						</ul>
 					</div>
 					<div class="dp1_zzgk main1_ani_29_1">
 						<div class="dp1_zzgk_1_1 dp1_textbox">
-							<span name="PAR_SUM" class="big"></span>个
+							<span class="big">38321</span>个
 						</div>
 						<div class="dp1_zzgk_1_2 dp1_textbox">
-							<span name="DW" class="big"></span>个
+							<span class="big">2369</span>个
 						</div>
 						<div class="dp1_zzgk_1_3 dp1_textbox">
-							<span name="DZZ" class="big"></span>个
+							<span class="big">2119</span>个
 						</div>
 						<div class="dp1_zzgk_2_1 dp1_textbox">
-							<span name="DZB" class="big"></span>个
+							<span class="big">30393</span>个
 						</div>
 						<div class="dp1_zzgk_3_1 dp1_textbox">
-							<span name="SUM_DY" class="big"></span>万
+							<span class="big">62.75</span>万
 						</div>
 						<div class="dp1_zzgk_3_2 dp1_textbox">
-							<span name="LT_DY" class="big"></span>万
+							<span class="big">12.68</span>万
 						</div>
 						<div class="dp1_zzgk_3_3 dp1_textbox">
-							<span name="page01_sd13" class="big"></span>人
+							<span class="big">3249</span>人
 						</div>
 						<div class="dp1_zzgk_4_1 dp1_textbox">
-							<span name="page01_sd14" class="big"></span>人
+							<span class="big">2223</span>人
 						</div>
 						<div class="dp1_zzgk_4_2 dp1_textbox">
-							<span name="page01_sd15" class="big"></span>%
+							<span class="big">68</span>%
 						</div>
 					</div>
 					<div class="dp1_zzgk_part1 main1_ani_29">
@@ -1409,38 +802,6 @@
 					<div class="dp1_lsgx_part2 main1_ani_35">
 						<img src="img/dp1_lsgx_part2.png" />
 					</div>
-					<div class="dp1_lsgx_part2_ul main1_ani_35_1">
-						<ul class="fit dp1_lsgx_txtul1">
-							<li class="dp1_lsgx_txt dp1_lsgx_num1" style="text-align: center;">
-								<span class="big" style="font-size: 109px"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num2">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num3">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num4">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-						</ul>
-					</div>
-					<div class="dp1_lsgx_part4_ul main1_ani_37_1">
-						<ul class="fit dp1_lsgx_txtul2">
-							<li class="dp1_lsgx_txt dp1_lsgx_num1" style="text-align: center;">
-								<span class="big" style="font-size: 109px"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num2">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num3">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-							<li class="dp1_lsgx_txt dp1_lsgx_num4">
-								<span class="big"></span><span class="ge">个</span>
-							</li>
-						</ul>
-					</div>
 					<div class="dp1_lsgx_part3 main1_ani_36">
 						<img src="img/dp1_lsgx_part3.png" />
 					</div>
@@ -1448,7 +809,7 @@
 						<img src="img/dp1_lsgx_part4.png" />
 					</div>
 				</div>
-				<div id="dp2" class="swiper-slide" data-swiper-autoplay="5000">
+				<div class="swiper-slide" data-swiper-autoplay="5000">
 					<div class="swiper-container swiper-container-child1">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
@@ -1470,6 +831,16 @@
 								<div class="dp2_video_text child1_ani_04_1">
 									<span class="dp2_tx_hong">天津公司</span>
 								</div>
+								<div class="dp2_video_box child1_ani_04_2">
+									<video id='myVideo' width="100%" height="100%" autoplay="autoplay">
+										<source src="video/123.mp4" type="video/mp4"></source>
+										<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+                                        <param name="movie" value="myvideo.swf" />
+                                        <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+                                    </object> 当前浏览器不支持 video直接播放，点击这里下载视频：
+										<a href="myvideo.webm">下载视频</a>
+									</video>
+								</div>
 								<div class="dp2_bg child1_ani_01">
 
 								</div>
@@ -1488,29 +859,6 @@
 										<img src="img/video_play.png" />
 									</div>
 								</div>
-								<div class="dp2_video_box child1_ani_04_2 swiper-container2" style="overflow: hidden;">
-									<div class="swiper-wrapper">
-										<video class="swiper-slide" id='myVideo' width="100%" height="100%" autoplay="autoplay">
-											<source src='http://api.goudaitv.com/youkuyun/ckplayer/ckplayer.swf' type="video/mp4"></source>
-											<!--src="video/123.mp4"-->
-											<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
-	                                        <param name="movie" value="myvideo.swf" />
-	                                        <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
-	                                         </object> 当前浏览器不支持 video直接播放，点击这里下载视频：
-											<a href="myvideo.webm">下载视频</a>
-										</video>
-										<video class="swiper-slide" id='myVideo' width="100%" height="100%" autoplay="autoplay">
-											<source src="video/123.mp4" type="video/mp4"></source>
-											<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
-	                                        <param name="movie" value="myvideo.swf" />
-	                                        <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
-	                                         </object> 当前浏览器不支持 video直接播放，点击这里下载视频：
-											<a href="myvideo.webm">下载视频</a>
-										</video>
-										<div class="swiper-pagination"></div>
-									</div>
-
-								</div>
 								<div class="dp2_djdsj child1_ani_05">
 									<img src="img/dp2_djdsj.png" />
 								</div>
@@ -1520,76 +868,6 @@
 									<img src="img/dp2_gcdy.png" />
 								</div>
 								<div class="dp2_dwjg_part1 child1_ani_08">
-									<ul class="fit dp2_dwjg_txtul" style="position: absolute;top: 0px;">
-										<div id="pie_dyzb" class="child1_ani_08_1">
-											<li class="dp2_textbox dp2_textbox_per1">
-												<span name="qzbl"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_num1">
-												<span name="ygzs" style="font-size: 90px"></span><span style="font-size: 50px">万人</span>
-											</li>
-											<li class="dp2_textbox dp2_textbox_per2">
-												<span name="dybl"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_num2">
-												<span name="zzdy" style="font-size: 90px"></span><span style="font-size: 50px">万人</span>
-											</li>
-											<li class="dp2_textbox dp2_textbox_num3">
-												<span name="ltdy" style="font-size: 90px"></span><span style="font-size: 50px">万人</span>
-											</li>
-										</div>
-										<div id="pie_zczb" class="child1_ani_08_2">
-											<li class="dp2_textbox dp2_textbox_per3">
-												<span name="fg"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_num4">
-												<span name="dyzs" style="font-size: 90px"></span><span style="font-size: 50px">万人</span>
-											</li>
-											<li class="dp2_textbox dp2_textbox_per4">
-												<span name="cj"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_per5">
-												<span name="zj"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_per6">
-												<span name="zg"></span>%
-											</li>
-										</div>
-										<div id="pie_gsdyzb" class="child1_ani_10_1">
-											<li class="dp2_textbox dp2_textbox_per7">
-												<span name="yjs"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_num5">
-												<span name="dyzs" style="font-size: 90px"></span><span style="font-size: 50px">万人</span>
-											</li>
-											<li class="dp2_textbox dp2_textbox_per8">
-												<span name="dzjyx"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_per9">
-												<span name="bk"></span>%
-											</li>
-										</div>
-										<div id="pie_zbdyzb" class="child1_ani_11_1">
-											<li class="dp2_textbox dp2_textbox_per10">
-												<span name="yjs"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_num6">
-												<span name="dyzs" style="font-size: 90px">62.75</span><span style="font-size: 50px">万人</span>
-											</li>
-											<li class="dp2_textbox dp2_textbox_per11">
-												<span name="dzjyx"></span>%
-											</li>
-											<li class="dp2_textbox dp2_textbox_per12">
-												<span name="bk"></span>%
-											</li>
-										</div>
-										<li class="dp2_textbox_txt1" style="font-size: 50px;color: #2d2d2d;text-align: center">
-											<span>公司系统大学本科及以上<br>学历党员占比</span><span>38.7%</span>
-										</li>
-										<li class="dp2_textbox_txt2" style="font-size: 50px;color: #2d2d2d;text-align: center">
-											<span>总部及在京直属单位大学本科<br/>及以上学历党员占比</span><span>87%</span>
-										</li>
-									</ul>
 									<img src="img/dp2_dwjg_part1.png" />
 								</div>
 								<div class="dp2_dwjg_part2 child1_ani_09">
@@ -1602,76 +880,21 @@
 									<img src="img/dp2_dwjg_part4.png" />
 								</div>
 								<div class="dp2_dwjg_part5 child1_ani_12">
-									<ul class="fit dp2_dyjg_txtul" style="position: absolute;top: 0;">
-										<li class="dp1_textbox">
-											<span class="big" name="ljybdys"></span><span>个</span>
-										</li>
-										<li class="dp1_textbox" style="text-align: center">
-											<span class="big" name="ljjjfzrs"></span><span>个</span>
-										</li>
-										<li class="dp1_textbox" style="text-align: center;padding-left: 146px;">
-											<span class="big" name="ljdjrdsqsrs"></span><span>个</span>
-										</li>
-									</ul>
 									<img src="img/dp2_dwjg_part5.png" />
 								</div>
 								<div class="dp2_gcdyfwd_part1 child1_ani_06_1">
 									<img src="img/dp2_gcdyfwd_part1.png" />
 								</div>
 								<div class="dp2_bzqk_part1 child1_ani_13">
-									<ul class="fit dp2_bzqk_txtul" style="position: absolute;top: 0;padding-left: 844px;">
-										<li class="dp1_textbox">
-											<span class="big"></span>个
-										</li>
-										<li class="dp1_textbox">
-											<span class="big"></span>名
-										</li>
-										<li class="dp1_textbox">
-											<span class="big"></span>名
-										</li>
-									</ul>
 									<img src="img/dp2_bzqk_part1.png" />
 								</div>
 								<div class="dp2_bzqk_part2 child1_ani_14">
-									<ul class="fit dp2_bzqk_txtul" style="position: absolute;top: 0;padding-left: 844px;">
-										<li class="dp1_textbox">
-											<span class="big"></span>个
-										</li>
-										<li class="dp1_textbox">
-											<span class="big"></span>名
-										</li>
-										<li class="dp1_textbox">
-											<span class="big"></span>名
-										</li>
-									</ul>
 									<img src="img/dp2_bzqk_part2.png" />
 								</div>
 								<div class="dp2_bzqk_part3 child1_ani_15">
-									<ul class="fit dp2_bzqk_txtul" style="position: absolute;top: 0;padding-left: 844px;">
-										<li class="dp1_textbox">
-											<span class="big"></span>个
-										</li>
-										<li class="dp1_textbox" style="padding-left: 122px;">
-											<span class="big"></span>名
-										</li>
-										<li class="dp1_textbox" style="padding-left: 186px;">
-											<span class="big"></span>名
-										</li>
-									</ul>
 									<img src="img/dp2_bzqk_part3.png" />
 								</div>
 								<div class="dp2_bzqk_part4 child1_ani_16">
-									<ul class="fit dp2_bzqk_txtul" style="position: absolute;top: 0;padding-left: 844px;">
-										<li class="dp1_textbox">
-											<span class="big"></span>个
-										</li>
-										<li class="dp1_textbox" style="padding-left: 122px;">
-											<span class="big"></span>名
-										</li>
-										<li class="dp1_textbox" style="padding-left: 186px;">
-											<span class="big"></span>名
-										</li>
-									</ul>
 									<img src="img/dp2_bzqk_part4.png" />
 								</div>
 							</div>
@@ -1746,78 +969,20 @@
 									<img src="img/dp3_zbkb.png" />
 								</div>
 
-								<div id="dp3_xiala_box">
-									<div class="dp3_title_top dp3_title1 child2_ani_07">
-										<p class="dp3_title_text">
-											国网公司党委
-										</p>
-										<img src="img/dp3_title1.png" />
-										<div class="dp3_xiala_items">
-											<ul>
-												<li>国网公司党委</li>
-											</ul>
-										</div>
-									</div>
-									<div class="dp3_title_top dp3_title2 child2_ani_08">
-										<p class="dp3_title_text">
-											国网省级公司党委
-										</p>
-										<img src="img/dp3_title2.png" />
-										<div class="dp3_xiala_items">
-											<ul>
-												<!--<li>国家电网公司党组1</li>
-													<li>国家电网公司党组2</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组5</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>-->
-											</ul>
-										</div>
-									</div>
-									<div class="dp3_title_top dp3_title4 child2_ani_10">
-										<p class="dp3_title_text">
-											全部市级电网公司党委
-										</p>
-										<img src="img/dp3_title4.png" />
-										<div class="dp3_xiala_items">
-											<ul>
-												<!--<li>国家电网公司党组4</li>
-													<li>国家电网公司党组5</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>-->
-											</ul>
-										</div>
-									</div>
-									<div class="dp3_title_top dp3_title5 child2_ani_11">
-										<p class="dp3_title_text">
-											全部县级公司党委
-										</p>
-										<img src="img/dp3_title5.png" />
-										<div class="dp3_xiala_items">
-											<ul>
-												<!--<li>国家电网公司党组5</li>
-													<li>国家电网公司党组8</li>
-													<li>国家电网公司党组9</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>
-													<li>国家电网公司党组</li>-->
-											</ul>
-										</div>
-									</div>
+								<div class="dp3_title1 child2_ani_07">
+									<img src="img/dp3_title1.png" />
+								</div>
+								<div class="dp3_title2 child2_ani_08">
+									<img src="img/dp3_title2.png" />
 								</div>
 								<div class="dp3_title3 child2_ani_9">
 									<img src="img/dp3_title3.png" />
+								</div>
+								<div class="dp3_title4 child2_ani_10">
+									<img src="img/dp3_title4.png" />
+								</div>
+								<div class="dp3_title5 child2_ani_11">
+									<img src="img/dp3_title5.png" />
 								</div>
 
 								<!--党员队伍-->
@@ -2065,30 +1230,15 @@
 
 								<!--组织变化-->
 								<div class="dp3_zzbh_icon">
-
+									<img src="img/dp3_zzbh_icon.png" />
 								</div>
-								<div class="dp3_zzbh_box" id="dp3_zzbh_txt">
-									<div class="dp3_icon_box" style="height: 350px;padding-left: -70px;padding-top: 26px;">
-										<ul class="fit">
-											<li style="height: 100%;">
-
-											</li>
-											<li style="background: url(img/icon_zzbh_2.png) no-repeat left;background-size:290px 290px;">
-												<div class="numbox">
-													<span class="span_hong">64</span><span class="span_hei">个</span>
-												</div>
-												<p class="dp3_hei_zhong">新增党组织</p>
-											</li>
-
-											<li style="background: url(img/icon_zzbh_5.png) no-repeat left;background-size:290px 290px;">
-												<div class="numbox">
-													<span class="span_hong">64</span><span class="span_hei">个</span>
-												</div>
-												<p class="dp3_hei_zhong">撤销党组织</p>
-											</li>
-
-										</ul>
-									</div>
+								<div class="dp3_zzbh_txt">
+									<ul class="dp3_txt_items dp3_zzbh_txt_ul fit">
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+									</ul>
 								</div>
 								<!--三会情况-->
 								<div class="dp3_shqk_icon">
@@ -2488,20 +1638,16 @@
                                 </div>
                                 -->
 								<!--换届监控-->
-								<div class="dp3_hjjk_title">
-									<img src="img/dp3_hjjk_title.png">
-								</div>
 								<div class="dp3_hjjk_di">
 									<img src="img/dp3_hjjk_di.png">
 								</div>
 								<div class="dp3_hjjk_hong" id="dp3_hjjk_hong">
 									<div class="dp3_hjjk_percent_hong">
 										<p class="dp3_hjjk_hong_num">
-											<span class="num">700</span><span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
+											700<span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
 										<h1 class="dp3_hjjk_hong_percent">
-                                            <span class="num">100</span>%
+                                            100%
                                         </h1>
-										<p class="dp3_hjjk_hong_num1"><span class="num">700</span><span style="color: #ffffff;font-size: 39px;margin-left: 10px;">个</span></p>
 										<h1 class="dp3_hjjk_hong_name">党委换届</h1>
 										<img style="height: 100%;" src="img/dp3_hjjk_hong.png">
 									</div>
@@ -2509,11 +1655,10 @@
 								<div class="dp3_hjjk_lan" id="dp3_hjjk_lan">
 									<div class="dp3_hjjk_percent_hong">
 										<p class="dp3_hjjk_hong_num" style="color: #0461df">
-											<span class="num">70</span><span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
+											70<span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
 										<h1 class="dp3_hjjk_hong_percent">
-                                            <span class="num">100</span><span>%</span>
+                                            100%
                                         </h1>
-										<p class="dp3_hjjk_hong_num1"><span class="num">68</span><span style="color: #ffffff;font-size: 39px;margin-left: 10px;">个</span></p>
 										<h1 class="dp3_hjjk_hong_name">支部换届</h1>
 										<img src="img/dp3_hjjk_lan.png" style="height: 100%;">
 									</div>
@@ -2528,64 +1673,63 @@
 								<!--学习情况-->
 								<div class="dp3_xxqk_title">
 									<img src="img/dp3_xxqk_title.png">
+									<div class="dp3_xxqk_txt" id="dp3_xxqk_txt" style="position: absolute;top: 0;right: 1.24rem;">
+										<p class="fl dp3_xxqk_txt_p" style="margin-right: .76rem;">增加<span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_num">3.5</span>万小时</p>
+										<p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_percent">10%</span>同比上周</p>
+									</div>
 								</div>
+								<div class="dp3_xxqk_table_bg">
+									<img src="img/dp3_xxqk_table_bg.png">
+								</div>
+								<div class="dp3_xxqk_table" id="dfjn_xxqk_chart">
+									<!--<img src="img/dp3_xxqk_table.png">-->
+								</div>
+
+								<!--党费缴纳-->
+								<div class="dp3_dfjn_title">
+									<img src="img/dp3_dfjn_title.png">
+								</div>
+								<div class="dp3_dfjn_title_bg">
+									<img src="img/dp3_dfjn_title_bg.png">
+								</div>
+								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 4475px;">
+                                    <span style="font-size: 58px;">8月党员缴纳党费百分比</span>
+                                </div>-->
+
 								<div class="dp3_dfjn_huang_left" id="dp3_dfjn_huang_left">
 									<div class="fit dfjn_text_box">
-										<p class="fl" style="font-size: 58px;"><span class="dfjn_num">9</span>月党员缴纳党费百分比</p>
+										<p class="fl" style="font-size: 58px;"><span class="dfjn_num"></span>月党员缴纳党费百分比</p>
 										<h1 class="fr percent">100%</h1>
 									</div>
 									<div class="fl">
 										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_left.png">
 									</div>
 									<div class="fl">
-										<div class="dfjn_w" style="width: 2040px;height: 115px;background-image: url('img/dp3_dfjn_huang_center2.png');background-size: contain;background-repeat: repeat-x;"></div>
+										<div class="dfjn_w" style="width: 1540px;height: 115px;background-image: url('img/dp3_dfjn_huang_center2.png');background-size: contain;background-repeat: repeat-x;"></div>
 									</div>
 									<div class="fl">
 										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_right.png">
 									</div>
 								</div>
-								<div class="dp3_dfjn_huang_bg">
-									<img style="width: 2181px;height: 143px;" src="img/dp3_dfjn_huang_bg.png">
-								</div>
-								<!--党费缴纳-->
-								<!--<div class="dp3_dfjn_title">
-									<img src="img/dp3_dfjn_title.png">
-								</div>-->
-								<div class="dp3_dfjn_title_bg">
-									<img src="img/dp3_dfjn_title_bg.png">
-									<div class="dp3_xxqk_txt" id="dp3_xxqk_txt" style="position: absolute;top: 0;right: 43px;line-height: 150px;">
-										<p class="fl dp3_xxqk_txt_p" style="margin-right: .76rem;">增加<span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_num">3.5</span>万小时</p>
-										<!--<p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_percent">10%</span>同比上周</p>-->
-									</div>
-								</div>
-								<div class="dp3_xxqk_table_bg">
-									<img src="img/dp3_dkqk_chart_bottom.png">
-								</div>
-								<div class="dp3_xxqk_table" id="dfjn_xxqk_chart">
-									<!--<img src="img/dp3_xxqk_table.png">-->
-								</div>
-								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 4475px;">
-                                    <span style="font-size: 58px;">8月党员缴纳党费百分比</span>
-                                </div>-->
 
 								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 6466px;">
                                     <span style="font-size: 58px;">第二季度下级党组织按时上缴党费百分比</span>
                                 </div>-->
-								<!--<div class="dp3_dfjn_lan_left" id="dp3_dfjn_lan_left">-->
-								<!--<div class="fit dfjn_text_box">-->
-								<!--<p class="fl" style="font-size: 58px;">第<span class="dfjn_num"></span>季度下级党组织按时上缴党费百分比</p>-->
-								<!--<h1 class="fr percent">100%</h1>-->
-								<!--</div>-->
-								<!--<div class="fl">-->
-								<!--<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_left.png">-->
-								<!--</div>-->
-								<!--<div class="fl">-->
-								<!--<div class="dfjn_w" style="width: 1554px;height: 115px;background-image: url('img/dp3_dfjn_lan_center.png');background-size: contain;background-repeat: repeat-x;"></div>-->
-								<!--</div>-->
-								<!--<div class="fl">-->
-								<!--<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_right.png">-->
-								<!--</div>-->
-								<!--</div>-->
+								<div class="dp3_dfjn_lan_left" id="dp3_dfjn_lan_left">
+									<div class="fit dfjn_text_box">
+										<p class="fl" style="font-size: 58px;">第<span class="dfjn_num"></span>季度下级党组织按时上缴党费百分比</p>
+										<h1 class="fr percent">100%</h1>
+									</div>
+									<div class="fl">
+										<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_left.png">
+									</div>
+									<div class="fl">
+										<div class="dfjn_w" style="width: 1554px;height: 115px;background-image: url('img/dp3_dfjn_lan_center.png');background-size: contain;background-repeat: repeat-x;"></div>
+									</div>
+									<div class="fl">
+										<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_right.png">
+									</div>
+								</div>
 
 								<!--中心组学习情况-->
 								<div class="dp3_zxzxxqk_title">
@@ -2606,1566 +1750,104 @@
 								</div>
 
 								<!--三会一课-->
-								<div class="dp3_shyk_title">
-									<img src="img/shyk_all_icon.png">
-								</div>
-								<div class="right_shyk_lists">
-									<div class="list-zbdydh hover">
-										<img src="img/list-zbdydh.png">
+								<div>
+									<div class="dp3_shyk_title">
+										<img src="img/dp3_shyk_title.png">
 									</div>
-									<div class="list-zbwyh">
-										<img src="img/list-zbwyh.png">
-									</div>
-									<div class="list-dxzh">
-										<img src="img/list-dxzh.png">
-									</div>
-									<div class="list-dk">
-										<img src="img/list-dk.png">
-									</div>
-								</div>
-								<div class="shyk-list" id="list_zbdydh">
 									<div class="shyk_legend">
 										<ul>
 											<li id="shyk_legend_1"><i></i>参会率</li>
 											<li id="shyk_legend_2"><i></i>完成率</li>
 										</ul>
 									</div>
-									<div class="shyk_lists-bar">
-										<div class="shyk-list-bar-y">
-											<ul>
-												<li>100%</li>
-												<li>75%</li>
-												<li>50%</li>
-												<li>25%</li>
-												<li>0%</li>
-											</ul>
-										</div>
-										<div class="shyk-list-bar-bottom"></div>
-										<div class="swiper-container swiper-container-xjdxslfb shyk-list-bar-center" id="right_shyk_lists_zbdydh">
-											<ul style="height:100%;width:100%">
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
-										<div class="dp3_zhu_icon_box" id="shyk_list_page_zbdydh" style="display:inline-block">
-										</div>
+									<div class="shyk_center_bg"></div>
+									<div class="shyk_center" style="z-index: 3001;">
+										<div id="myCharts" style="width:3808px;height:660px"></div>
 									</div>
 								</div>
-								<div class="shyk-list" id="list_zbwyh" style="display:none">
-									<div class="shyk_legend">
-										<ul>
-											<li id="shyk_legend_1"><i></i>参会率</li>
-											<li id="shyk_legend_2"><i></i>完成率</li>
-										</ul>
-									</div>
-									<div class="shyk_lists-bar">
-										<div class="shyk-list-bar-y">
-											<ul>
-												<li>100%</li>
-												<li>75%</li>
-												<li>50%</li>
-												<li>25%</li>
-												<li>0%</li>
-											</ul>
-										</div>
-										<div class="shyk-list-bar-bottom"></div>
-										<div class="swiper-container swiper-container-xjdxslfb shyk-list-bar-center" id="right_shyk_lists_zbwyh">
-											<ul style="height:100%;width:100%">
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
-										<div class="dp3_zhu_icon_box" id="shyk_list_page_zbwyh" style="display:inline-block">
-										</div>
-									</div>
+								<div class="dp3_zhu_icon_box shyk_page" id="shyk_page" style="z-index: 3010;">
+									<!-- 									<i class="icon_prev"></i> -->
+									<!-- 									<i class="icon_circle hover"></i> -->
+									<!-- 									<i class="icon_circle"></i> -->
+									<!-- 									<i class="icon_circle"></i> -->
+									<!-- 									<i class="icon_circle" style="padding-right:0"></i> -->
+									<!-- 									<i class="icon_next"></i> -->
 								</div>
-								<div class="shyk-list" id="list_dxzh" style="display:none">
-									<div class="shyk_legend">
-										<ul>
-											<li id="shyk_legend_1"><i></i>参会率</li>
-											<li id="shyk_legend_2"><i></i>完成率</li>
-										</ul>
-									</div>
-									<div class="shyk_lists-bar">
-										<div class="shyk-list-bar-y">
-											<ul>
-												<li>100%</li>
-												<li>75%</li>
-												<li>50%</li>
-												<li>25%</li>
-												<li>0%</li>
-											</ul>
-										</div>
-										<div class="shyk-list-bar-bottom"></div>
-										<div class="swiper-container swiper-container-xjdxslfb shyk-list-bar-center" id="right_shyk_lists_dxzh">
-											<ul style="height:100%;width:100%">
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
-										<div class="dp3_zhu_icon_box" id="shyk_list_page_dxzh" style="display:inline-block">
-										</div>
-									</div>
+								<!--各单位优秀成果-->
+
+								<div class="dp3_gdwyxcg_title">
+									<img src="img/gdwhjwcl_title.png">
 								</div>
-								<div class="shyk-list" id="list_dk" style="display:none">
-									<div class="shyk_legend">
-										<ul>
-											<li id="shyk_legend_1"><i></i>参会率</li>
-											<li id="shyk_legend_2"><i></i>完成率</li>
-										</ul>
-									</div>
-									<div class="shyk_lists-bar">
-										<div class="shyk-list-bar-y">
-											<ul>
-												<li>100%</li>
-												<li>75%</li>
-												<li>50%</li>
-												<li>25%</li>
-												<li>0%</li>
-											</ul>
-										</div>
-										<div class="shyk-list-bar-bottom"></div>
-										<div class="swiper-container swiper-container-xjdxslfb shyk-list-bar-center" id="right_shyk_lists_dk">
-											<ul style="height:100%;width:100%">
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-												<li class="swiper-slide center_each">
-													<div class="shyk-list-bar-left">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_third">
-																	<div class="yellow_top"></div>
-																	<div class="yellow_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="shyk-list-bar-right">
-														<div class="center_col_bg"></div>
-														<div class="center_col_con">
-															<ul class="ul_sum">
-																<li class="center_col_top li_four">
-																	<div class="blue_top"></div>
-																	<div class="blue_bottom"></div>
-																	<div class="hideData" style="display:none"></div>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<p class="company_name"></p>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
-										<div class="dp3_zhu_icon_box" id="shyk_list_page_dk" style="display:inline-block">
-										</div>
-									</div>
+
+								<div class="gdwyxcg_legend" id="gdwyxcg_legend">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_legend_1"><i></i>优秀成果</li> -->
+									<!--                                         <li id="gdwyxcg_legend_2"><i></i>优秀案例</li> -->
+									<!--                                         <li id="gdwyxcg_legend_3"><i></i>优秀论文</li> -->
+									<!--                                     </ul> -->
 								</div>
-								<div class="gdwyxcg">
-									<div class="dp3_gdwyxcg_title">
-										<img src="img/gdwhjwcl_title.png">
-									</div>
 
-									<div class="gdwyxcg_legend" id="gdwyxcg_legend">
-										
-									</div>
+								<div class="gdwyxcg_x" id="gdwyxcg_yAxis">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_x_1"></li> -->
+									<!--                                         <li id="gdwyxcg_x_2"></li> -->
+									<!--                                         <li id="gdwyxcg_x_3"></li> -->
+									<!--                                         <li id="gdwyxcg_x_4"></li> -->
+									<!--                                         <li id="gdwyxcg_x_5">0</li> -->
+									<!--                                     </ul> -->
+								</div>
 
-									<div class="gdwyxcg_x" id="gdwyxcg_yAxis" style="top:1955px">
-										<ul>
-											<li>100%</li>
-											<li>75%</li>
-											<li>50%</li>
-											<li>25%</li>
-											<li>0%</li>
-										</ul>
-									</div>
+								<div class="swiper-container swiper-container-gdwyxcg gdwyxcg_center" id="gdwyxcg_con">
+									<!--                                     <ul id="gdwyxcg_con" class="swiper-wrapper" style="height: 100%;width: 100%"> -->
 
-									<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="gdwyxcg_con" style="top:1953px">
-										<ul style="height:100%;width:100%">
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-											<li class="swiper-slide center_each">
-												<div class="center_col_bg"></div>
-												<div class="center_col_con">
-													<ul class="ul_sum">
-														<li class="center_col_top li_third">
-															<div class="yellow_top"></div>
-															<div class="yellow_bottom"></div>
-															<div class="hideData" style="display:none"></div>
-														</li>
-													</ul>
-												</div>
-												<p class="company_name"></p>
-											</li>
-										</ul>
-									</div>
-									<div class="gdwyxcg_bottom"></div>
-									<div style="position:absolute;left:10220px;z-index:3000;top:2745px;text-align:center">
-										<div class="dp3_zhu_icon_box gdwyxcg_page" id="gdwyxcg_page" style="display:inline-block">
-											
-										</div>
-									</div>
-
+									<!--                                     </ul> -->
+								</div>
+								<div class="dp3_gdwyxcg_bottom"></div>
+								<div class="dp3_zhu_icon_box gdwyxcg_page" id="gdwyxcg_page" style="left:9930px;z-index:3000;top:1590px;">
+									<!--<i class="icon_prev"></i>
+									<i class="icon_circle hover"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle" style="padding-right:0"></i>
+									<i class="icon_next"></i>-->
 								</div>
 
 								<!--先进典型数量分布-->
+
 								<div class="dp3_xjdxslfb_title">
 									<img src="img/dp3_gdwxjdxslfb_title.png">
 								</div>
 
 								<div class="xjdxslfb_legend" id="xjdxslfb_legend">
-									<ul>
-										<li>
-											<i id="legend_1"></i>
-											个人
-										</li>
-										<li>
-											<i id="legend_2"></i>
-											集体
-										</li>
-									</ul>
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_legend_1"><i></i>个人</li> -->
+									<!--                                         <li id="xjdxslfb_legend_2"><i></i>集体</li> -->
+									<!--                                     </ul> -->
 								</div>
 
 								<div class="xjdxslfb_x" id="xjdxslfb_yAxis">
-									<ul>
-										<li></li>
-										<li></li>
-										<li></li>
-										<li></li>
-										<li></li>
-									</ul>
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_x_1"></li> -->
+									<!--                                         <li id="xjdxslfb_x_2"></li> -->
+									<!--                                         <li id="xjdxslfb_x_3"></li> -->
+									<!--                                         <li id="xjdxslfb_x_4"></li> -->
+									<!--                                         <li id="xjdxslfb_x_5">0</li> -->
+									<!--                                     </ul> -->
 								</div>
 
 								<div class="swiper-container swiper-container-xjdxslfb xjdxslfb_center" id="xjdxslfb_con">
-									<ul style="height:100%;width:100%">
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-										<li class="swiper-slide center_each">
-											<div class="center_col_bg"></div>
-											<div class="center_col_con">
-												<ul class="ul_sum">
-													<li class="center_col_top li_third">
-														<div class="yellow_top"></div>
-														<div class="count_item"></div>
-														<div class="yellow_bottom"></div>
-													</li>
-													<li class="center_col_cen li_sec">
-														<div class="red_top"></div>
-														<div class="count_item"></div>
-														<div class="red_bottom"></div>
-													</li>
-												</ul>
-											</div>
-											<p class="company_name"></p>
-										</li>
-									</ul>	
-								</div>
-								<div class="dp3_xjdxslfb_bottom"></div>
-								<div style="position:absolute;left:10220px;z-index:3000;top:3930px;text-align:center">
-									<div class="dp3_zhu_icon_box xjdxslfb_page" id="xjdxslfb_page" style="display:inline-block">
-										
-									</div>
 
 								</div>
+								<div class="dp3_xjdxslfb_bottom"></div>
+								<div class="dp3_zhu_icon_box xjdxslfb_page" id="xjdxslfb_page" style="left:9675px;z-index:3000;top:2795px;">
+									<!--                                     <i class="icon_prev"></i> -->
+									<!--                                     <i class="icon_circle hover"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle" style="padding-right:0"></i> -->
+									<!--                                     <i class="icon_next"></i> -->
+								</div>
+
 								<div id="jc_dp3pie">
 
 								</div>
@@ -4173,7 +1855,28 @@
 						</div>
 					</div>
 				</div>
-				
+				<!--<div class="swiper-slide">
+                    <div class="swiper-container swiper-container-child3">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_01" src="img/wording_production.png" />
+                                <img class="child3_ani_02" src="img/circle-production.png" />
+                                <img class="child3_ani_03" src="img/people_production.png" />
+                                <img class="child3_ani_04" src="img/check_production.png" />
+                                <img class="child3_ani_05" src="img/floating_production.png" />
+                                <img class="child3_ani_06" src="img/pic_shadow_production.png" />
+                            </div>
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_07" src="img/introduction_production.png" />
+                                <img class="child3_ani_08" src="img/btn_production.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+				<!--<div class="swiper-slide" style="background-color:#083846;">
+                    <img class="main1_ani_03" src="img/pic_back.png" />
+                    <a href="http://www.zhuhaicec.com"><img class="main1_ani_04" src="img/btn_join.png" /></a>
+                </div>-->
 			</div>
 
 			<div class="swiper-button-next" style="background-image:none;">
@@ -4183,19 +1886,265 @@
 				<img src="img/swiper-button-prev.png" />
 			</div>
 			<script type="text/javascript">
-				var mySwiper2 = new Swiper('.swiper-container2', {
-					direction: 'horizontal',
-					loop: true,
-					autoplay: 2000,
-					// 如果需要分页器
-					pagination: {
-						el: '.swiper-pagination',
-					},							    }
-				})
+				function jc_setmap(id) {
+					/*地图*/
+					var myChart = echarts.init(document.getElementById(id));
+					//数据纯属虚构
+					var option = {
+
+						tooltip: {
+							show: true, //不显示提示标签
+							formatter: '{b}', //提示标签格式
+							backgroundColor: "#ff7f50", //提示标签背景颜色
+							textStyle: {
+								color: "#fff"
+							}
+							//提示标签字体颜色
+						},
+						geo: {
+							roam: false,
+							map: 'china',
+							//layoutCenter: ['100%'],
+							//aspectScale:0.85569,
+							zoom: 1.1,
+							//layoutSize: '250%',
+							label: {
+								normal: {
+									show: false, //显示省份标签
+									textStyle: {
+										color: "#2d2d2d"
+									}
+									//省份标签字体颜色
+								},
+								emphasis: { //对应的鼠标悬浮效果
+									show: true,
+									textStyle: {
+										color: "#fff"
+									},
+
+								}
+							},
+							itemStyle: {
+								normal: {
+									borderWidth: .5, //区域边框宽度
+									borderColor: '#9e3605', //区域边框颜色
+									areaColor: "#efb312", //区域颜色
+								},
+								emphasis: {
+									borderWidth: 1,
+									borderColor: '#e75400',
+									areaColor: "#fb7b00",
+								}
+							},
+							selectedMode: 'single',
+							data: [{
+									name: '北京',
+									selected: true,
+									value: "10500000"
+								}, //北京为选中状态
+								{
+									name: '天津',
+									value: "10000029"
+								}, {
+									name: '江苏',
+									value: "10430000"
+								}, {
+									name: '浙江',
+									value: "10250037"
+								}
+							],
+							regions: [{
+								name: '南海诸岛',
+								value: 0,
+								itemStyle: {
+									normal: {
+										opacity: 0,
+										label: {
+											show: false
+										}
+									}
+								}
+							}, {
+								name: '北京',
+								selected: true,
+								value: "10500000"
+							}],
+						}
+					};
+					myChart.setOption(option);
+					myChart.on('click', function(params) {
+						//console.log(params);
+						//回显服务队
+						var num = "";
+						var dp2_tx_huang_arr = [];
+						for(var i = 0; i < 4; i++) {
+							num += Math.floor(Math.random() * 10)
+						};
+						for(var k = 0; k < 4; k++) {
+							dp2_tx_huang_arr[k] = parseInt(num) + k * 3;
+						};
+						$('.dp2_tx_huang').each(function(i) {
+							$(this).text(dp2_tx_huang_arr[i])
+						});
+						//回显公司
+						$('.dp2_tx_hong').text(params.name + '公司');
+					});
+				}
+				//饼图
+				function jc_setpie(id, data) { //
+					var myChart = echarts.init(document.getElementById(id));
+					var scale = 1;
+					var echartData = [{
+						value: data[0],
+						name: '省部级'
+					}, {
+						value: data[1],
+						name: '地市级'
+					}, {
+						value: data[2],
+						name: '区县级'
+					}]
+					var rich = {
+						yellow: {
+							color: "#e12525",
+							fontSize: 80 * scale,
+							fontFamily: 'Britannic',
+							padding: [10, 24, 10, 0],
+							align: 'center'
+						},
+						total: {
+							color: "#ffc72b",
+							fontSize: 40 * scale,
+							align: 'center'
+						},
+						white: {
+							color: "#fff",
+							align: 'center',
+							fontSize: 14 * scale,
+							padding: [10, 0]
+						},
+						black: {
+							color: "#2d2d2d",
+							align: 'center',
+							//fontFamily: 'Britannic',
+							fontSize: 50 * scale,
+							align: 'left'
+						},
+						blue: {
+							color: '#49dff0',
+							fontSize: 16 * scale,
+							align: 'center'
+						},
+						hr: {
+							borderColor: '#0b5263',
+							width: '100%',
+							borderWidth: 1,
+							height: 0,
+						}
+					}
+					option = {
+						// backgroundColor: '#031f2d',
+						title: {
+							text: '单位分布',
+							left: 'center',
+							top: 'center',
+							//padding:[24,0],
+							textStyle: {
+								color: '#2d2d2d',
+								fontWeight: 100,
+								fontFamily: 'Microsoft YaHei',
+								fontSize: 72 * scale,
+								align: 'center'
+							}
+						},
+						series: [{
+							name: '总考生数量',
+							type: 'pie',
+							radius: ['42%', '62%'],
+							center: ['50%', '50%'],
+							hoverAnimation: false,
+							color: ['#72c7f3', '#fe7370', '#fbd264', '#034079', '#6f81da', '#00ffb4'],
+							label: {
+								normal: {
+									formatter: function(params, ticket, callback) {
+										return '{black|' + params.name + '}\n{yellow|' + params.value + '}{black|人}';
+									},
+									rich: rich
+								},
+							},
+							labelLine: {
+								show: false,
+								normal: {
+									length: 75 * scale,
+									length2: 0,
+									lineStyle: {
+										color: '#0b5263',
+										opacity: 0
+									}
+								}
+							},
+							data: echartData
+						}]
+					};
+					myChart.setOption(option);
+				}
+				//制造假数据
+				function jc_set_zhuzidata(n) {
+					var zhu_data = {
+						xdata: [],
+						ydata: [],
+					};
+					for(i = 0; i < n; i++) {
+						zhu_data.xdata.push('上海' + jc_randomNum2(0, 99));
+						zhu_data.ydata.push(i + jc_randomNum2(0, 9999));
+					};
+					return zhu_data;
+				}
+				//生成指定位数的随机整数
+				function jc_randomNum1(n) {
+					var t = '';
+					for(var i = 0; i < n; i++) {
+						t += Math.floor(Math.random() * 10);
+					}
+					return t;
+				}
+				//生成指定范围内的随机整数
+				function jc_randomNum2(minNum, maxNum) {
+					switch(arguments.length) {
+						case 1:
+							return parseInt(Math.random() * minNum + 1);
+							break;
+						case 2:
+							return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
+							break;
+						default:
+							return 0;
+							break;
+					}
+				}
+
+				//              window.onload=function(){
+				//                  var container = document.getElementById('jc_content') //获取容器id
+				//                  var prev = $('.swiper-button-prev') //左按钮
+				//                  var next = $('.swiper-button-next') //右按钮
+				//                  function play() {
+				//                      timer = setInterval(function() {
+				//                          next.click()
+				//                      }, 8500);
+				//                  }
+				//                  //停止切换
+				//                  function stop() {
+				//                      clearInterval(timer)
+				//                  }
+				//                  //鼠标移上去，触发自动切换事件
+				//                  container.onmouseover = stop; //不要加括号，
+				//                  container.onmouseout = play
+				//                      //自动切换
+				//                  play()
+				//              }
 			</script>
-			<script src="js/jcend.js" type="text/javascript" charset="utf-8"></script>
-			<script src="js/zjy.js" type="text/javascript" charset="utf-8"></script>
 			<script src="js/hqk.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/zjy.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>
