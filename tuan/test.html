@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/tjData.css">
+    <title>Document</title>
+</head>
+<body>
+        <ul class="dwjg-bg clearfix">
+                                                
+                <li>
+                    <img src="tj_img/tydw_title.png" style="display: none">
+                    <img src="tj_img/tydw_title_select.png">
+                </li>
+                <li>
+                    <img src="tj_img/qndw_title.png">
+                    <img src="tj_img/qndw_title_select.png" style="display: none">
+                </li>
+                <li>
+                    <img src="tj_img/tq_title.png">
+                    <img src="tj_img/tq_title_select.png" style="display: none">
+                </li>
+            </ul>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script>
+        $('.dwjg-bg li').on('click',function(){
+                        $(this).find('img').eq(1).show();
+                        $(this).find('img').eq(0).hide();
+                        $(this).siblings().find('img').eq(0).show();
+                        $(this).siblings().find('img').eq(1).hide();
+                        
+                    })
+    </script>
+</body>
+</html>

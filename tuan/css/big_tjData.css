@@ -1,0 +1,443 @@
+body{
+    height: 4200px;
+    width: 12600px;
+}
+.dp2_bg {
+    background-image: url(../img/dp2_bg.png);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 12600px;
+    height: 4200px;
+    z-index: 1;
+    background-size: contain;
+}
+/* 头部 */
+.dp2_djdsj {
+	position: absolute;
+	left: 5587px;
+	top: 18px;
+	width: 1376px;
+	height: 301px;
+	z-index: 2;
+}
+/* 左边 */
+.left_bg{
+    background: url(../tj_img/left_bg.png) no-repeat;
+    background-size: contain;
+    width: 4090px;
+    height: 4040px;
+    position: absolute;
+    left: 123px;
+    top: 150px;
+    /* padding: 0 1px; */
+}
+.left-top{
+    /* height:9.05px; */
+    width: 1225px;
+    margin: 0 auto;
+    margin-top: 400px;
+}
+/* 组织变化 */
+.zzbh{
+    position: relative;
+    height: 530px;
+}
+.zzbh-bg{
+    width: 100%;
+    height: 140px;
+}
+.zzbh_icon{
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    width: 3414px;
+    height: 292px;
+    z-index: 579;
+}
+.zzbh_txt{
+    width: 3892px;
+    height: 156px;
+    line-height: 156px;
+    padding-left: 170px;
+    box-sizing: border-box;
+    margin: 100px auto;
+}
+.zzbh_txt .span_hong{
+    font-size: 130px;
+    font-family: "Britannic";
+    color: #e12525;
+    text-shadow: 0px 0px 1px rgba(68, 3, 3, 0.28);
+}
+.zzbh_txt .span_hei{
+    margin-left: 26px;
+    font-size: 50px;
+    font-family: "Microsoft YaHei";
+    color: rgb(45, 45, 45);
+}
+
+.dp3_txt_items{
+    width: 100%;
+    height: 100%;
+}
+.dp3_zzbh_txt_ul li{
+    width: 25%;
+    padding-left: 358px;
+}
+.dp3_txt_items li{	     
+    float: left;
+    height: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+.fit{
+    width: 100%;
+ height: 100%;
+ box-sizing: border-box;
+}
+/* 队伍结构 */
+.dwjg-bg{
+    background: url(../tj_img/line.png) no-repeat;
+    background-size: cover;
+    height: 148px;
+    width: 100%;
+    display: flex;
+}
+
+.lis-tydw{
+    margin-left: 82px;
+    width: 476px;
+}
+.lis-qndw{
+    margin-left: 138px;
+    width: 472px
+}
+.lis-tq{
+    margin-left: 108px;
+    width: 473px;
+}
+.tyzb-pie{
+    width: 1570px;
+    margin: 80px auto;
+    padding-left: 1.8rem;
+}
+.xl-zc-lis{
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-around;
+    padding: 80px 0;
+}
+.xl-zc-lis>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1180px
+    
+}
+.tyzc-pie img{
+    margin-left: -350px;
+}
+/* 地图 */
+.dp2_map2 {
+    position: absolute;
+    left: 4122px;
+    top: 288px;
+    width: 4355px;
+    height: 2887px;
+    z-index: 113;
+}
+
+.dp2_text_box {
+    position: absolute;
+    left: 4204px;
+    top: 3568px;
+    width: 4064px;
+    height: 264px;
+    z-index: 3;
+    line-height: 264px;
+}
+.dp2_text_box .dp2_text {
+    width: 25%;
+    float: left;
+    height: 100%;
+    text-align: center;
+}
+.dp2_tx_huang {
+    font-size: 180px;
+    font-family: "Britannic";
+    color: #feed6b;
+}
+.dp2_tx_bai {
+    font-family: "Microsoft YaHei";
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+}
+.dp2_gcdy {
+    position: absolute;
+    left: 4494px;
+    top: 3124px;
+    width: 3572px;
+    height: 803px;
+    z-index: 64;
+}
+/* 指标看板 */
+.zbkb{
+    float: right;
+    width: 4095px;
+    height: 3810px;
+    background:url(../tj_img/right-bg.png) no-repeat;
+    padding: 330px 0 0 0;
+    background-size: contain;
+    margin-top: -30px;
+    position: absolute;
+    left: 8416px;
+    top: 273px;
+}
+.clearfix::after{
+    display: block;
+    clear: both;
+    content:'';
+    visibility: hidden;
+}
+.right-tnhy{
+    height:500px;
+    padding: 0 60px 0 60px;
+    margin-top: 20px;
+}
+.right-tnhy-lis{
+    height: calc(100% - 146px);
+    padding: 10px 115px;
+    margin-top: -30px;
+}
+.right-tnhy-lis li{
+    width: 50%;
+    float: left;
+    height:200px;
+    display: flex;
+    align-items: center;
+}
+.lis-comm{
+    height: 115px;
+}
+.lis-comm>span{
+    line-height: 115px;
+    display: inline-block;
+    font-size: 58px;
+    font-weight: 700;
+    margin-right: 65px;
+}
+.lis-comm>div{
+    display: inline-block;
+    line-height: 115px;
+    position: relative;
+    max-width: 1150px;
+}
+.lis-comm-icon{
+    width:50px;
+    height: 115px;
+    display: block;
+    float: left; 
+}
+.tydh_left_icon{
+    background: url(../tj_img/tydh_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.tydh_right_icon{
+    background: url(../tj_img/tydh_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.tydy_middle_icon{
+    background: url(../tj_img/tydh_middle.png) repeat;
+    background-size:100% 100%;
+    width:400px;
+    max-width:1000px
+}
+.lis-comm-content{
+    position: absolute;
+    right: -420px;
+    top: 0;
+}
+.tydh-conent{
+    color:#ff8a0a
+}
+.wyhy-conent{
+    color:#4dc0fc
+}
+.txzh-conent{
+    color:#ff8a0a
+}
+.lis-comm-content span:first-child{
+    font-size: 120px
+}
+.lis-comm-content span:last-child{
+    font-size: 50px
+}
+.wyhy_left_icon{
+    background: url(../tj_img/wyhy_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.wyhy_right_icon{
+    background: url(../tj_img/wyhy_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.wyhy_middle_icon{
+    background: url(../tj_img/wyhy_middle.png) repeat;
+    background-size:100% 100%;
+    width:1100px;
+    max-width:1000px;
+}
+.txzh_left_icon{
+    background: url(../tj_img/txzh_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.txzh_right_icon{
+    background: url(../tj_img/txzh_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.txzh_middle_icon{
+    background: url(../tj_img/txzh_middle.png) repeat;
+    background-size:100% 100%;
+    max-width:1000px;
+    width: 900px;
+}
+
+
+/* 团组织团课开展数量 */
+.right-tzztk{
+    padding: 180px 60px 0 60px;
+    position: relative;
+}
+.charts-comm{
+    position: relative;
+    display: flex;
+    /* padding-top: .25rem; */
+    margin-top: -50px;
+}
+.charts-left-num{
+    display: flex;
+    flex-direction: column;
+    font-size: 58px;
+    margin-right: 45px;
+    padding-top: 5px;
+}
+.charts-left-num>li{
+    height: 155px;
+    padding-left: 155px;
+    text-align: right;
+    line-height: 2.2;
+}
+.charts-right-bg{
+    position: absolute;
+    top: 360px;
+    left: 250px;
+    right: 100px;
+}
+.charts-column{
+    background: url(../tj_img/column_bg.png) no-repeat;
+    background-size: 100% 100%;
+    height: 500px;
+    width: 94px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.charts-content{
+    display: flex;
+    padding-left: 75px;
+}
+.charts-content>li{
+    padding: 40px 130px 0 0;
+    position: relative;
+}
+.column-top{
+    background: url(../tj_img/column-top.png) no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 22px;
+    z-index: 10;
+    margin-bottom: -10px
+}
+.column-bottom{
+    background: url(../tj_img/column-bottom.png) no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 400px;
+    z-index: 10;
+    margin-bottom: -10px;
+    position: relative;
+    transition: all 1s;
+}
+.blue-column-bottom{
+    background: url(../tj_img/blue_bottom.png) no-repeat;
+    background-size: 100% 100%;
+}
+.blue-column-top{
+    background: url(../tj_img/blue_top.png) no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: -11px;
+}
+.red-column-bottom{
+    background: url(../tj_img/red_bottom.png) no-repeat;
+    background-size: 100% 100%;
+}
+.red-column-top{
+    background: url(../tj_img/red_top.png) no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: -11px;
+}
+.column-tip{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    z-index: 200;
+    font-size: 40px;
+    transform: translate(-50%,-50%);
+}
+.charts-con{
+    width: 244px;
+    font-size: 40px;
+    position: absolute;
+    bottom: -75px;
+    left: -50px;
+}
+.page-number{
+    width: 100%;
+    position: absolute;
+    bottom: -220px;
+    left: 50%;
+    z-index: 999;
+    transform: translate(-6%,-50%);
+}
+.pre-arrow{
+    background: url(../tj_img/arrow.png) no-repeat;
+    background-size: 100% 100%;
+    width: 27px;
+    height: 52px;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.next-arrow{
+    background: url(../tj_img/arrow.png) no-repeat;
+    background-size: 100% 100%;
+    width: 27px;
+    height: 52px;
+    display: inline-block;
+    transform: rotate(180deg);
+    margin-left:10px;
+    cursor: pointer;
+}
+
+
+.circle-number{
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 5px solid #e12626;
+    margin: 10px;
+    cursor: pointer;
+}
+.circle-select{
+    background: #e12626;
+}

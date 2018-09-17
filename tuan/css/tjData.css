@@ -1,0 +1,357 @@
+.dp2_bg {
+    background-image: url(../img/dp2_bg.png);
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    width: 126.00rem !important;
+    height: 42.00rem;
+    z-index: 1;
+    background-size: contain;
+}
+
+
+
+/* 左边 */
+.left_bg{
+    background: url(../tj_img/left_bg.png) no-repeat;
+    background-size: contain;
+    width: 40.90rem;
+    height: 40.40rem;
+    position: absolute;
+    left: .5rem;
+    top: .8rem;
+    /* padding: 0 1rem; */
+}
+.left-top{
+    /* height:9.05rem; */
+    width: 12.25rem;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
+/* 组织变化 */
+.zzbh{
+    position: relative;
+    height: 5.3rem;
+}
+.zzbh-bg{
+    width: 100%;
+    height: 1.4rem;
+}
+.zzbh_icon{
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    width: 34.14rem;
+    height: 2.92rem;
+    z-index: 579;
+}
+.zzbh_txt{
+    width: 38.92rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding-left: 1.70rem;
+    box-sizing: border-box;
+    margin: 1rem auto;
+}
+.zzbh_txt .span_hong{
+    font-size: 1.30rem;
+    font-family: "Britannic";
+    color: #e12525;
+    text-shadow: 0px 0px 1px rgba(68, 3, 3, 0.28);
+}
+.zzbh_txt .span_hei{
+    margin-left: .26rem;
+    font-size: .50rem;
+    font-family: "Microsoft YaHei";
+    color: rgb(45, 45, 45);
+}
+/* 队伍结构 */
+.dwjg-bg{
+    background: url(../tj_img/line.png) no-repeat;
+    background-size: cover;
+    height: 1.48rem;
+    width: 100%;
+    display: flex;
+}
+.dwjg-bg li{
+    display: flex;
+    align-items: center;
+    width: 3.77rem;
+    margin: 0 1.1rem;
+}
+.dwjg-bg li img:last-child{
+    height: 100%;
+    width: 100%;
+}
+.dwjg-bg li:last-child{
+    width: 3.13rem;
+}
+.tyzb-pie{
+    width: 15.7rem;
+    margin: .8rem auto;
+    padding-left: 1.8rem;
+}
+.xl-zc-lis{
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-around;
+    padding: .8rem 0;
+}
+.xl-zc-lis>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11.8rem;
+    
+}
+.tyzc-pie img{
+    margin-left: -3.5rem;
+}
+
+/* 地图 */
+.dp2_map2 {
+    position: absolute;
+    left: 38.22rem;
+    top: 2.88rem;
+    width: 43.55rem;
+    height: 28.87rem;
+    z-index: 113;
+}
+
+.dp2_text_box {
+    position: absolute;
+    left: 40.04rem;
+    top: 35.68rem;
+    width: 40.64rem;
+    height: 2.64rem;
+    z-index: 3;
+    line-height: 2.64rem;
+}
+.dp2_text_box .dp2_text {
+    width: 25%;
+    float: left;
+    height: 100%;
+    text-align: center;
+}
+.dp2_tx_huang {
+    font-size: 1.80rem;
+    font-family: "Britannic";
+    color: #feed6b;
+}
+.dp2_tx_bai {
+    font-family: "Microsoft YaHei";
+    color: rgb(255, 255, 255);
+    font-size: .80rem;
+}
+.dp2_gcdy {
+    position: absolute;
+    left: 41.94rem;
+    top: 31.24rem;
+    width: 35.72rem;
+    height: 8.03rem;
+    z-index: 64;
+}
+
+
+/* 指标看板 */
+.zbkb{
+    float: right;
+    width: 40.05rem;
+    height: 38.10rem;
+    background:url(../img/dp3_zbkb.png) no-repeat;
+    padding: 3.5rem 0 0 0rem;
+    background-size: contain;
+    margin-top: -.3rem;
+    position: absolute;
+    right:6.3rem;
+    top: 2.73rem;
+}
+.clearfix::after{
+    display: block;
+    clear: both;
+    content:'';
+    visibility: hidden;
+}
+.right-tnhy{
+    height:5rem;
+    padding: 0rem .6rem 0 .6rem;
+    margin-top: -.2rem;
+}
+.right-tnhy-lis{
+    height: calc(100% - 1.46rem);
+    padding: .1rem 1.15rem;
+    margin-top: -.5rem;
+}
+.right-tnhy-lis li{
+    width: 50%;
+    float: left;
+    height:2rem;
+    display: flex;
+    align-items: center;
+}
+.lis-comm{
+    height: 1.15rem;
+}
+.lis-comm>span{
+    line-height: 1.15rem;
+    display: inline-block;
+    font-size: .58rem;
+    font-weight: 700;
+    margin-right: .65rem;
+}
+.lis-comm>div{
+    display: inline-block;
+    line-height: 1.15rem;
+    position: relative;
+    max-width: 11.5rem;
+}
+.lis-comm-icon{
+    width:.5rem;
+    height: 1.15rem;
+    display: block;
+    float: left; 
+}
+.tydh_left_icon{
+    background: url(../tj_img/tydh_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.tydh_right_icon{
+    background: url(../tj_img/tydh_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.tydy_middle_icon{
+    background: url(../tj_img/tydh_middle.png) repeat;
+    background-size:100% 100%;
+    width:4rem;
+    max-width:10rem;
+}
+.lis-comm-content{
+    position: absolute;
+    right: -3.7rem;
+    top: 0;
+}
+.tydh-conent{
+    color:#ff8a0a
+}
+.wyhy-conent{
+    color:#4dc0fc
+}
+.txzh-conent{
+    color:#ff8a0a
+}
+.lis-comm-content span:first-child{
+    font-size: 1.2rem
+}
+.lis-comm-content span:last-child{
+    font-size: .5rem
+}
+.wyhy_left_icon{
+    background: url(../tj_img/wyhy_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.wyhy_right_icon{
+    background: url(../tj_img/wyhy_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.wyhy_middle_icon{
+    background: url(../tj_img/wyhy_middle.png) repeat;
+    background-size:100% 100%;
+    width:11rem;
+    max-width:10rem;
+}
+.txzh_left_icon{
+    background: url(../tj_img/txzh_left.png) no-repeat;
+    background-size:100% 100%;
+}
+.txzh_right_icon{
+    background: url(../tj_img/txzh_right.png) no-repeat;
+    background-size:100% 100%;
+}
+.txzh_middle_icon{
+    background: url(../tj_img/txzh_middle.png) repeat;
+    background-size:100% 100%;
+    max-width:10rem;
+    width: 9rem;
+}
+
+
+/* 团组织团课开展数量 */
+.right-tzztk{
+    padding: 1.9rem .6rem 0 .6rem;
+}
+.charts-comm{
+    position: relative;
+    display: flex;
+    /* padding-top: .25rem; */
+    margin-top: -.6rem;
+}
+.charts-left-num{
+    display: flex;
+    flex-direction: column;
+    font-size: .58rem;
+    margin-right: .45rem;
+    padding-top: .05rem;
+    /* -webkit-transform: scale(.8) */
+}
+.charts-left-num>li{
+    height: 1.55rem;
+    padding-left: 1.05rem;
+    text-align: right;
+}
+.charts-right-bg{
+    position: absolute;
+    top: 3.8rem;
+    left: 2.5rem;
+    right: 1rem;
+}
+.charts-column{
+    background: url(../tj_img/column_bg.png) no-repeat;
+    background-size: 100% 100%;
+    height: 5rem;
+    width: .94rem;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.charts-content{
+    display: flex;
+    padding-left: 1.25rem;
+}
+.charts-content>li{
+    padding: 0.5rem 1.2rem 0 0;
+    position: relative;
+}
+.column-top{
+    background: url(../tj_img/column-top.png) no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: .22rem;
+    z-index: 10;
+    margin-bottom: -.1rem
+}
+.column-bottom{
+    background: url(../tj_img/column-bottom.png) no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 4rem;
+    z-index: 10;
+    margin-bottom: -.05rem;
+    position: relative;
+}
+.column-tip{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    color: #fff;
+    z-index: 20;
+    font-size: .4rem;
+    /* -webkit-transform: scale(.8) */
+}
+.charts-con{
+    width: 3.15rem;
+    font-size: .4rem;
+    position: absolute;
+    bottom: -1rem;
+    left: -.3rem;
+    /* left: -1.2rem; */
+    /* -webkit-transform: scale(0.70); */
+}

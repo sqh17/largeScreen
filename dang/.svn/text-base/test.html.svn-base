@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>大屏版</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link href="css/conmon2.css" rel="stylesheet" />
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.jquery.min.js文件同时使用 -->
+		<link href="css/swiper.min.css" rel="stylesheet" />
+		<!-- 载入CSS3动画库，配合Swiper动画控制器swiper.animate.js文件同时使用 -->
+		<link href="css/animate.min.css" rel="stylesheet" />
+		<!-- 载入loading进度条显示样式，与loading.js文件同时使用 -->
+		<link href="css/loading.css" rel="stylesheet" />
+		<!-- 载入index.css文件，用于控制页面中动画元素的显示样式 -->
+		<!--<link href="css/index.css" rel="stylesheet" />-->
+		<link rel="stylesheet" type="text/css" href="css/jc2.css" />
+		<link rel="stylesheet" type="text/css" href="css/hqk.css" />
+		<link rel="stylesheet" type="text/css" href="css/dp3_jkyj2.css" />
+		<style type="text/css">
+
+		</style>
+		<script src="js/rem.js"></script>
+		<!-- 载入jQuery核心框架 -->
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<!-- 载入loading进度条控制脚本，与loading.css文件同时使用 -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+
+	<body>
+		<!--三会一课-->
+								<div>
+									<div class="dp3_shyk_title">
+										<img src="img/dp3_shyk_title.png">
+									</div>
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+											<li id="shyk_legend_2"><i></i>完成率</li>
+										</ul>
+									</div>
+									<div class="shyk_center_bg"></div>
+									<div class="shyk_center" style="z-index: 3001;">
+										<div id="myCharts" style="width:3808px;height:660px"></div>
+									</div>
+								</div>
+								<div class="dp3_zhu_icon_box shyk_page" id="shyk_page" style="z-index: 3010;top:1180px">
+<!-- 									<i class="icon_prev"></i> -->
+<!-- 									<i class="icon_circle hover"></i> -->
+<!-- 									<i class="icon_circle"></i> -->
+<!-- 									<i class="icon_circle"></i> -->
+<!-- 									<i class="icon_circle" style="padding-right:0"></i> -->
+<!-- 									<i class="icon_next"></i> -->
+								</div>
+								<!--各单位优秀成果-->
+
+								<div class="dp3_gdwyxcg_title">
+									<img src="img/dp3_hdwyxcg_title.png">
+								</div>
+
+								<div class="gdwyxcg_legend" id="gdwyxcg_legend">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_legend_1"><i></i>优秀成果</li> -->
+									<!--                                         <li id="gdwyxcg_legend_2"><i></i>优秀案例</li> -->
+									<!--                                         <li id="gdwyxcg_legend_3"><i></i>优秀论文</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="gdwyxcg_x" id="gdwyxcg_yAxis">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_x_1"></li> -->
+									<!--                                         <li id="gdwyxcg_x_2"></li> -->
+									<!--                                         <li id="gdwyxcg_x_3"></li> -->
+									<!--                                         <li id="gdwyxcg_x_4"></li> -->
+									<!--                                         <li id="gdwyxcg_x_5">0</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="swiper-container swiper-container-gdwyxcg gdwyxcg_center" id="gdwyxcg_con">
+									<!--                                     <ul id="gdwyxcg_con" class="swiper-wrapper" style="height: 100%;width: 100%"> -->
+
+									<!--                                     </ul> -->
+								</div>
+								<div class="dp3_gdwyxcg_bottom"></div>
+								<div class="dp3_zhu_icon_box gdwyxcg_page" id="gdwyxcg_page" style="left:9930px;z-index:3000;top:2700px;">
+									<!--<i class="icon_prev"></i>
+									<i class="icon_circle hover"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle" style="padding-right:0"></i>
+									<i class="icon_next"></i>-->
+								</div>
+
+								<!--先进典型数量分布-->
+
+								<div class="dp3_xjdxslfb_title">
+									<img src="img/dp3_gdwxjdxslfb_title.png">
+								</div>
+
+								<div class="xjdxslfb_legend" id="xjdxslfb_legend">
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_legend_1"><i></i>个人</li> -->
+									<!--                                         <li id="xjdxslfb_legend_2"><i></i>集体</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="xjdxslfb_x" id="xjdxslfb_yAxis">
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_x_1"></li> -->
+									<!--                                         <li id="xjdxslfb_x_2"></li> -->
+									<!--                                         <li id="xjdxslfb_x_3"></li> -->
+									<!--                                         <li id="xjdxslfb_x_4"></li> -->
+									<!--                                         <li id="xjdxslfb_x_5">0</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="swiper-container swiper-container-xjdxslfb xjdxslfb_center" id="xjdxslfb_con">
+									<!--                                     <ul id="xjdxslfb_con" class="swiper-wrapper" style="height: 100%;width: 100%"> -->
+									<!--                                     </ul> -->
+								</div>
+								<div class="dp3_xjdxslfb_bottom"></div>
+								<div class="dp3_zhu_icon_box xjdxslfb_page" id="xjdxslfb_page" style="left:9675px;z-index:3000;top:4000px;">
+									<!--                                     <i class="icon_prev"></i> -->
+									<!--                                     <i class="icon_circle hover"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle" style="padding-right:0"></i> -->
+									<!--                                     <i class="icon_next"></i> -->
+								</div>
+
+								
+		
+		
+		
+			<script src="js/tsethqk.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/zjy.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

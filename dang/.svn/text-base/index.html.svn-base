@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>大屏版</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link href="css/conmon2.css" rel="stylesheet" />
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.jquery.min.js文件同时使用 -->
+		<link href="css/swiper.min.css" rel="stylesheet" />
+		<!-- 载入CSS3动画库，配合Swiper动画控制器swiper.animate.js文件同时使用 -->
+		<link href="css/animate.min.css" rel="stylesheet" />
+		<!-- 载入loading进度条显示样式，与loading.js文件同时使用 -->
+		<link href="css/loading.css" rel="stylesheet" />
+		<!-- 载入index.css文件，用于控制页面中动画元素的显示样式 -->
+		<!--<link href="css/index.css" rel="stylesheet" />-->
+		<link rel="stylesheet" type="text/css" href="css/jc2.css" />
+		<link rel="stylesheet" type="text/css" href="css/hqk.css" />
+		<link rel="stylesheet" type="text/css" href="css/dp3_jkyj2.css" />
+		<style type="text/css">
+
+		</style>
+		<script src="js/rem.js"></script>
+		<!-- 载入jQuery核心框架 -->
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.min.css文件同时使用 -->
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<!-- 载入Swiper动画控制器，与swiper.animate.param.js文件同时使用 -->
+		<script src="js/swiper.animate.min.js"></script>
+		<!-- 载入Swiper动画控制器初始化文件，与swiper.animate.js文件同时使用 -->
+		<script src="js/swiper.animate.param.js"></script>
+		<!-- 载入loading进度条控制脚本，与loading.css文件同时使用 -->
+		<script src="js/echarts.min.js"></script>
+		<script src="js/china.js"></script>
+		<script src="js/loading.js"></script>
+		<script language="javascript">
+			// 在全局范围内创建主动画控制器与子动画控制器
+			var myAC_main1 = new animateControl("main1_ani_");
+			var myAC_child1 = new animateControl("child1_ani_");
+			var myAC_child2 = new animateControl("child2_ani_");
+			//var myAC_child3 = new animateControl("child3_ani_");
+			// 在文档结构加载完成之后，载入swiper幻灯片，并初始化所有的动画控制器
+			$(document).ready(function() {
+				// 第 1 个子swiper幻灯片
+				var mySwiper_child1 = new Swiper('.swiper-container-child1', {
+					direction: 'horizontal',
+					grabCursor: true,
+					//loop: true,
+					onInit: function(swiper) {
+						//console.log(swiper)
+						myAC_child1.init(swiperAnimateParam_child1, swiper);
+						jc_setmap('china_map');
+						var dp2_tx_huang_arr = ['9.5', '4186', '566', '292'];
+						var $wrapper = $(swiper.wrapper);
+						var myVideo = $('#myVideo');
+						$wrapper.find('.dp2_tx_huang').each(function(i) {
+							$(this).text(dp2_tx_huang_arr[i])
+						});
+						$wrapper.find('.dp2_video').hover(
+							function() {
+								$('.video_play').show();
+							},
+							function() {
+								$('.video_play').hide();
+							}
+						);
+						$wrapper.find('.dp2_tx_hong').text('北京公司');
+						$wrapper.find('.video_play').on('click', function() {
+							if(!myVideo.paused) {
+								myVideo.get(0).pause();
+								myVideo.paused = true;
+							} else {
+								myVideo.get(0).play();
+								myVideo.paused = false;
+							}
+						});
+					},
+					onSlideChangeEnd: function(swiper) {
+						//console.log(swiper)
+						myAC_child1.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+				// 第 2 个子swiper幻灯片 
+				var mySwiper_child2 = new Swiper('.swiper-container-child2', {
+					direction: 'horizontal',
+					grabCursor: true,
+					//loop: true,
+					onInit: function(swiper) {
+						myAC_child2.init(swiperAnimateParam_child2, swiper);
+						var $wrapper = $(swiper.wrapper);
+						//------------假数据start-------------
+						var dp3_data = {
+							//党员队伍
+							dydw: [],
+							//党员队伍--饼图
+							dydw_pie_zzdy: ['2154', '3854', '7515'],
+							dydw_pie_ybdy: ['3154', '4854', '4515'],
+							dydw_pie_fzdx: ['4154', '5854', '1515'],
+							dydw_pie_jjfz: ['5154', '8854', '2515'],
+							dydw_pie_rdsqr: ['6154', '9854', '8515'],
+							//党员队伍--柱状图
+							dydw_bar_zzdy: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_ybdy: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_fzdx: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_jjfz: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							dydw_bar_rdsqr: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							//组织变化
+							zzbh: [],
+							//三会情况
+							shqk: [],
+							//三会情况--柱状图
+							shqk_bar_zbdydh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							shqk_bar_zbwyh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							shqk_bar_dxzh: [{
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}, {
+								xdata: [],
+								ydata: []
+							}],
+							//监控预警--柱状图
+							jkyj_bar: {
+								hong: {
+									num: '702',
+									percent: '100%'
+								},
+								lan: {
+									num: '72',
+									percent: '100%'
+								}
+							},
+							//监控预警——党费缴纳
+							jkyj_dfjn: {
+								huang: {
+									num: '8',
+									percent: '100%'
+								},
+								lan: {
+									num: '二',
+									percent: '100%'
+								}
+							},
+							//监控预警--党员集体参加学习情况
+							jkyj_xxqk: {
+								num: '3.5',
+								percent: '20%',
+							},
+							jkyj_dyjtcjxxqk: {
+								xdata: ['7月', '8月', '9月', '10月', '11月', '12月'],
+								ydata: [25, 38, 19, 30, 22, 30]
+							},
+							//监控预警中心组学习情况——折线图
+							jkyj_zxzxxqk: {
+								xdata: ['1月', '2月', '3月', '4月', '5月', '6月'],
+								ydata: [20, 8, 20, 10, 32, 18]
+							},
+							//党组织书记讲党课情况
+							jkyj_dzzsjjdkqk: {
+								xdata: ['17年10月', '17年11月', '17年12月', '18年1月', '18年2月', '18年3月', '18年4月', '18年5月', '18年6月', '18年7月'],
+								ydata: [30, 20, 36, 25, 39, 28, 32, 15, 28, 10]
+							},
+						};
+						//党员队伍
+						for(var i = 0; i < 5; i++) {
+							dp3_data.dydw.push(jc_randomNum2(0, 99));
+						};
+						//党员队伍柱状图
+						for(var i = 0; i < dp3_data.dydw_bar_zzdy.length; i++) {
+							for(var k = 0; k < 10; k++) {
+								dp3_data.dydw_bar_zzdy[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_zzdy[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_fzdx[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_fzdx[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_jjfz[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_jjfz[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.dydw_bar_rdsqr[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.dydw_bar_rdsqr[i].ydata.push(jc_randomNum2(0, 9999));
+							}
+						};
+						//党员队伍柱状图——预备党员
+						for(var i = 0; i < dp3_data.dydw_bar_ybdy.length; i++) {
+							for(var k = 0; k < 10; k++) {
+								dp3_data.dydw_bar_ybdy[i].xdata.push('北京公司' + jc_randomNum2(0, 99));
+								dp3_data.dydw_bar_ybdy[i].ydata.push(jc_randomNum2(0, 9999));
+							}
+						}
+						//组织变化
+						for(var i = 0; i < 4; i++) {
+							dp3_data.zzbh.push(jc_randomNum2(0, 99));
+						}
+						//三会情况
+						for(var i = 0; i < 3; i++) {
+							dp3_data.shqk.push(jc_randomNum2(0, 99));
+						}
+						//三会情况柱状图
+						for(var i = 0; i < dp3_data.shqk_bar_zbwyh.length; i++) {
+							for(var k = 0; k < 16; k++) {
+								dp3_data.shqk_bar_zbwyh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_zbwyh[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.shqk_bar_zbdydh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_zbdydh[i].ydata.push(jc_randomNum2(0, 9999));
+								dp3_data.shqk_bar_dxzh[i].xdata.push('北京公司' + jc_randomNum2(0, 9));
+								dp3_data.shqk_bar_dxzh[i].ydata.push(jc_randomNum2(0, 9999));
+							};
+						}
+						//---------假数据end----------
+						console.log(dp3_data)
+							//党员队伍
+							//党员队伍--数字
+						for(var i = 0; i < 5; i++) {
+							$('#dp3_dydw_iconbox .span_hong').eq(i).text(dp3_data.dydw[i]);
+						};
+						//党员队伍--饼图
+						jc_setpie('jc_dp3pie', dp3_data.dydw_pie_zzdy);
+						//党员队伍--柱子
+						dp3_zhuzi('#zhuzi_dydw', dp3_data.dydw_bar_zzdy[0], 5);
+						dp3_zhuzi_point('#zhuzi_dydw', dp3_data.dydw_bar_zzdy);
+						//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,5]}, 5);
+						//组织变化
+						//组织变化--数字
+						for(var i = 0; i < 4; i++) {
+							$('.dp3_zzbh_txt .span_hong').eq(i).text(dp3_data.zzbh[i]);
+						};
+						//三会情况
+						//三会情况--数字
+						for(var i = 0; i < 3; i++) {
+							$('.dp3_shqk_box .span_hong').eq(i).text(dp3_data.shqk[i]);
+						};
+						//三会情况--柱子
+						dp3_zhuzi('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh[0], 2);
+						dp3_zhuzi_point('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh);
+						//监控预警
+						//监控预警--柱子
+						jc_jkyj_bar('#dp3_hjjk_hong', 'hong');
+						jc_jkyj_bar('#dp3_hjjk_lan', 'lan');
+
+						function jc_jkyj_bar(id, name) {
+							var data = dp3_data.jkyj_bar[name];
+							$(id + ' .dp3_hjjk_percent_hong').height(data.percent);
+							$(id + ' .dp3_hjjk_hong_num').text(data.num);
+							$(id + ' .dp3_hjjk_hong_percent').text(data.percent);
+						};
+						//监控预警--党员集体参加学习情况
+						$('#dp3_xxqk_txt_p_num').text(dp3_data.jkyj_xxqk.num);
+						$('#dp3_xxqk_txt_p_percent').text(dp3_data.jkyj_xxqk.percent);
+						g_dyjtcjxxqk('dfjn_xxqk_chart', dp3_data.jkyj_dyjtcjxxqk);
+						//监控预警--党费缴纳
+						jc_jkyj_dfjn('#dp3_dfjn_huang_left', 'huang');
+						jc_jkyj_dfjn('#dp3_dfjn_lan_left', 'lan');
+
+						function jc_jkyj_dfjn(id, name) {
+							var data = dp3_data.jkyj_dfjn[name];
+							$(id).width(parseInt(data.percent) * 1540 / 100 + 200 - 80);
+							$(id + ' .dfjn_w').width(parseInt(data.percent) * 1540 / 100);
+							$(id + ' .dfjn_num').text(data.num);
+							$(id + ' .percent').text(data.percent);
+						};
+						//监控预警--中心组学习情况
+						g_zxzxxqk('zxzxxqk_chart', dp3_data.jkyj_zxzxxqk);
+						//监控预警--党组织书记讲党课情况
+						g_dzzsjjdkqk('jdkqk_chart', dp3_data.jkyj_dzzsjjdkqk);
+						//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,8]}, 5);
+						//                      setInterval(function() {
+						//                              jc_setpie('jc_dp3pie', jc_set_zhuzidata(3).ydata);
+						//                              dp3_zhuzi('#zhuzi_dydw', jc_set_zhuzidata(10), 5);
+						//                              dp3_zhuzi('#dp3_zhuzi_shqk', jc_set_zhuzidata(16), 2);
+						//          
+						//						refreshCount('#zhuzi_dydw');
+						//						function refreshCount(id) {
+						//							
+						//							$(id + ' .dp3_zhu_icon_box').hover(
+						//								function() {
+						//									window.clearInterval(jc_jsq);
+						//								},
+						//								function() {
+						//									setTimeout(function(){
+						//									   window.setInterval(jc_1, 2000)	
+						//									},2000)
+						//								}
+						//							);
+						//							function jc_1(){
+						//								$(id + " .icon_next").click();
+						//							}
+						//						}
+						setInterval(function() {
+								$("#zhuzi_dydw .icon_next").click();
+								$("#dp3_zhuzi_shqk .icon_next").click();
+							}, 2000)
+							//tabs切换	
+						$wrapper.find('#dp3_tabs1 .dp3_title,#dp3_tabs2 .dp3_title').click(function() {
+							$(this).addClass('hover').siblings().removeClass('hover');
+							if($(this).parent().attr('id') == 'dp3_tabs1') { //党员队伍tabs
+								var index = $(this).index();
+								console.log(index)
+								switch(index) {
+									case 0:
+										jc_dydw('zzdy');
+										break;
+									case 1:
+										jc_dydw('ybdy');
+										break;
+									case 2:
+										jc_dydw('fzdx');
+										break;
+									case 3:
+										jc_dydw('jjfz');
+										break;
+									case 4:
+										jc_dydw('rdsqr');
+										break;
+								};
+
+								function jc_dydw(name) {
+									//党员队伍--饼图
+									jc_setpie('jc_dp3pie', eval('dp3_data.dydw_pie_' + name));
+									//党员队伍--柱子
+									dp3_zhuzi('#zhuzi_dydw', eval('dp3_data.dydw_bar_' + name)[0], 5);
+									//党员队伍--柱子圆点
+									dp3_zhuzi_point('#zhuzi_dydw', eval('dp3_data.dydw_bar_' + name));
+								}
+							} else { //三会情况tabs
+								var index = $(this).index();
+								switch(index) {
+									case 0:
+										jc_shqk('zbdydh');
+										break;
+									case 1:
+										jc_shqk('zbwyh');
+										break;
+									case 2:
+										jc_shqk('dxzh');
+										break;
+								};
+
+								function jc_shqk(name) {
+									//三会情况--柱子
+									dp3_zhuzi('#dp3_zhuzi_shqk', eval('dp3_data.shqk_bar_' + name)[0], 2);
+									//三会情况--柱子圆点
+									dp3_zhuzi_point('#dp3_zhuzi_shqk', eval('dp3_data.shqk_bar_' + name));
+								};
+							}
+						});
+
+						function dp3_zhuzi(id, zhu_data, ybeinum) {
+							//最大值
+							var ydatamax = Math.max.apply(null, zhu_data.ydata);
+							if(ydatamax <= ybeinum) {
+								var num = 1;
+								jc_ydata();
+							} else {
+								// var num=最大值/y轴区间数
+								var num = ydatamax / ybeinum + "";
+								if(num.indexOf(".") != -1) { //if num 不是整数
+									if(num.split(".")[1] > 0) { //if num 有小数 给num+1
+										num = parseInt(num.split(".")[0]) + 1;
+									}
+									//alert("新数字：" + num);
+									jc_ydata();
+								} else { //if num 是整数
+									//alert("原数字：" + num);
+									jc_ydata();
+								};
+							}
+							//x轴名字回显
+							$wrapper.find(id + ' .dp3_zhu_x li').each(function(i) {
+								$(this).text(zhu_data.xdata[i]);
+							});
+							//y轴回显
+							function jc_ydata() {
+								//保持10的倍数
+								if(num % 2 != 0) {
+									num = num + 1
+								} else {
+									num = num
+								};
+								//y轴刻度回显
+								$wrapper.find(id + ' .dp3_zhu_y li').each(function(i) {
+									$(this).text(num * (ybeinum - i));
+								});
+								//x轴数字及百分比回显
+								$wrapper.find(id + ' .zhu_ul li').each(function(i) {
+									var percent = parseFloat((zhu_data.ydata[i] * 100 / (num * ybeinum)));
+									var $top = $(this).find('.bar-main-top');
+									var $down = $(this).find('.bar-main-down');
+									$(this).find('.bar-num').text(zhu_data.ydata[i]);
+									//console.log(num * ybeinum) y轴最大坐标值
+									$(this).find('.bar-main').height(percent + '%');
+									if(percent == 0) {
+										$top.hide();
+										$down.hide();
+									} else if(!isNaN(percent)) {
+										$top.show();
+										$down.show();
+									}
+								})
+							};
+						};
+
+						function dp3_zhuzi_point(id, zhu_data_arr) {
+							var index;
+							$(id + ' .dp3_zhu_icon_box').empty();
+							var dom = '<i class="icon_prev"></i>';
+							for(var i = 0; i < zhu_data_arr.length; i++) {
+								if(i == 0) {
+									dom += '<i class="icon_circle hover"></i>'
+								} else if(i == zhu_data_arr.length - 1) {
+									dom += '<i class="icon_circle" style="padding-right:0"></i>'
+								} else {
+									dom += '<i class="icon_circle"></i>'
+								}
+							};
+							dom += '<i class="icon_next"></i>';
+							$(id + ' .dp3_zhu_icon_box').append(dom);
+							//向后
+							$(id + " .icon_prev").click(function() {
+									index = $(this).siblings('.icon_circle.hover').index() - 1;
+									var $circle = $(this).parent().find('.icon_circle');
+									if(index == 0) {
+										dp3_zhuzi(id, zhu_data_arr[zhu_data_arr.length - 1], 5);
+										$circle.eq(zhu_data_arr.length - 1).addClass('hover').siblings().removeClass('hover');
+									} else {
+										dp3_zhuzi(id, zhu_data_arr[index - 1], 5);
+										$circle.eq(index - 1).addClass('hover').siblings().removeClass('hover');
+									}
+								})
+								//向前
+							$(id + " .icon_next").click(function() {
+								index = $(this).siblings('.icon_circle.hover').index() - 1;
+								var $circle = $(this).parent().find('.icon_circle');
+								if(index == zhu_data_arr.length - 1) {
+									dp3_zhuzi(id, zhu_data_arr[0], 5);
+									$circle.eq(0).addClass('hover').siblings().removeClass('hover');
+								} else {
+									dp3_zhuzi(id, zhu_data_arr[index + 1], 5);
+									$circle.eq(index + 1).addClass('hover').siblings().removeClass('hover');
+								}
+							});
+							//圆点
+							$(id + " .icon_circle").click(function() {
+								index = $(this).index() - 1;
+								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
+								dp3_zhuzi(id, zhu_data_arr[index], 5);
+							});
+						};
+
+					},
+					onSlideChangeEnd: function(swiper) {
+						myAC_child2.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+				// 第 3 个子swiper幻灯片
+				//              var mySwiper_child3 = new Swiper('.swiper-container-child3', {
+				//                  direction: 'horizontal',
+				//                  grabCursor: true,
+				//                  //loop: true,
+				//                  onInit: function(swiper) {
+				//                      myAC_child3.init(swiperAnimateParam_child3, swiper);
+				//                  },
+				//                  onSlideChangeEnd: function(swiper) {
+				//                      myAC_child3.play();
+				//                      //alert(swiper.activeIndex)
+				//                  },
+				//              });
+				// 主swiper幻灯片
+				var mySwiper = new Swiper('.swiper-container-main1', {
+					//              direction: 'normal',
+					grabCursor: true,
+					loop: true,
+					threshold: 1200,
+					//onlyExternal : true,
+					autoplay: 8500,
+					prevButton: '.swiper-button-prev',
+					nextButton: '.swiper-button-next',
+					onInit: function(swiper) {
+						myAC_main1.init(swiperAnimateParam_main1, swiper);
+						myAC_main1.addChild(2, myAC_child1);
+						myAC_main1.addChild(3, myAC_child2);
+						//myAC_main1.addChild(4, myAC_child3);
+						var comtainer = document.getElementById('jc_content');
+						comtainer.onmouseenter = function() {
+							swiper.stopAutoplay();
+						};
+						comtainer.onmouseleave = function() {
+							swiper.startAutoplay();
+						}
+						myAC_main1.play(); // 如果页面中未使用Loading效果，则必须取消本行代码的注释，以开启myAC_main1主动画控制器中动画的播放
+					},
+					onSlideChangeEnd: function(swiper) {
+						myAC_main1.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="swiper-container swiper-container-main1" id="jc_content">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" data-swiper-autoplay="8500">
+					<div class="main1_ani_25_1">
+						<div class="dp1_1_1 dp1_textbox">
+							<span class="big">14</span>年
+						</div>
+						<div class="dp1_1_2 dp1_textbox">
+							第<span class="big">2</span>位
+						</div>
+						<div class="dp1_2 dp1_textbox">
+							<span class="big">8295</span>亿元
+						</div>
+						<div class="dp1_3_1 dp1_textbox">
+							<span class="big">160.9</span>万人
+						</div>
+						<div class="dp1_3_2 dp1_textbox">
+							<span class="big">26</span>个
+						</div>
+						<div class="dp1_3_3 dp1_textbox">
+							<span class="big">88</span>％
+						</div>
+						<div class="dp1_4 dp1_textbox">
+							<span class="big">11</span>亿
+						</div>
+					</div>
+					<div class="dp1_bg main1_ani_00">
+					</div>
+					<div class="dp1_gsgk_box main1_ani_01">
+						<img src="img/dp1_gsgk_box.png" />
+					</div>
+					<div class="dp1_zzgk_box main1_ani_02">
+						<img src="img/dp1_zzgk_box.png" />
+					</div>
+					<div class="dp1_ldxz_box main1_ani_03">
+						<img src="img/dp1_ldxz_box.png" />
+					</div>
+					<div class="dp1_lsgx_box main1_ani_04">
+						<img src="img/dp1_lsgx_box.png" />
+					</div>
+					<div class="dp1_qzlh main1_ani_05">
+						<img src="img/dp1_qzlh.png" />
+					</div>
+					<div class="dp1_txt_djgzmb main1_ani_06">
+						<img src="img/dp1_txt_djgzmb.png" />
+					</div>
+					<div class="dp1_txt_wjs main1_ani_07">
+						<img src="img/dp1_txt_wjs.png" />
+					</div>
+					<div class="dp1_yuan main1_ani_08">
+						<img class="main1_ani_088" src="img/dp1_yuan.png" />
+					</div>
+					<div class="dp1_yuan_zdjs main1_ani_09">
+						<img src="img/dp1_yuan_zdjs.png" />
+					</div>
+					<div class="dp1_yuan_qmcy main1_ani_10">
+						<img src="img/dp1_yuan_qmcy.png" />
+					</div>
+					<div class="dp1_zhu_all main1_ani_11">
+						<img src="img/dp1_zhu_all.png" />
+					</div>
+					<div class="dp1_ding main1_ani_12">
+						<img src="img/dp1_ding.png" />
+					</div>
+					<div class="dp1_2019 main1_ani_13">
+						<img class="main1_ani_2019" src="img/dp1_2019.png" />
+					</div>
+					<div class="dp1_2018 main1_ani_14">
+						<img class="main1_ani_2018" src="img/dp1_2018.png" />
+					</div>
+					<div class="dp1_2017 main1_ani_15">
+						<img class="main1_ani_2017" src="img/dp1_2017.png" />
+					</div>
+					<div class="dp1_daoying1 main1_ani_16">
+						<img class="main1_ani_2017_1" src="img/dp1_daoying1.png" />
+					</div>
+					<div class="dp1_daoying2 main1_ani_17">
+						<img class="main1_ani_2017_2" src="img/dp1_daoying2.png" />
+					</div>
+					<div class="dp1_light3 main1_ani_08_1">
+						<img class="" src="img/dp1_light3.png" />
+					</div>
+					<div class="dp1_light4 main1_ani_08_2">
+						<img class="" src="img/dp1_light4.png" />
+					</div>
+					<div class="dp1_neiguangzhu main1_ani_08_3">
+						<img class="" src="img/dp1_neiguangzhu.png" />
+					</div>
+					<div class="dp1_neiguangzhu_top main1_ani_08_4">
+						<img class="" src="img/dp1_neiguangzhu_top.png" />
+					</div>
+					<div class="dp1_waiguangzhu main1_ani_08_5">
+						<img class="" src="img/dp1_waiguangzhu.png" />
+					</div>
+					<div class="dp1_txt_z1 main1_ani_19">
+						<img class="main1_ani_19_1" src="img/dp1_txt_z1.png" />
+					</div>
+					<div class="dp1_txt_z2 main1_ani_20">
+						<img class="main1_ani_20_1" src="img/dp1_txt_z2.png" />
+					</div>
+					<div class="dp1_txt_z3 main1_ani_21">
+						<img class="main1_ani_21_1" src="img/dp1_txt_z3.png" />
+					</div>
+					<div class="dp1_txt_z4 main1_ani_22">
+						<img class="main1_ani_22_1" src="img/dp1_txt_z4.png" />
+					</div>
+					<div class="dp1_txt_z5 main1_ani_23">
+						<img class="main1_ani_23_1" src="img/dp1_txt_z5.png" />
+					</div>
+					<div class="dp1_txt_z6 main1_ani_24">
+						<img class="main1_ani_24_1" src="img/dp1_txt_z6.png" />
+					</div>
+					<div class="dp1_gsgk_part1 main1_ani_25">
+						<img src="img/dp1_gsgk_part1.png" />
+					</div>
+					<div class="dp1_gsgk_part2 main1_ani_26">
+						<img src="img/dp1_gsgk_part2.png" />
+						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;">
+							<li>
+								<div class="dp1_textbox">
+									第<span class="big">2</span>位
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">88</span>%以上
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">11</span>亿人
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">23933.9</span>亿千瓦时
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="dp1_gsgk_part3 main1_ani_27">
+						<img src="img/dp1_gsgk_part3.png" />
+						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;box-sizing:border-box;padding-top: 55px;">
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">160.9</span>万人
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">34.3</span>亿元
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">39161.6</span>亿元
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">14328</span>亿元
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="dp1_gsgk_part4 main1_ani_28">
+						<img src="img/dp1_gsgk_part4.png" />
+						<ul class="fit pos-a dp1_gsgk_part2_ul" style="top: 0;padding-top: 54px;box-sizing:border-box;">
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">542.7</span>亿元
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">2270.0</span>亿元
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">99.957</span>%
+								</div>
+							</li>
+							<li>
+								<div class="dp1_textbox">
+									<span class="big">99.833</span>%
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="dp1_zzgk main1_ani_29_1">
+						<div class="dp1_zzgk_1_1 dp1_textbox">
+							<span class="big">38321</span>个
+						</div>
+						<div class="dp1_zzgk_1_2 dp1_textbox">
+							<span class="big">2369</span>个
+						</div>
+						<div class="dp1_zzgk_1_3 dp1_textbox">
+							<span class="big">2119</span>个
+						</div>
+						<div class="dp1_zzgk_2_1 dp1_textbox">
+							<span class="big">30393</span>个
+						</div>
+						<div class="dp1_zzgk_3_1 dp1_textbox">
+							<span class="big">62.75</span>万
+						</div>
+						<div class="dp1_zzgk_3_2 dp1_textbox">
+							<span class="big">12.68</span>万
+						</div>
+						<div class="dp1_zzgk_3_3 dp1_textbox">
+							<span class="big">3249</span>人
+						</div>
+						<div class="dp1_zzgk_4_1 dp1_textbox">
+							<span class="big">2223</span>人
+						</div>
+						<div class="dp1_zzgk_4_2 dp1_textbox">
+							<span class="big">68</span>%
+						</div>
+					</div>
+					<div class="dp1_zzgk_part1 main1_ani_29">
+						<img src="img/dp1_zzgk_part1.png" />
+					</div>
+					<div class="dp1_ldxz_part1 main1_ani_30">
+						<img src="img/dp1_ldxz_part1.png" />
+					</div>
+					<div class="dp1_ldxz_part2 main1_ani_31">
+						<img src="img/dp1_ldxz_part2.png" />
+					</div>
+					<div class="dp1_ldxz_part3 main1_ani_32">
+						<img src="img/dp1_ldxz_part3.png" />
+					</div>
+					<div class="dp1_ldxz_part4 main1_ani_33">
+						<img src="img/dp1_ldxz_part4.png" />
+					</div>
+					<div class="dp1_lsgx_part1 main1_ani_34">
+						<img src="img/dp1_lsgx_part1.png" />
+					</div>
+					<div class="dp1_lsgx_part2 main1_ani_35">
+						<img src="img/dp1_lsgx_part2.png" />
+					</div>
+					<div class="dp1_lsgx_part3 main1_ani_36">
+						<img src="img/dp1_lsgx_part3.png" />
+					</div>
+					<div class="dp1_lsgx_part4 main1_ani_37">
+						<img src="img/dp1_lsgx_part4.png" />
+					</div>
+				</div>
+				<div class="swiper-slide" data-swiper-autoplay="5000">
+					<div class="swiper-container swiper-container-child1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+
+								<div class="dp2_text_box child1_ani_07_1">
+									<div class="dp2_text dp2_text1">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万个</span>
+									</div>
+									<div class="dp2_text dp2_text2">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+									<div class="dp2_text dp2_text3">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+									<div class="dp2_text dp2_text4">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+								</div>
+								<div class="dp2_video_text child1_ani_04_1">
+									<span class="dp2_tx_hong">天津公司</span>
+								</div>
+								<div class="dp2_video_box child1_ani_04_2">
+									<video id='myVideo' width="100%" height="100%" autoplay="autoplay">
+										<source src="video/123.mp4" type="video/mp4"></source>
+										<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+                                        <param name="movie" value="myvideo.swf" />
+                                        <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+                                    </object> 当前浏览器不支持 video直接播放，点击这里下载视频：
+										<a href="myvideo.webm">下载视频</a>
+									</video>
+								</div>
+								<div class="dp2_bg child1_ani_01">
+
+								</div>
+								<div class="dp2_dwjg child1_ani_02">
+									<img src="img/dp2_dwjg.png" />
+								</div>
+								<div class="dp2_dwjg child1_ani_02">
+									<img src="img/dp2_dwjg.png" />
+								</div>
+								<div class="dp2_bzqk child1_ani_03">
+									<img src="img/dp2_bzqk.png" />
+								</div>
+								<div class="dp2_video child1_ani_04">
+									<img src="img/dp2_video.png" />
+									<div class="video_play hide">
+										<img src="img/video_play.png" />
+									</div>
+								</div>
+								<div class="dp2_djdsj child1_ani_05">
+									<img src="img/dp2_djdsj.png" />
+								</div>
+								<div class="dp2_map2 child1_ani_06" id="china_map">
+								</div>
+								<div class="dp2_gcdy child1_ani_07">
+									<img src="img/dp2_gcdy.png" />
+								</div>
+								<div class="dp2_dwjg_part1 child1_ani_08">
+									<img src="img/dp2_dwjg_part1.png" />
+								</div>
+								<div class="dp2_dwjg_part2 child1_ani_09">
+									<img src="img/dp2_dwjg_part2.png" />
+								</div>
+								<div class="dp2_dwjg_part3 child1_ani_10">
+									<img src="img/dp2_dwjg_part3.png" />
+								</div>
+								<div class="dp2_dwjg_part4 child1_ani_11">
+									<img src="img/dp2_dwjg_part4.png" />
+								</div>
+								<div class="dp2_dwjg_part5 child1_ani_12">
+									<img src="img/dp2_dwjg_part5.png" />
+								</div>
+								<div class="dp2_gcdyfwd_part1 child1_ani_06_1">
+									<img src="img/dp2_gcdyfwd_part1.png" />
+								</div>
+								<div class="dp2_bzqk_part1 child1_ani_13">
+									<img src="img/dp2_bzqk_part1.png" />
+								</div>
+								<div class="dp2_bzqk_part2 child1_ani_14">
+									<img src="img/dp2_bzqk_part2.png" />
+								</div>
+								<div class="dp2_bzqk_part3 child1_ani_15">
+									<img src="img/dp2_bzqk_part3.png" />
+								</div>
+								<div class="dp2_bzqk_part4 child1_ani_16">
+									<img src="img/dp2_bzqk_part4.png" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="swiper-container swiper-container-child2">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="dp3_icon_box" id="dp3_dydw_iconbox">
+									<ul class="fit" style="padding-left: 100px;">
+										<li style="background: url(img/icon_dydw1.png) no-repeat left;background-size:244px 244px;">
+											<div class="numbox">
+												<span class="span_hong">64</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增转正党员</p>
+										</li>
+										<li style="background: url(img/icon_dydw2.png) no-repeat left;background-size:244px 244px;">
+											<div class="numbox">
+												<span class="span_hong">64</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增预备党员</p>
+										</li>
+										<li style="background: url(img/icon_dydw3.png) no-repeat left;background-size:244px 244px;">
+											<div class="numbox">
+												<span class="span_hong">64</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增发展对象</p>
+										</li>
+										<li style="background: url(img/icon_dydw4.png) no-repeat left;background-size:244px 244px;">
+											<div class="numbox">
+												<span class="span_hong">64</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增积极分子</p>
+										</li>
+										<li style="background: url(img/icon_dydw5.png) no-repeat left;background-size:244px 244px;">
+											<div class="numbox">
+												<span class="span_hong">64</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增入党申请人</p>
+										</li>
+									</ul>
+								</div>
+								<div class="dp3_bg child2_ani_01">
+
+								</div>
+								<div class="dp3_dydw child2_ani_02">
+									<img src="img/dp3_dydw.png" />
+								</div>
+								<!--党员队伍文本-->
+								<!--<div class="dp3_dydw_txt">
+                                    <ul class="dp3_txt_items dp3_dydw_txt_ul">
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                    </ul>
+                                </div>-->
+
+								<div class="dp3_zzbh child2_ani_03">
+									<img src="img/dp3_zzbh.png" />
+								</div>
+								<div class="dp3_shqk child2_ani_04">
+									<img src="img/dp3_shqk.png" />
+								</div>
+								<div class="dp3_jkyj child2_ani_05">
+									<img src="img/dp3_jkyj.png" />
+								</div>
+								<div class="dp3_zbkb child2_ani_06">
+									<img src="img/dp3_zbkb.png" />
+								</div>
+
+								<div class="dp3_title1 child2_ani_07">
+									<img src="img/dp3_title1.png" />
+								</div>
+								<div class="dp3_title2 child2_ani_08">
+									<img src="img/dp3_title2.png" />
+								</div>
+								<div class="dp3_title3 child2_ani_9">
+									<img src="img/dp3_title3.png" />
+								</div>
+								<div class="dp3_title4 child2_ani_10">
+									<img src="img/dp3_title4.png" />
+								</div>
+								<div class="dp3_title5 child2_ani_11">
+									<img src="img/dp3_title5.png" />
+								</div>
+
+								<!--党员队伍-->
+								<!--<div class="dp3_dydw_part1">
+                                    <img src="img/dp3_dydw_part1.png" />
+                                </div>-->
+								<div class="dp3_dydw_part2_titel" id="dp3_dydw_part2_titel">
+									<img src="img/dp3_dydw_part2_titel.png" />
+								</div>
+								<div id='dp3_tabs1'>
+									<div class="dp3_title dp3_title_zzdy hover">
+										<img src="img/dp3_title_zzdy.png" />
+									</div>
+									<div class="dp3_title dp3_title_ybdy">
+										<img src="img/dp3_title_ybdy.png" />
+									</div>
+									<div class="dp3_title dp3_title_fzdx">
+										<img src="img/dp3_title_fzdx.png" />
+									</div>
+									<div class="dp3_title dp3_title_jjfz">
+										<img src="img/dp3_title_jjfz.png" />
+									</div>
+									<div class="dp3_title dp3_title_rdsqr">
+										<img src="img/dp3_title_rdsqr.png" />
+									</div>
+								</div>
+
+								<!--柱子-->
+								<!--<div class="dp3_zhu_box" style="padding-top: .76rem;padding-right: 1.1rem;">
+                                    <div class="fl" style="padding-bottom: 1.48rem;
+    padding-top: 1.05px;
+    height: 100%;
+    width: 1.25rem;
+    box-sizing: border-box;">
+                                        
+                                    </div>
+                                    <div class="fr">
+                                        <div class="" style="height: 1.05rem;">
+                                            
+                                        </div>
+                                        <div class="" style="height: 6.96rem;">
+                                            
+                                        </div>
+                                        <div class="">
+                                            
+                                        </div>
+                                    </div>
+                                </div>-->
+								<div class="zhuzi_conmon" id='zhuzi_dydw'>
+									<div class="dp3_zhuzi">
+										<ul class="zhu_ul">
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_y">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_x" style="text-align: center;">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+										<div class="dp3_zhu_icon_box" id="dp3_zhu_icon_box_dydw">
+
+										</div>
+									</div>
+									<div class="dp3_zhudi">
+										<img src="img/dp3_zhudi.png" />
+									</div>
+								</div>
+
+								<!--组织变化-->
+								<div class="dp3_zzbh_icon">
+									<img src="img/dp3_zzbh_icon.png" />
+								</div>
+								<div class="dp3_zzbh_txt">
+									<ul class="dp3_txt_items dp3_zzbh_txt_ul fit">
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+										<li><span class="span_hong">64</span><span class="span_hei">个</span></li>
+									</ul>
+								</div>
+								<!--三会情况-->
+								<div class="dp3_shqk_icon">
+									<img src="img/dp3_shqk_icon.png" />
+
+								</div>
+								<div class="dp3_shqk_box">
+									<div class="dp3_icon_box" style="height: 350px;padding-left: 200px;padding-top: 10px;">
+										<ul class="fit">
+											<li style="background: url(img/icon_shqk_1.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">64</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展支部党员大会</p>
+											</li>
+											<li style="background: url(img/icon_shqk_2.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">64</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展支部委员会</p>
+											</li>
+											<li style="background: url(img/icon_shqk_3.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">64</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展党小组会</p>
+											</li>
+
+										</ul>
+									</div>
+									<!--<div class="dp3_tabs_box" style="overflow: hidden;background: url(img/dp3_tabs_bg.png) no-repeat;    padding-left: 1.28rem;">
+                                        <ul class="tabs_head" style="overflow: hidden;">
+                                            <li class="txt_tabs_hei"><span>支部党员大会</span><i style="    background: url(img/dp3_tabs_hover.png);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    top: 0;
+    z-index: 9999;
+    background-size: cover;"></i></li>
+                                            <li class="txt_tabs_hei" style="margin: 0 1.8rem;">支部委员会</li>
+                                            <li class="txt_tabs_hei">党小组会</li>
+                                        </ul>
+                                    </div>-->
+								</div>
+								<div class="dp3_shqk_tabs_head" id="dp3_shqk_tabs_head">
+									<img src="img/dp3_shqk_tabs_head.png" />
+								</div>
+								<div id='dp3_tabs2'>
+									<div class="dp3_title dp3_title_zbwydh hover">
+										<img src="img/dp3_title_zbwydh.png">
+									</div>
+									<div class="dp3_title dp3_title_zbwyh">
+										<img src="img/dp3_title_zbwyh.png">
+									</div>
+									<div class="dp3_title dp3_title_dxzh">
+										<img src="img/dp3_title_dxzh.png">
+									</div>
+								</div>
+								<!--三会情况柱子-->
+								<div class="zhuzi_conmon" id="dp3_zhuzi_shqk">
+									<div class="dp3_zhuzi">
+										<ul class="zhu_ul">
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_y">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_x">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+										<div class="dp3_zhu_icon_box" id="dp3_zhu_icon_box_shqk">
+
+										</div>
+									</div>
+									<div class="dp3_zhudi">
+										<img src="img/dp3_shqk_zhudi.png">
+									</div>
+								</div>
+
+								<!--监控预警-->
+								<!--换届监控-->
+								<!--<div class="dp3_hjjk_title">
+                                    <img src="img/dp3_hjjk_title.png">
+                                </div>
+                                <div class="dp3_hjjk_di">
+                                    <img src="img/dp3_hjjk_di.png">
+                                </div>
+                                <div class="dp3_hjjk_hong">
+                                    <div class="fit pos-a" style="bottom: 0;height: 80%;">
+                                        <img src="img/dp3_hjjk_ding.png"/>
+                                        <div class="dp3_hong_zhu"></div>
+                                    </div>
+                                </div>
+                                <div class="dp3_hjjk_lan">
+                                    <div class="fit pos-a" style="bottom: 0;height: 80%;">
+                                        <img src="img/dp3_hjjk_ding.png"/>
+                                    </div>
+                                </div>
+                                <div class="dp3_hjjk_di1">
+                                    <img src="img/dp3_hjjk_di1.png">
+                                </div>
+                                <div class="dp3_hjjk_di2">
+                                    <img src="img/dp3_hjjk_di2.png">
+                                </div>-->
+								<!--学习情况-->
+								<!--<div class="dp3_xxqk_title">
+                                    <img src="img/dp3_xxqk_title.png">
+                                    <div class="dp3_xxqk_txt" style="position: absolute;
+    top: 0;
+    right: 1.24rem;">
+                                        <p class="fl dp3_xxqk_txt_p" style="margin-right:76px;">增加<span style="margin: 24px;" class="dp3_xxqk_txt_p_hong">3.5</span>万小时</p>
+                                        <p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 24px;" class="dp3_xxqk_txt_p_hong">10%</span>同比上周</p>
+                                    </div>
+                                </div>
+                                <div class="dp3_xxqk_line_box">
+
+                                </div>
+                                <div class="dp3_shyk_title">
+                                    <img src="img/dp3_shyk_title.png">
+                                </div>
+                                -->
+								<!--换届监控-->
+								<div class="dp3_hjjk_di">
+									<img src="img/dp3_hjjk_di.png">
+								</div>
+								<div class="dp3_hjjk_hong" id="dp3_hjjk_hong">
+									<div class="dp3_hjjk_percent_hong">
+										<p class="dp3_hjjk_hong_num">
+											700<span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_percent">
+                                            100%
+                                        </h1>
+										<h1 class="dp3_hjjk_hong_name">党委换届</h1>
+										<img style="height: 100%;" src="img/dp3_hjjk_hong.png">
+									</div>
+								</div>
+								<div class="dp3_hjjk_lan" id="dp3_hjjk_lan">
+									<div class="dp3_hjjk_percent_hong">
+										<p class="dp3_hjjk_hong_num" style="color: #0461df">
+											70<span style="color:#000000;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_percent">
+                                            100%
+                                        </h1>
+										<h1 class="dp3_hjjk_hong_name">支部换届</h1>
+										<img src="img/dp3_hjjk_lan.png" style="height: 100%;">
+									</div>
+								</div>
+								<!--<div class="dp3_hjjk_di1">
+                                    <img src="img/dp3_hjjk_di1.png">
+                                </div>
+                                <div class="dp3_hjjk_di2">
+                                    <img src="img/dp3_hjjk_di2.png">
+                                </div>-->
+
+								<!--学习情况-->
+								<div class="dp3_xxqk_title">
+									<img src="img/dp3_xxqk_title.png">
+									<div class="dp3_xxqk_txt" id="dp3_xxqk_txt" style="position: absolute;top: 0;right: 1.24rem;">
+										<p class="fl dp3_xxqk_txt_p" style="margin-right: .76rem;">增加<span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_num">3.5</span>万小时</p>
+										<p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_percent">10%</span>同比上周</p>
+									</div>
+								</div>
+								<div class="dp3_xxqk_table_bg">
+									<img src="img/dp3_xxqk_table_bg.png">
+								</div>
+								<div class="dp3_xxqk_table" id="dfjn_xxqk_chart">
+									<!--<img src="img/dp3_xxqk_table.png">-->
+								</div>
+
+								<!--党费缴纳-->
+								<div class="dp3_dfjn_title">
+									<img src="img/dp3_dfjn_title.png">
+								</div>
+								<div class="dp3_dfjn_title_bg">
+									<img src="img/dp3_dfjn_title_bg.png">
+								</div>
+								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 4475px;">
+                                    <span style="font-size: 58px;">8月党员缴纳党费百分比</span>
+                                </div>-->
+
+								<div class="dp3_dfjn_huang_left" id="dp3_dfjn_huang_left">
+									<div class="fit dfjn_text_box">
+										<p class="fl" style="font-size: 58px;"><span class="dfjn_num"></span>月党员缴纳党费百分比</p>
+										<h1 class="fr percent">100%</h1>
+									</div>
+									<div class="fl">
+										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_left.png">
+									</div>
+									<div class="fl">
+										<div class="dfjn_w" style="width: 1540px;height: 115px;background-image: url('img/dp3_dfjn_huang_center2.png');background-size: contain;background-repeat: repeat-x;"></div>
+									</div>
+									<div class="fl">
+										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_right.png">
+									</div>
+								</div>
+
+								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 6466px;">
+                                    <span style="font-size: 58px;">第二季度下级党组织按时上缴党费百分比</span>
+                                </div>-->
+								<div class="dp3_dfjn_lan_left" id="dp3_dfjn_lan_left">
+									<div class="fit dfjn_text_box">
+										<p class="fl" style="font-size: 58px;">第<span class="dfjn_num"></span>季度下级党组织按时上缴党费百分比</p>
+										<h1 class="fr percent">100%</h1>
+									</div>
+									<div class="fl">
+										<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_left.png">
+									</div>
+									<div class="fl">
+										<div class="dfjn_w" style="width: 1554px;height: 115px;background-image: url('img/dp3_dfjn_lan_center.png');background-size: contain;background-repeat: repeat-x;"></div>
+									</div>
+									<div class="fl">
+										<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_right.png">
+									</div>
+								</div>
+
+								<!--中心组学习情况-->
+								<div class="dp3_zxzxxqk_title">
+									<img src="img/dp3_zxzxxqk_title.png">
+								</div>
+								<div class="zxzxxqk_bg"></div>
+								<div class="zxzxxqk_chart" id="zxzxxqk_chart">
+								</div>
+
+								<!--党组织书记讲党课情况-->
+								<div class="dp3_dkqk_title">
+									<img src="img/dp3_dkqk_title.png">
+								</div>
+								<div class="jdkqk_chart" id="jdkqk_chart">
+								</div>
+								<div class="dp3_dkqk_chart_bottom">
+									<img src="img/dp3_dkqk_chart_bottom.png">
+								</div>
+
+								<!--三会一课-->
+								<div>
+									<div class="dp3_shyk_title">
+										<img src="img/dp3_shyk_title.png">
+									</div>
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+											<li id="shyk_legend_2"><i></i>完成率</li>
+										</ul>
+									</div>
+									<div class="shyk_center_bg"></div>
+									<div class="shyk_center" style="z-index: 3001;">
+										<div id="myCharts" style="width:3808px;height:660px"></div>
+									</div>
+								</div>
+								<div class="dp3_zhu_icon_box shyk_page" id="shyk_page" style="z-index: 3010;">
+									<!-- 									<i class="icon_prev"></i> -->
+									<!-- 									<i class="icon_circle hover"></i> -->
+									<!-- 									<i class="icon_circle"></i> -->
+									<!-- 									<i class="icon_circle"></i> -->
+									<!-- 									<i class="icon_circle" style="padding-right:0"></i> -->
+									<!-- 									<i class="icon_next"></i> -->
+								</div>
+								<!--各单位优秀成果-->
+
+								<div class="dp3_gdwyxcg_title">
+									<img src="img/dp3_hdwyxcg_title.png">
+								</div>
+
+								<div class="gdwyxcg_legend" id="gdwyxcg_legend">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_legend_1"><i></i>优秀成果</li> -->
+									<!--                                         <li id="gdwyxcg_legend_2"><i></i>优秀案例</li> -->
+									<!--                                         <li id="gdwyxcg_legend_3"><i></i>优秀论文</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="gdwyxcg_x" id="gdwyxcg_yAxis">
+									<!--                                     <ul> -->
+									<!--                                         <li id="gdwyxcg_x_1"></li> -->
+									<!--                                         <li id="gdwyxcg_x_2"></li> -->
+									<!--                                         <li id="gdwyxcg_x_3"></li> -->
+									<!--                                         <li id="gdwyxcg_x_4"></li> -->
+									<!--                                         <li id="gdwyxcg_x_5">0</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="swiper-container swiper-container-gdwyxcg gdwyxcg_center" id="gdwyxcg_con">
+									<!--                                     <ul id="gdwyxcg_con" class="swiper-wrapper" style="height: 100%;width: 100%"> -->
+
+									<!--                                     </ul> -->
+								</div>
+								<div class="dp3_gdwyxcg_bottom"></div>
+								<div class="dp3_zhu_icon_box gdwyxcg_page" id="gdwyxcg_page" style="left:9930px;z-index:3000;top:1590px;">
+									<!--<i class="icon_prev"></i>
+									<i class="icon_circle hover"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle"></i>
+									<i class="icon_circle" style="padding-right:0"></i>
+									<i class="icon_next"></i>-->
+								</div>
+
+								<!--先进典型数量分布-->
+
+								<div class="dp3_xjdxslfb_title">
+									<img src="img/dp3_gdwxjdxslfb_title.png">
+								</div>
+
+								<div class="xjdxslfb_legend" id="xjdxslfb_legend">
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_legend_1"><i></i>个人</li> -->
+									<!--                                         <li id="xjdxslfb_legend_2"><i></i>集体</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="xjdxslfb_x" id="xjdxslfb_yAxis">
+									<!--                                     <ul> -->
+									<!--                                         <li id="xjdxslfb_x_1"></li> -->
+									<!--                                         <li id="xjdxslfb_x_2"></li> -->
+									<!--                                         <li id="xjdxslfb_x_3"></li> -->
+									<!--                                         <li id="xjdxslfb_x_4"></li> -->
+									<!--                                         <li id="xjdxslfb_x_5">0</li> -->
+									<!--                                     </ul> -->
+								</div>
+
+								<div class="swiper-container swiper-container-xjdxslfb xjdxslfb_center" id="xjdxslfb_con">
+
+								</div>
+								<div class="dp3_xjdxslfb_bottom"></div>
+								<div class="dp3_zhu_icon_box xjdxslfb_page" id="xjdxslfb_page" style="left:9675px;z-index:3000;top:2795px;">
+									<!--                                     <i class="icon_prev"></i> -->
+									<!--                                     <i class="icon_circle hover"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle"></i> -->
+									<!--                                     <i class="icon_circle" style="padding-right:0"></i> -->
+									<!--                                     <i class="icon_next"></i> -->
+								</div>
+
+								<div id="jc_dp3pie">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="swiper-slide">
+                    <div class="swiper-container swiper-container-child3">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_01" src="img/wording_production.png" />
+                                <img class="child3_ani_02" src="img/circle-production.png" />
+                                <img class="child3_ani_03" src="img/people_production.png" />
+                                <img class="child3_ani_04" src="img/check_production.png" />
+                                <img class="child3_ani_05" src="img/floating_production.png" />
+                                <img class="child3_ani_06" src="img/pic_shadow_production.png" />
+                            </div>
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_07" src="img/introduction_production.png" />
+                                <img class="child3_ani_08" src="img/btn_production.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+				<!--<div class="swiper-slide" style="background-color:#083846;">
+                    <img class="main1_ani_03" src="img/pic_back.png" />
+                    <a href="http://www.zhuhaicec.com"><img class="main1_ani_04" src="img/btn_join.png" /></a>
+                </div>-->
+			</div>
+
+			<div class="swiper-button-next" style="background-image:none;">
+				<img src="img/swiper-button-next.png" />
+			</div>
+			<div class="swiper-button-prev" style="background-image:none;">
+				<img src="img/swiper-button-prev.png" />
+			</div>
+			<script type="text/javascript">
+				function jc_setmap(id) {
+					/*地图*/
+					var myChart = echarts.init(document.getElementById(id));
+					//数据纯属虚构
+					var option = {
+
+						tooltip: {
+							show: true, //不显示提示标签
+							formatter: '{b}', //提示标签格式
+							backgroundColor: "#ff7f50", //提示标签背景颜色
+							textStyle: {
+								color: "#fff"
+							}
+							//提示标签字体颜色
+						},
+						geo: {
+							roam: false,
+							map: 'china',
+							//layoutCenter: ['100%'],
+							//aspectScale:0.85569,
+							zoom: 1.1,
+							//layoutSize: '250%',
+							label: {
+								normal: {
+									show: false, //显示省份标签
+									textStyle: {
+										color: "#2d2d2d"
+									}
+									//省份标签字体颜色
+								},
+								emphasis: { //对应的鼠标悬浮效果
+									show: true,
+									textStyle: {
+										color: "#fff"
+									},
+
+								}
+							},
+							itemStyle: {
+								normal: {
+									borderWidth: .5, //区域边框宽度
+									borderColor: '#9e3605', //区域边框颜色
+									areaColor: "#efb312", //区域颜色
+								},
+								emphasis: {
+									borderWidth: 1,
+									borderColor: '#e75400',
+									areaColor: "#fb7b00",
+								}
+							},
+							selectedMode: 'single',
+							data: [{
+									name: '北京',
+									selected: true,
+									value: "10500000"
+								}, //北京为选中状态
+								{
+									name: '天津',
+									value: "10000029"
+								}, {
+									name: '江苏',
+									value: "10430000"
+								}, {
+									name: '浙江',
+									value: "10250037"
+								}
+							],
+							regions: [{
+								name: '南海诸岛',
+								value: 0,
+								itemStyle: {
+									normal: {
+										opacity: 0,
+										label: {
+											show: false
+										}
+									}
+								}
+							}, {
+								name: '北京',
+								selected: true,
+								value: "10500000"
+							}],
+						}
+					};
+					myChart.setOption(option);
+					myChart.on('click', function(params) {
+						//console.log(params);
+						//回显服务队
+						var num = "";
+						var dp2_tx_huang_arr = [];
+						for(var i = 0; i < 4; i++) {
+							num += Math.floor(Math.random() * 10)
+						};
+						for(var k = 0; k < 4; k++) {
+							dp2_tx_huang_arr[k] = parseInt(num) + k * 3;
+						};
+						$('.dp2_tx_huang').each(function(i) {
+							$(this).text(dp2_tx_huang_arr[i])
+						});
+						//回显公司
+						$('.dp2_tx_hong').text(params.name + '公司');
+					});
+				}
+				//饼图
+				function jc_setpie(id, data) { //
+					var myChart = echarts.init(document.getElementById(id));
+					var scale = 1;
+					var echartData = [{
+						value: data[0],
+						name: '省部级'
+					}, {
+						value: data[1],
+						name: '地市级'
+					}, {
+						value: data[2],
+						name: '区县级'
+					}]
+					var rich = {
+						yellow: {
+							color: "#e12525",
+							fontSize: 80 * scale,
+							fontFamily: 'Britannic',
+							padding: [10, 24, 10, 0],
+							align: 'center'
+						},
+						total: {
+							color: "#ffc72b",
+							fontSize: 40 * scale,
+							align: 'center'
+						},
+						white: {
+							color: "#fff",
+							align: 'center',
+							fontSize: 14 * scale,
+							padding: [10, 0]
+						},
+						black: {
+							color: "#2d2d2d",
+							align: 'center',
+							//fontFamily: 'Britannic',
+							fontSize: 50 * scale,
+							align: 'left'
+						},
+						blue: {
+							color: '#49dff0',
+							fontSize: 16 * scale,
+							align: 'center'
+						},
+						hr: {
+							borderColor: '#0b5263',
+							width: '100%',
+							borderWidth: 1,
+							height: 0,
+						}
+					}
+					option = {
+						// backgroundColor: '#031f2d',
+						title: {
+							text: '单位分布',
+							left: 'center',
+							top: 'center',
+							//padding:[24,0],
+							textStyle: {
+								color: '#2d2d2d',
+								fontWeight: 100,
+								fontFamily: 'Microsoft YaHei',
+								fontSize: 72 * scale,
+								align: 'center'
+							}
+						},
+						series: [{
+							name: '总考生数量',
+							type: 'pie',
+							radius: ['42%', '62%'],
+							center: ['50%', '50%'],
+							hoverAnimation: false,
+							color: ['#72c7f3', '#fe7370', '#fbd264', '#034079', '#6f81da', '#00ffb4'],
+							label: {
+								normal: {
+									formatter: function(params, ticket, callback) {
+										return '{black|' + params.name + '}\n{yellow|' + params.value + '}{black|人}';
+									},
+									rich: rich
+								},
+							},
+							labelLine: {
+								show: false,
+								normal: {
+									length: 75 * scale,
+									length2: 0,
+									lineStyle: {
+										color: '#0b5263',
+										opacity: 0
+									}
+								}
+							},
+							data: echartData
+						}]
+					};
+					myChart.setOption(option);
+				}
+				//制造假数据
+				function jc_set_zhuzidata(n) {
+					var zhu_data = {
+						xdata: [],
+						ydata: [],
+					};
+					for(i = 0; i < n; i++) {
+						zhu_data.xdata.push('上海' + jc_randomNum2(0, 99));
+						zhu_data.ydata.push(i + jc_randomNum2(0, 9999));
+					};
+					return zhu_data;
+				}
+				//生成指定位数的随机整数
+				function jc_randomNum1(n) {
+					var t = '';
+					for(var i = 0; i < n; i++) {
+						t += Math.floor(Math.random() * 10);
+					}
+					return t;
+				}
+				//生成指定范围内的随机整数
+				function jc_randomNum2(minNum, maxNum) {
+					switch(arguments.length) {
+						case 1:
+							return parseInt(Math.random() * minNum + 1);
+							break;
+						case 2:
+							return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
+							break;
+						default:
+							return 0;
+							break;
+					}
+				}
+
+				//              window.onload=function(){
+				//                  var container = document.getElementById('jc_content') //获取容器id
+				//                  var prev = $('.swiper-button-prev') //左按钮
+				//                  var next = $('.swiper-button-next') //右按钮
+				//                  function play() {
+				//                      timer = setInterval(function() {
+				//                          next.click()
+				//                      }, 8500);
+				//                  }
+				//                  //停止切换
+				//                  function stop() {
+				//                      clearInterval(timer)
+				//                  }
+				//                  //鼠标移上去，触发自动切换事件
+				//                  container.onmouseover = stop; //不要加括号，
+				//                  container.onmouseout = play
+				//                      //自动切换
+				//                  play()
+				//              }
+			</script>
+			<script src="js/hqk.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/zjy.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

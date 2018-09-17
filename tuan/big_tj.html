@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>团建大数据</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.jquery.min.js文件同时使用 -->
+		<link href="css/swiper.min.css" rel="stylesheet" />
+		<!-- 载入CSS3动画库，配合Swiper动画控制器swiper.animate.js文件同时使用 -->
+		<link href="css/animate.min.css" rel="stylesheet" />
+		<!-- 载入loading进度条显示样式，与loading.js文件同时使用 -->
+		<link href="css/loading.css" rel="stylesheet" />
+		<!-- 载入index.css文件，用于控制页面中动画元素的显示样式 -->
+		<link rel="stylesheet" href="css/big_tjData.css">
+		<style type="text/css">
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.swiper-container img {
+				width: 100%;
+			}
+		</style>
+		<script src="js/rem.js"></script>
+		<!-- 载入jQuery核心框架 -->
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.min.css文件同时使用 -->
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<!-- 载入Swiper动画控制器，与swiper.animate.param.js文件同时使用 -->
+		<script src="js/swiper.animate.min.js"></script>
+		<!-- 载入Swiper动画控制器初始化文件，与swiper.animate.js文件同时使用 -->
+		<script src="js/swiper.animate.param.js"></script>
+		<!-- 载入loading进度条控制脚本，与loading.css文件同时使用 -->
+		<script src="js/echarts.min.js"></script>
+		<script src="js/china.js"></script>
+		<script src="js/loading.js"></script>
+	</head>
+
+	<body>
+		<div class="swiper-container swiper-container-main1" id="jc_content">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" data-swiper-autoplay="5000">
+					<div class="swiper-container swiper-container-main">
+						<ul class="swiper-wrapper">
+							<ul class="swiper-slide dp2_bg">
+								<!-- title -->
+								<div class="dp2_djdsj main_ani_05">
+									<img src="tj_img/tjTitle.png" />
+								</div>
+								<!-- 左边 -->
+								<div class="left_bg main_ani_left">
+									<div style="margin: 0 65px;">
+										<div class="left-top main_ani_01" >
+											<img src="tj_img/left-top-pie.png">
+										</div>
+										<!--组织变化-->
+										<div class="zzbh main_ani_02">
+											<div class="zzbh-bg">
+												<img src="tj_img/zzbh_bg.png">
+											</div>
+											<div class="zzbh_icon">
+												<img src="tj_img/zzbh_icon.png" />
+											</div>
+											<div class="zzbh_txt">
+												<ul class="dp3_txt_items dp3_zzbh_txt_ul fit">
+													<li><span class="span_hong">4</span><span class="span_hei">人</span></li>
+													<li><span class="span_hong">6</span><span class="span_hei">人</span></li>
+													<li><span class="span_hong">10</span><span class="span_hei">人</span></li>
+													<li><span class="span_hong">8</span><span class="span_hei">人</span></li>
+												</ul>
+											</div>
+										</div>
+										<!-- 队伍结构 -->
+										<div class="dwjg">
+											<ul class="dwjg-bg clearfix">
+												<li class="lis-tydw">
+													<!-- <img src="tj_img/tydw_title.png" style="display: none"> -->
+													<img src="tj_img/tydw_title_select.png">
+												</li>
+												<li class="lis-qndw">
+													<!-- <img src="tj_img/qndw_title.png"> -->
+													<img src="tj_img/qndw_title_select.png" style="opacity: 0">
+												</li>
+												<li class="lis-tq">
+                                                    <!-- <img src="tj_img/tq_title.png"> -->
+                                                    <img src="tj_img/tq_title_select.png"  style="opacity: 0">
+                                                </li>
+											</ul>
+											<div class="dwjg_lis">
+                                                <div class="tyzb-pie main_ani_03" >
+                                                    <img src="tj_img/tyzb_pie.png">
+                                                </div>
+                                                <div class="xl-zc-lis">
+                                                    <div class="tyxl-pie main_ani_04 ">
+                                                        <img src="tj_img/xlzb_pie.png">
+                                                    </div> 
+                                                    <div class="tyzc-pie">
+                                                        <img src="tj_img/zczb_pie.png">
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div>
+									</div>
+								</div>
+								<!-- 地图 -->
+								<div class="dp2_map2 main_ani_06" id="china_map">
+								</div>
+								<!-- 地图下边的列表 -->
+								<div class="dp2_text_box main_ani_07_1">
+									<div class="dp2_text dp2_text1">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万个</span>
+									</div>
+									<div class="dp2_text dp2_text2">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+									<div class="dp2_text dp2_text3">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+									<div class="dp2_text dp2_text4">
+										<span class="dp2_tx_huang"></span><span class="dp2_tx_bai">万人</span>
+									</div>
+								</div>
+								<div class="dp2_gcdy main_ani_07">
+									<img src="tj_img/dp2_gcdy.png" />
+								</div>
+								<!-- 指标看板 -->
+								<ul class="zbkb main_ani_right">
+									<!-- 团内会议 -->
+									<li class="right-tnhy">
+										<img src="tj_img/right_tnhy.png" style="margin-left: -2px;">
+										<ul class="right-tnhy-lis clearfix" id="right_tnhy_lis">
+											<li class="lis-comm">
+												<span>团员大会</span>
+												<div>
+													<i class="lis-comm-icon tydh_left_icon"></i>
+													<i class="lis-comm-icon lis-comm-middle tydy_middle_icon"></i>
+													<i class="lis-comm-icon tydh_right_icon"></i>
+													<span class="lis-comm-content tydh-conent">
+														<span class="numbers">0</span>
+														<span>个</span>
+													</span>
+												</div>
+											</li>
+											<li class="lis-comm">
+												<span>委员会议</span>
+												<div>
+													<i class="lis-comm-icon wyhy_left_icon"></i>
+													<i class="lis-comm-icon lis-comm-middle wyhy_middle_icon"></i>
+													<i class="lis-comm-icon wyhy_right_icon"></i>
+													<span class="lis-comm-content wyhy-conent">
+														<span class="numbers">0</span>
+														<span>个</span>
+													</span>
+												</div>
+											</li>
+											<li class="lis-comm">
+												<span>团小组会</span>
+												<div>
+													<i class="lis-comm-icon txzh_left_icon"></i>
+													<i class="lis-comm-icon lis-comm-middle txzh_middle_icon"></i>
+													<i class="lis-comm-icon txzh_right_icon"></i>
+													<span class="lis-comm-content txzh-conent">
+														<span class="numbers">0</span>
+														<span>个</span>
+													</span>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<!-- 团组织团课开展数量 -->
+									<li class="right-tzztk" style="padding-top: 0" id="right_tzztk">
+										<img src="tj_img/tzztkkzsl_img.png" style="margin-left: 5px;">
+										<div class="charts-comm">
+											<ul class="charts-left-num">
+												<!-- <li>30</li>
+												<li>20</li>
+												<li>10</li>
+												<li>0</li> -->
+											</ul>
+											<div class="charts-right-bg">
+												<img src="tj_img/charts_bg.png">
+											</div>
+											<!-- <ul class="charts-content">
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">10</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">5</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom">
+															<div class="column-tip">30</div>
+														</div>
+														<div class="column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>	
+											</ul> -->
+											<ul class="charts-content"></ul>
+										</div>
+										<div class="page-number">
+										</div>
+									</li>
+									<!-- 推优入党人数 -->
+									<li class="right-tzztk" id="right_tyrdrs">
+										<img src="tj_img/tyrdrs_img.png" style="margin:0 9px 35px 0;">
+										<div class="charts-comm">
+											<ul class="charts-left-num">
+												<!-- <li>30</li>
+												<li>20</li>
+												<li>10</li>
+												<li>0</li> -->
+											</ul>
+											<div class="charts-right-bg">
+												<img src="tj_img/charts_bg.png">
+											</div>
+											<!-- <ul class="charts-content">
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">10</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">5</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom blue-column-bottom">
+															<div class="column-tip">30</div>
+														</div>
+														<div class="column-top blue-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+											</ul> -->
+											<ul class="charts-content"></ul>
+										</div>
+										<div class="page-number">
+										</div>
+									</li>
+									<!-- 团组织开展活动数量 -->
+									<li class="right-tzztk" id="right_tzzkzhdsl">
+										<img src="tj_img/tzzkzsl_img.png" style="margin:0 9px 35px 0;">
+										<div class="charts-comm">
+											<ul class="charts-left-num">
+												<!-- <li>30</li>
+												<li>20</li>
+												<li>10</li>
+												<li>0</li> -->
+											</ul>
+											<div class="charts-right-bg">
+												<img src="tj_img/charts_bg.png">
+											</div>
+											<!-- <ul class="charts-content">
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">23</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">10</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">5</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+												<li>
+													<div class="charts-column">
+														<div class="column-bottom red-column-bottom">
+															<div class="column-tip">30</div>
+														</div>
+														<div class="column-top red-column-top"></div>
+														
+													</div>
+													<div class="charts-con">
+														北京公司
+													</div>
+												</li>
+											</ul> -->
+											<ul class="charts-content"></ul>
+										</div>
+										<div class="page-number">
+										</div>
+									</li>
+								</ul>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>	
+			</div>
+			
+			<script type="text/javascript">
+				$(function() {
+					// 在文档结构加载完成之后，载入swiper幻灯片，并初始化所有的动画控制器
+					$(document).ready(function() {
+						// 第 1 个子swiper幻灯片
+						var mySwiper_main = new Swiper('.swiper-container-main', {
+							direction: 'horizontal',
+							grabCursor: true,
+							//loop: true,
+							onInit: function(swiper) {
+								console.log(swiper)
+								myAC_main.init(swiperAnimateParam_main, swiper);
+								// 地图下部的列表数据渲染
+								var dp2_tx_huang_arr = ['9.5', '4186', '566', '292'];
+								var $wrapper = $(swiper.wrapper);
+								$wrapper.find('.dp2_tx_huang').each(function(i) {
+									$(this).text(dp2_tx_huang_arr[i])
+								});
+								// 团内会议数据渲染
+								var tnhy_arr = [580,1140,20000];
+								$wrapper.find('.pro-progress').each(function(i){
+									$(this).data('progressData',tnhy_arr[i]);
+									console.log($(this).data('progressData'))
+								})
+
+							},
+							onSlideChangeEnd: function(swiper) {
+								myAC_main.play();
+							},
+						});
+						
+						
+					});
+					/*地图*/
+					var myChart = echarts.init(document.getElementById('china_map'));
+					//数据纯属虚构
+					var option = {
+
+						tooltip: {
+							show: true, //不显示提示标签
+							formatter: '{b}', //提示标签格式
+							backgroundColor: "#ff7f50", //提示标签背景颜色
+							textStyle: {
+								color: "#fff"
+							}
+							//提示标签字体颜色
+						},
+						geo: {
+							roam: false,
+							map: 'china',
+							//layoutCenter: ['100%'],
+							//aspectScale:0.85569,
+							zoom: 1.1,
+							//layoutSize: '250%',
+							label: {
+								normal: {
+									show: false, //显示省份标签
+									textStyle: {
+										color: "#2d2d2d"
+									},
+									//省份标签字体颜色
+								},
+								emphasis: { //对应的鼠标悬浮效果
+									show: true,
+									textStyle: {
+										color: "#fff",
+										fontSize:35
+									},
+
+								},
+								
+							},
+							itemStyle: {
+								normal: {
+									borderWidth: .5, //区域边框宽度
+									borderColor: '#9e3605', //区域边框颜色
+									areaColor: "#efb312", //区域颜色
+								},
+								emphasis: {
+									borderWidth: 1,
+									borderColor: '#e75400',
+									areaColor: "#fb7b00",
+								}
+							},
+							selectedMode: 'single',
+							data: [{
+									name: '北京',
+									selected: true,
+									value: "10500000"
+								}, //北京为选中状态
+								{
+									name: '天津',
+									value: "10000029"
+								}, {
+									name: '江苏',
+									value: "10430000"
+								}, {
+									name: '浙江',
+									value: "10250037"
+								}
+							],
+							regions: [{
+								name: '南海诸岛',
+								value: 0,
+								itemStyle: {
+									normal: {
+										opacity: 0,
+										label: {
+											show: false
+										}
+									}
+								}
+							}],
+						}
+					};
+					myChart.setOption(option);
+					myChart.on('click', function(params) {
+						console.log(params);
+						if(params.name == '黑龙江') {
+							var dp2_tx_huang_arr = ['1.5', '16', '166', '192'];
+							$('.dp2_tx_huang').each(function(i) {
+								$(this).text(dp2_tx_huang_arr[i])
+							});
+						}
+					});
+
+					// 队伍结构点击
+					$('.dwjg-bg li').on('click',function(){
+                        $(this).find('img').css('opacity','1');
+                        $(this).siblings().each(function(){
+							$(this).find('img').css('opacity','0');
+						})
+                    })
+					// 团内会议
+					//	根据情况，判断数组中最大的值作为 进度条的100%
+					var tnhy_arr = [10,500,100];
+					var orgin = tnhy_arr.concat([]); // 保留原数组
+					var max = tnhy_arr.sort(function(a,b){
+						return a<b;
+					})
+					$('#right_tnhy_lis .lis-comm-content .numbers').each(function(i) {
+						if(orgin[i] == 0){
+							$(this).text(orgin[i]);
+							$(this).parent().css({
+								top:'-50px',
+								right:'-200px'
+							})
+							$(this).parent().siblings('.lis-comm-icon').hide();
+						}else{
+							$(this).text(orgin[i]);
+							$(this).parent().siblings('.lis-comm-middle').width(parseInt(1000 * orgin[i] / max[0]))
+						}
+					});	
+					var data1 =[{name:'北京公司',value:32},{name:'天津公司',value:2},{name:'江苏公司',value:0},{name:'山东公司',value:12},{name:'山西公司',value:22},{name:'陕西公司',value:16},{name:'湖北公司',value:8},{name:'湖南公司',value:12},{name:'河南公司',value:14},{name:'河北公司',value:12},{name:'安徽公司',value:30},{name:'浙江公司',value:28},{name:'电科院',value:12},{name:'南瑞集团',value:22},{name:'信筒集团',value:12},{name:'新疆公司',value:14},]
+					var data = [[{name:'北京公司',value:39},{name:'天津公司',value:2},{name:'江苏公司',value:0},{name:'山东公司',value:12},{name:'山西公司',value:22},{name:'陕西公司',value:16},{name:'湖北公司',value:8},{name:'湖南公司',value:12},{name:'河南公司',value:14},{name:'河北公司',value:12},{name:'安徽公司',value:30},{name:'浙江公司',value:28},{name:'电科院',value:12},{name:'南瑞集团',value:22},{name:'信筒集团',value:12},{name:'新疆公司',value:14}],
+								[{name:'北京公司北京公司',value:12},{name:'天津公司1',value:15},{name:'江苏公司1',value:32},{name:'山东公司1',value:10},{name:'山西公司',value:2},{name:'陕西公司',value:6},{name:'湖北公司湖北公司',value:12},{name:'湖南公司',value:32},{name:'河南公司',value:38},{name:'河北公司',value:22},{name:'安徽公司',value:30},{name:'浙江公司',value:28},{name:'电科院',value:12},{name:'南瑞集团',value:22},{name:'信筒集团',value:12},{name:'新疆公司',value:14}],
+								[{name:'北京公司2',value:2},{name:'天津公司2',value:1},{name:'江苏公司2',value:3},{name:'山东公司2',value:0},{name:'山西公司',value:15},{name:'陕西公司',value:18},{name:'湖北公司',value:18},{name:'湖南公司',value:22},{name:'河南公司',value:14},{name:'河北公司',value:0},{name:'安徽公司',value:30},{name:'浙江公司',value:28},{name:'电科院',value:12},{name:'南瑞集团',value:22},{name:'信筒集团',value:12},{name:'新疆公司',value:14}],]
+
+					
+					// 团组织团课开展数量
+					render(data[0],'right_tzztk', 'gold')
+					page_select('right_tzztk', data)
+					// 推优入党人数
+					render(data[0],'right_tyrdrs','blue')
+					page_select('right_tyrdrs', data)
+					// 团组织开展活动数量
+					render(data[0],'right_tzzkzhdsl','red')
+					page_select('right_tzzkzhdsl', data)
+					// 渲染函数
+					function render(data, id, color) {
+						var y_data = [];
+						for(var i = 0;i < data.length;i++){
+							y_data.push(data[i].value)
+						}
+						// y轴数值
+						var YAxisMax = Math.ceil(Math.max.apply(null, y_data)); // 获取最大值
+						//y轴的刻度尺数值分布
+						var yAxis = '';
+						for(var i = 0; i < 3; i++) {
+							yAxis += '<li>' + Math.ceil(YAxisMax * (1 - 0.4 * i)) + '</li>'
+						}
+						yAxis +='<li>0</li>';
+						$('#'+id+' .charts-left-num').append(yAxis);
+						var xdata = '';
+						for(var i = 0;i<data.length;i++){
+							if(color == 'red'){
+								xdata +='<li><div class="charts-column"><div class="column-bottom red-column-bottom" style="height:'+ Math.round(data[i].value / YAxisMax * 100) +'%"><div class="column-tip">'+data[i].value+'</div></div><div class="column-top red-column-top"></div></div><div class="charts-con">'+ data[i].name +'</div></li>'
+							}else if(color == 'blue'){
+								xdata +='<li><div class="charts-column"><div class="column-bottom blue-column-bottom" style="height:'+ Math.round(data[i].value / YAxisMax * 100) +'%"><div class="column-tip">'+data[i].value+'</div></div><div class="column-top blue-column-top"></div></div><div class="charts-con">'+ data[i].name +'</div></li>'
+							}else if(color == 'gold'){
+								xdata +='<li><div class="charts-column"><div class="column-bottom column-bottom" style="height:'+ Math.round(data[i].value / YAxisMax * 100) +'%"><div class="column-tip">'+data[i].value+'</div></div><div class="column-top column-top"></div></div><div class="charts-con">'+ data[i].name +'</div></li>'
+							}
+							
+						}
+						$('#'+id+' .charts-content').append(xdata);
+						//当前行数据为0时或者为1，2，3时，该行数值的存放位置
+						$(".charts-column .column-bottom").each(function() {
+							if($(this).height() == 0) {
+								$(this).height(0);
+								$(this).siblings('.column-top').hide();
+								$(this).find('.column-tip').css('top', '-75px');
+							}
+							if($(this).find('.column-tip').text() == 1 ||$(this).find('.column-tip').text() == 2 || $(this).find('.column-tip').text() == 3){
+								$(this).find('.column-tip').css('top', '-65px');
+							}
+						});
+
+					}
+
+					// 分页
+					/*
+						id 当前模块的总id；
+						data 数据
+					*/
+					function page_select(id, data) {
+						var str = '<i class="pre-arrow"></i>'
+						for(var i = 0; i < data.length; i++) {
+							if(i == 0) {
+								str += '<i class="circle-number circle-select"></i>'
+							} else {
+								str += '<i class="circle-number"></i>'
+							};
+						};
+						str += '<i class="next-arrow"></i>'
+						$('#' + id+ ' .page-number').append(str);
+
+						//向后
+						$('#' + id+ ' .page-number').on("click", ".next-arrow", function() {
+							if($(this).siblings('.circle-number.circle-select').index() != data.length) {
+								var _this = $(this).siblings('.circle-number.circle-select').index();
+								$(this).parent().find('i.circle-select').removeClass('circle-select').next().addClass('circle-select');
+								dataShow(data, _this, id);
+							}
+						});
+						//向前
+						$('#' + id+ ' .page-number').on("click", ".pre-arrow", function() {
+							if($(this).siblings('.circle-number.circle-select').index() != 1) {
+								var _this = $(this).siblings('.circle-number.circle-select').index() - 2;
+								$(this).parent().find('i.circle-select').removeClass('circle-select').prev().addClass('circle-select');
+								dataShow(data, _this, id);
+							}
+						});
+						//圆点
+						$('#' + id+ ' .page-number' + " .circle-number").click(function(e) {
+							var _this = $(this).index() - 1;
+							$(this).addClass('circle-select').siblings('.circle-number').removeClass('circle-select');
+							dataShow(data, _this, id);
+						});
+					};
+
+					// 数据回显
+					/*
+						data： 数据，必须是[[{},{}],[{},{}]]的形式，其中里面的数组作为分页来判断。
+						index: 索引，点击时data的索引。
+						id： 当前模块的总id。
+					*/
+					function dataShow(data,index,id){
+						var y_data = [];
+						for(var i = 0;i < data[index].length;i++){
+							y_data.push(data[index][i].value)
+						}
+						// y轴数值
+						var YAxisMax = Math.ceil(Math.max.apply(null, y_data)); // 获取最大值；
+						// y轴刻度
+						$('#'+id+' .charts-left-num').find('li').each(function(i) {
+							$(this).text(Math.ceil(YAxisMax * (1 - 0.4 * i)))
+						})
+						$('#'+id+' .charts-left-num').find('li').eq(3).text(0);
+						$('#' + id+' .charts-content').find('li').each(function(i) {
+							var _value = data[index][i].name;
+							var values = '';
+							
+							if(_value.legnth <= 4){
+								values =  _value;
+								$(this).find('.charts-con').text(values);
+							}else if(_value.length > 4 && _value.length <= 10){
+								values =  _value.substring(0,4) + '\n' + _value.substring(4,_value.legnth - 1);
+								$(this).find('.charts-con').text(values);
+								$(this).find('.charts-con').css({
+									bottom:'-124px',
+									lineHeight:'initial'
+								})
+							}
+							
+							$(this).find('.column-bottom').height(Math.round(data[index][i].value / YAxisMax * 100)+'%');
+							$(this).find('.column-tip').text(data[index][i].value);
+
+
+						});
+						$('#' + id +" .charts-column").find('.column-bottom').each(function(i) {
+							console.log($(this).height())
+							if($(this).find('.column-tip').text() == 0) {
+								$(this).height(0);
+								$(this).siblings('.column-top').hide();
+								$(this).find('.column-tip').css('top', '-65px');
+							}else if($(this).find('.column-tip').text() != 0){
+								$(this).height(Math.round(data[index][i].value / YAxisMax * 100)+'%')
+								if($(this).find('.column-tip').text() == 1 ||$(this).find('.column-tip').text() == 2 || $(this).find('.column-tip').text() == 3 || $(this).find('.column-tip').text() == 0){
+									$(this).find('.column-tip').css('top', '-65px');
+									$(this).siblings('.column-top').show();
+								}else{
+									$(this).siblings('.column-top').show();
+									$(this).find('.column-tip').css('top', '50%');
+								}
+							}
+							
+						});
+					}
+				})
+			</script>
+	</body>
+
+</html>
