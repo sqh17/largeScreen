@@ -2,13 +2,27 @@
 function g_dyjtcjxxqk(id,data){
     var xxqkChart = echarts.init(document.getElementById(id));
     var xxqk_option = {
-	grid: {
-		containLabel: true,
-		bottom: 20,
-		top: 100,
-		left: 185,
-		right: 200,
-	},
+        grid: {
+            containLabel: true,
+            bottom: 40,
+            top: 40,
+            left: 76,
+            right: 92,
+        },
+	tooltip: {
+            padding:30,
+            trigger: 'axis',
+            backgroundColor: '#fff',
+            textStyle: {
+                color: '#000',
+                fontSize:50,
+            },
+            axisPointer: {
+                lineStyle: {
+                    color: '#fff'
+                }
+            }
+    },
 	xAxis: {
 		type: 'category',
 		nameTextStyle: {
@@ -31,7 +45,7 @@ function g_dyjtcjxxqk(id,data){
 		// boundaryGap: ['35%'],
 	},
 	yAxis: {
-		name: '(万小时)',
+		name: '(小时)',
 		nameTextStyle: {
 			fontSize: 50,
 			padding: [0, 0, 0, 226],
@@ -54,13 +68,16 @@ function g_dyjtcjxxqk(id,data){
 			},
 			padding: [0, 2, 0, 0]
 		},
+		"minInterval":1,
+        "precision": 0
 		// boundaryGap:[0.2,0]
 	},
 	series: [{
 		data: data.ydata,
+		name:'集体学习时间',
 		type: 'line',
 		showSymbol: false,
-		smooth: true,
+		//smooth: true,
 		areaStyle: {
 			normal: {
 				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -112,9 +129,9 @@ function g_zxzxxqk(id,data){
 
         },
         grid: {
-            left: 20,
+            left: 34,
             right: 74,
-            top: 100,
+            top: 200,
             bottom: 40,
             show: true,
             borderColor: '#fff',
@@ -175,6 +192,8 @@ function g_zxzxxqk(id,data){
             axisTick: {
                 show: false
             },
+            "minInterval":1,
+	        "precision": 0
         },
         series: [{
             name: '集体学习次数',
@@ -188,7 +207,7 @@ function g_zxzxxqk(id,data){
                     width: 8, //折线宽度
                 },
             },
-            data:data.ydata,
+            data:data.ydata1,
         },{
             name: '专题调研次数',
             type: 'line',
@@ -204,7 +223,7 @@ function g_zxzxxqk(id,data){
                 borderColor:'#fb02f8',
                 //	borderWidth:6,
             },
-            data: [20, 40, 30, 40, 9, 35]
+            data: data.ydata2
         }]
     };
     zxzxxqkChart.setOption(zxzxxqk_option);
@@ -218,7 +237,7 @@ function g_dzzsjjdkqk(id,data) {
         grid: {
             containLabel: true,
             bottom: 40,
-            top: 140,
+            top: 240,
             left: 76,
             right: 92,
         },
@@ -269,7 +288,9 @@ function g_dzzsjjdkqk(id,data) {
             axisTick: {
                 show: false
             },
-            boundaryGap: true
+            boundaryGap: true,
+            "minInterval":1,
+	        "precision": 0
         },
         series: [{
             name: '讲党课次数',
@@ -278,7 +299,7 @@ function g_dzzsjjdkqk(id,data) {
             //symbol:'circle',//拐点样式
             symbolSize: 18,//拐点大小
             showSymbol:false,//hover 显示拐点
-            smooth: true,//平滑曲线
+            //smooth: true,//平滑曲线
             itemStyle: {
 
                 normal: {

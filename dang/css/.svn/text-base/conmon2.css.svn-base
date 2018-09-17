@@ -1,3 +1,25 @@
+/*chrome滚动条*/
+/*::-webkit-scrollbar-thumb {
+    background-color: #afafaf;
+    height: 50px;
+    outline-offset: -2px;
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #afafaf;
+    height: 50px;
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+    width: 28px;
+    height: 28px;
+}
+
+::-webkit-scrollbar-track-piece {
+    -webkit-border-radius: 0;
+}*/
 .zhuzi_conmon{
 	
 }
@@ -17,10 +39,13 @@
     height: 100%;
     float: left;
     text-align: center;
-    font-size: 40px;
+    font-size: 24px;
     font-family: "Microsoft YaHei";
     color: rgb(45, 45, 45);
-    line-height: 92px;
+    line-height: 28px;
+    margin-top: 20px;
+    padding:0 10px;
+    box-sizing:border-box;
 }
 
 .zhuzi_conmon .dp3_zhu_y ul {
@@ -167,12 +192,12 @@
 }
 .dp3_hjjk_hong_num{
 	color: #e9005d;
-	font-size: 70px;
+	font-size: 60px;
 	font-family: "CTBiaoSongSJ";
 }
 .dp3_hjjk_hong_percent{
 	color: #ffffff;
-	font-size:60px;
+	font-size:44px;
 	font-family: "CTBiaoSongSJ";
 }
 .dp3_hjjk_lan_percent{

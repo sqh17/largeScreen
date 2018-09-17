@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 64
-/svn/dangjian/!svn/ver/22190/src/trunk/largescreen/face/zbdp/css
+/svn/dangjian/!svn/ver/23055/src/trunk/largescreen/face/zbdp/css
 END
 conmon.css
 K 25
@@ -13,7 +13,7 @@ conmon2.css
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/dangjian/!svn/ver/22693/src/trunk/largescreen/face/zbdp/css/conmon2.css
+/svn/dangjian/!svn/ver/23387/src/trunk/largescreen/face/zbdp/css/conmon2.css
 END
 swiper.min.css
 K 25
@@ -37,13 +37,13 @@ jc2.css
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/svn/dangjian/!svn/ver/22657/src/trunk/largescreen/face/zbdp/css/jc2.css
+/svn/dangjian/!svn/ver/23353/src/trunk/largescreen/face/zbdp/css/jc2.css
 END
 dp3_jkyj2.css
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/svn/dangjian/!svn/ver/22547/src/trunk/largescreen/face/zbdp/css/dp3_jkyj2.css
+/svn/dangjian/!svn/ver/23553/src/trunk/largescreen/face/zbdp/css/dp3_jkyj2.css
 END
 animate.min.css
 K 25
@@ -61,7 +61,13 @@ hqk.css
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/svn/dangjian/!svn/ver/22668/src/trunk/largescreen/face/zbdp/css/hqk.css
+/svn/dangjian/!svn/ver/23164/src/trunk/largescreen/face/zbdp/css/hqk.css
+END
+g.css
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/dangjian/!svn/ver/23261/src/trunk/largescreen/face/zbdp/css/g.css
 END
 index.css
 K 25

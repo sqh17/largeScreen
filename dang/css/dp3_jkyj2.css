@@ -10,17 +10,17 @@
 .dp3_hjjk_hong {
     position: absolute;
     left: 4661px;
-    top: 923px;
+    top: 906px;
     width: 210px;
-    height: 450px;
+    height: 400px;
     z-index: 2237;
 }
 .dp3_hjjk_lan {
     position: absolute;
     left: 5034px;
-    top: 923px;
+    top: 906px;
     width: 210px;
-    height: 450px;
+    height: 400px;
     z-index: 2237;
 }
 .dp3_hjjk_percent_hong{     /* 控制红色柱状图高度，范围：0-100% */
@@ -41,59 +41,117 @@
 
 
 /* 学习情况 */
-.dp3_xxqk_table {
+/*.dp3_xxqk_table {
     position: absolute;
     left: 5450px;
     top: 776px;
     width: 2893px;
     height: 730px;
     z-index: 3286;
+}*/
+.dp3_xxqk_table {
+position: absolute;
+    left: 4357px;
+    top: 1600px;
+    width: 3884px;
+    height: 682px;
+    z-index: 2162;
 }
-
 .dp3_xxqk_table_bg {
     position: absolute;
-    left: 5759px;
-    top: 1193px;
-    width: 2366px;
-    height: 215px;
-    z-index: 2239;
+    left: 4579px;
+    top: 1989px;
+    width: 3549px;
+    height: 173px;
+    z-index: 2213;
 }
-
-
 /* 党费缴纳 */
-.dp3_dfjn_title_bg {
+/*.dp3_dfjn_title_bg {
     position: absolute;
     left: 4357px;
-    top: 1509px;
+    top: 1432px;
     width: 3877px;
     height: 145px;
     z-index: 2176;
+}*/
+.dp3_xxqk_title {
+  position: absolute;
+  left: 5620px;
+  top: 637px;
+  width: 2614px;
+  height: 146px;
+  z-index: 1474;
 }
-.dp3_dfjn_title {
+
+.dp3_dfjn_title_bg {
+  position: absolute;
+  left: 4287px;
+  top: 1432px;
+  width: 3947px;
+  height: 150px;
+  z-index: 1451;
+}
+/*.dp3_dfjn_title {
     position: absolute;
     left: 4401px;
-    top: 1509px;
+    top: 1432px;
     width: 463px;
     height: 145px;
     z-index: 2377;
-}
+}*/
 .dp3_dfjn_huang_left {
+    /*position: absolute;*/
+    /*left: 4475px;*/
+    /*top: 1896px;*/
+    /*width: 1656px;*/
+    /*height: 115px;*/
+    /*z-index: 2113;*/
     position: absolute;
-    left: 4475px;
-    top: 1896px;
-    width: 1656px;
-    height: 115px;
-    z-index: 2113;
+    left: 5850px;
+    top: 1194px;
+    /*height: 730px;*/
+    z-index: 3286;
+}
+.dp3_dfjn_huang_right{
+    position: absolute;
+    left: 7201px;
+    top: 922px;
+    z-index: 3286;
+    width: 811px;
+    text-align: right;
+}
+.dp3_dfjn_huang_bg{
+    position: absolute;
+    left: 5836px;
+    top: 1181px;
+    z-index: 3286;
 }
 
-.dp3_dfjn_lan_left {
+.dp3_dfjn_huang_left .percent{
+    font-size: 120px;
+    font-family: "Britannic Bold";
+    color: rgb(255, 138, 10);
     position: absolute;
-    left: 6466px;
-    top: 1896px;
-    width: 1656px;
-    height: 115px;
-    z-index: 2116;
+    z-index: 714;
+    right:0;
 }
+.dfjn_zhuzi{
+    position: absolute;
+    left: 22px;
+    top: 13px;
+    width: 3059px;
+    height: 115px;
+    z-index: 751;
+}
+
+/*.dp3_dfjn_lan_left {*/
+    /*position: absolute;*/
+    /*left: 6466px;*/
+    /*top: 1896px;*/
+    /*width: 1656px;*/
+    /*height: 115px;*/
+    /*z-index: 2116;*/
+/*}*/
 
 
 
@@ -101,7 +159,7 @@
 .dp3_zxzxxqk_title {
     position: absolute;
     left: 4357px;
-    top: 2117px;
+    top: 2267px;
     width: 3869px;
     height: 147px;
     z-index: 2178;
@@ -109,7 +167,7 @@
 .zxzxxqk_chart {
     position: absolute;
     left: 4415px;
-    top: 2250px;
+    top: 2382px;
     width: 3800px;
     height: 782px;
     z-index: 2162;
@@ -117,7 +175,7 @@
 .zxzxxqk_bg{
     position: absolute;
     left: 4584px;
-    top: 2348px;
+    top: 2480px;
     width: 3583px;
     height: 650px;
     z-index: 2161;
@@ -130,7 +188,7 @@
 .dp3_dkqk_title {
     position: absolute;
     left: 4360px;
-    top: 3027px;
+    top: 3177px;
     width: 3869px;
     height: 147px;
     z-index: 2191;
@@ -163,26 +221,35 @@
 }
 
 .dfjn_text_box{
-	margin-top: -158px;
+	margin-top: -235px;
 	height: 120px;
 	line-height: 120px;
 }
-.dp3_hjjk_hong_num,.dp3_hjjk_hong_percent,.dp3_hjjk_hong_name{
+.dp3_hjjk_hong_num,.dp3_hjjk_hong_num1,.dp3_hjjk_hong_percent,.dp3_hjjk_hong_name{
     width: 100%;
     position: absolute;
+    width: 150%;
+    margin-left: -25%;
 }
 .dp3_hjjk_hong_num{
     top:-110px;
 }
+.dp3_hjjk_hong_num1{
+    top:50%;
+    margin-top:10px ;
+    color: #ffffff;
+    font-size: 50px;
+    font-family: CTBiaoSongSJ;
+}
 .dp3_hjjk_hong_percent{
     top:50%;
-    margin-top: -32px;
+    margin-top: -40px;
 }
 .dp3_hjjk_hong_name{
     bottom: -110px;
 }
 /*党费缴纳*/
-.dfjn_text_box h1{
-    font-size: 120px;
-    color: #ff8a0a;
-}
+/*.dfjn_text_box h1{*/
+    /*font-size: 120px;*/
+    /*color: #ff8a0a;*/
+/*}*/

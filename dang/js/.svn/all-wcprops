@@ -1,13 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 63
-/svn/dangjian/!svn/ver/22191/src/trunk/largescreen/face/zbdp/js
-END
-swiper.animate.param.js
-K 25
-svn:wc:ra_dav:version-url
-V 87
-/svn/dangjian/!svn/ver/22693/src/trunk/largescreen/face/zbdp/js/swiper.animate.param.js
+/svn/dangjian/!svn/ver/23055/src/trunk/largescreen/face/zbdp/js
 END
 jquery.vector-map.css
 K 25
@@ -27,23 +21,11 @@ svn:wc:ra_dav:version-url
 V 78
 /svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/echarts.min.js
 END
-jquery.vector-map.js
-K 25
-svn:wc:ra_dav:version-url
-V 84
-/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/jquery.vector-map.js
-END
-swiper.min.js
-K 25
-svn:wc:ra_dav:version-url
-V 77
-/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/swiper.min.js
-END
 zjy.js
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/dangjian/!svn/ver/22550/src/trunk/largescreen/face/zbdp/js/zjy.js
+/svn/dangjian/!svn/ver/23377/src/trunk/largescreen/face/zbdp/js/zjy.js
 END
 loading.js
 K 25
@@ -51,29 +33,23 @@ svn:wc:ra_dav:version-url
 V 74
 /svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/loading.js
 END
-china-zh.js
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/china-zh.js
-END
-jquery-2.1.4.min.js
-K 25
-svn:wc:ra_dav:version-url
-V 83
-/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/jquery-2.1.4.min.js
-END
 china.js
 K 25
 svn:wc:ra_dav:version-url
 V 72
 /svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/china.js
 END
+jcend.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/dangjian/!svn/ver/23570/src/trunk/largescreen/face/zbdp/js/jcend.js
+END
 hqk.js
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/dangjian/!svn/ver/22665/src/trunk/largescreen/face/zbdp/js/hqk.js
+/svn/dangjian/!svn/ver/23147/src/trunk/largescreen/face/zbdp/js/hqk.js
 END
 rem.js
 K 25
@@ -86,4 +62,40 @@ K 25
 svn:wc:ra_dav:version-url
 V 74
 /svn/dangjian/!svn/ver/22635/src/trunk/largescreen/face/zbdp/js/tsethqk.js
+END
+swiper.animate.param.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/dangjian/!svn/ver/23353/src/trunk/largescreen/face/zbdp/js/swiper.animate.param.js
+END
+jquery.vector-map.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/jquery.vector-map.js
+END
+swiper.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/swiper.min.js
+END
+jc.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/dangjian/!svn/ver/23353/src/trunk/largescreen/face/zbdp/js/jc.js
+END
+jquery-2.1.4.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/jquery-2.1.4.min.js
+END
+china-zh.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/dangjian/!svn/ver/22027/src/trunk/largescreen/face/zbdp/js/china-zh.js
 END
