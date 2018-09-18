@@ -237,6 +237,7 @@ body{
     height: 115px;
     display: block;
     float: left; 
+    margin-left:-1px;
 }
 .tydh_left_icon{
     background: url(../tj_img/tydh_left.png) no-repeat;
