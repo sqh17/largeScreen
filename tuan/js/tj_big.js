@@ -165,6 +165,24 @@ $(function() {
     // 团组织开展活动数量
     render(data[0],'right_tzzkzhdsl','red')
     page_select('right_tzzkzhdsl', data)
+    
+    // 定时刷新
+    setInterval(()=>{
+        data = [[{name:'北公司',value:39},{name:'天津公司',value:2},{name:'江苏公司',value:0},{name:'山东公司',value:12}],
+                [{name:'北公司北京公司',value:12},{name:'天津公司1',value:15},{name:'江苏公司1',value:32},{name:'山东公司1',value:10},{name:'山西公司',value:2},{name:'陕西公司',value:6},{name:'湖北公司湖北公司',value:12},{name:'湖南公司',value:32},{name:'河南公司',value:38},{name:'河北公司',value:22},{name:'安徽公司',value:30},{name:'浙江公司',value:28},{name:'电科院',value:12},{name:'南瑞集团',value:22},{name:'信筒集团',value:12},{name:'新疆公司',value:14}]]
+
+        // 团组织团课开展数量
+        page_select('right_tzztk', data);
+        // 推优入党人数
+        page_select('right_tyrdrs', data);
+        // 团组织开展活动数量
+        page_select('right_tzzkzhdsl', data);
+    },10000)
+    // 自动播放
+    setInterval(function(){
+        $('.page-number .next-arrow').click();
+    },2000)
+
     // 渲染函数
     function render(data, id, color) {
         var y_data = [];
@@ -212,6 +230,7 @@ $(function() {
         data 数据
     */
     function page_select(id, data) {
+        $('#' + id+ ' .page-number').empty();
         var str = '<i class="pre-arrow"></i>'
         for(var i = 0; i < data.length; i++) {
             if(i == 0) {
@@ -272,45 +291,45 @@ $(function() {
         })
         $('#'+id+' .charts-left-num').find('li').eq(3).text(0);
         $('#' + id+' .charts-content').find('li').each(function(i) {
-            var _value = data[index][i].name;
-            var values = '';
-            
-            if(_value.legnth <= 4){
-                values =  _value;
-                $(this).find('.charts-con').text(values);
-            }else if(_value.length > 4 && _value.length <= 10){
-                values =  _value.substring(0,4) + '\n' + _value.substring(4,_value.legnth - 1);
-                $(this).find('.charts-con').text(values);
-                $(this).find('.charts-con').css({
-                    bottom:'-124px',
-                    lineHeight:'initial'
-                })
+            if(typeof data[index][i] != 'undefined'){
+                var _value = data[index][i].name;
+                var values = '';
+                
+                if(_value.legnth <= 4){
+                    values =  _value;
+                    $(this).find('.charts-con').text(values);
+                }else if(_value.length > 4 && _value.length <= 10){
+                    values =  _value.substring(0,4) + '\n' + _value.substring(4,_value.legnth - 1);
+                    $(this).find('.charts-con').text(values);
+                    $(this).find('.charts-con').css({
+                        bottom:'-124px',
+                        lineHeight:'initial'
+                    })
+                }
+                
+                $(this).find('.column-bottom').height(Math.round(data[index][i].value / YAxisMax * 100)+'%');
+                $(this).find('.column-tip').text(data[index][i].value);
+    
             }
-            
-            $(this).find('.column-bottom').height(Math.round(data[index][i].value / YAxisMax * 100)+'%');
-            $(this).find('.column-tip').text(data[index][i].value);
-
-
         });
         $('#' + id +" .charts-column").find('.column-bottom').each(function(i) {
-            if($(this).find('.column-tip').text() == 0) {
-                $(this).height(0);
-                $(this).siblings('.column-top').hide();
-                $(this).find('.column-tip').css('top', '-65px');
-            }else if($(this).find('.column-tip').text() != 0){
-                $(this).height(Math.round(data[index][i].value / YAxisMax * 100)+'%')
-                if($(this).find('.column-tip').text() == 1 ||$(this).find('.column-tip').text() == 2 || $(this).find('.column-tip').text() == 3 || $(this).find('.column-tip').text() == 0){
+            if(typeof data[index][i] != 'undefined'){
+                if($(this).find('.column-tip').text() == 0) {
+                    $(this).height(0);
+                    $(this).siblings('.column-top').hide();
                     $(this).find('.column-tip').css('top', '-65px');
-                    $(this).siblings('.column-top').show();
-                }else{
-                    $(this).siblings('.column-top').show();
-                    $(this).find('.column-tip').css('top', '50%');
+                }else if($(this).find('.column-tip').text() != 0){
+                    $(this).height(Math.round(data[index][i].value / YAxisMax * 100)+'%')
+                    if($(this).find('.column-tip').text() == 1 ||$(this).find('.column-tip').text() == 2 || $(this).find('.column-tip').text() == 3 || $(this).find('.column-tip').text() == 0){
+                        $(this).find('.column-tip').css('top', '-65px');
+                        $(this).siblings('.column-top').show();
+                    }else{
+                        $(this).siblings('.column-top').show();
+                        $(this).find('.column-tip').css('top', '50%');
+                    }
                 }
             }
-            
         });
     }
-    setInterval(function(){
-        $('.page-number .next-arrow').click();
-    },2000)
+    
 })
