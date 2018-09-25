@@ -1,0 +1,158 @@
+body {
+    width: 126rem;
+    height: 42rem;
+}
+.swiper-button-prev {
+    position: absolute;
+    left: 2.33rem;
+    top: 1.11rem;
+    /*top: 2.11rem;*/
+    width: 2.32rem;
+    height: 2.20rem;
+    z-index: 568;
+}
+.swiper-button-next {
+    position: absolute;
+    left: 121.20rem;
+    top: 1.11rem;
+    /*top: 2.11rem;*/
+    width: 2.32rem;
+    height: 2.20rem;
+    z-index: 556;
+}
+.dp2_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 126.00rem;
+    height: 42.00rem;
+    z-index: 3;
+}
+.dp2_dydwjg_title{
+    position: absolute;
+    left: 2.85rem;
+    top: 4.45rem;
+    width: 38.58rem;
+    height: 2.05rem;
+    z-index: 192;
+}
+.dp2_dydwjg_dyzb{
+    position: absolute;
+    left: 2.81rem;
+    top: 8.52rem;
+    width: 18.98rem;
+    height: 11.09rem;
+    z-index: 193;
+}
+.dp2_dydwjg_dyrs{
+    position: absolute;
+    left: 24.06rem;
+    top: 7.57rem;
+    width: 17.39rem;
+    height: 12.05rem;
+    z-index: 234;
+}
+.dp2_dydwjg_dylb{
+    position: absolute;
+    left: 2.83rem;
+    top: 22.86rem;
+    width: 16.80rem;
+    height: 13.06rem;
+    z-index: 194;
+}
+.dp2_dydwjg_gsxt{
+    position: absolute;
+    left: 25.58rem;
+    top: 22.84rem;
+    width: 16.89rem;
+    height: 13.29rem;
+    z-index: 195;
+}
+.dp2_map {
+    position: absolute;
+    left: 46.06rem;
+    top: 9.06rem;
+    width: 30.34rem;
+    height: 25.60rem;
+    z-index: 171;
+}
+.dp2_gcdyfwd_title {
+    position: absolute;
+    left: 85.02rem;
+    top: 4.45rem;
+    width: 38.61rem;
+    height: 2.05rem;
+    z-index: 86;
+}
+.dp2_gcdyfwd_part1 {
+    position: absolute;
+    left: 85.44rem;
+    top: 7.46rem;
+    width: 5.96rem;
+    height: 8.70rem;
+    z-index: 45;
+}
+.dp2_gcdyfwd_part2 {
+    position: absolute;
+    left: 94.99rem;
+    top: 7.46rem;
+    width: 6.01rem;
+    height: 8.73rem;
+    z-index: 32;
+}
+.dp2_gcdyfwd_part3 {
+    position: absolute;
+    left: 105.22rem;
+    top: 7.46rem;
+    width: 5.68rem;
+    height: 8.76rem;
+    z-index: 48;
+}
+.dp2_gcdyfwd_part4 {
+    position: absolute;
+    left: 114.73rem;
+    top: 7.46rem;
+    width: 6.70rem;
+    height: 8.73rem;
+    z-index: 34;
+}
+.dp2_dnbzqk_title {
+    position: absolute;
+    left: 85.03rem;
+    top: 18.40rem;
+    width: 38.60rem;
+    height: 2.05rem;
+    z-index: 13;
+}
+.dp2_dnbzqk_part1{
+    position: absolute;
+    left: 85.49rem;
+    top: 22.04rem;
+    width: 37.00rem;
+    height: 3.61rem;
+    z-index: 58;
+}
+.dp2_dnbzqk_part2 {
+    position: absolute;
+    left: 85.49rem;
+    top: 26.94rem;
+    width: 37.00rem;
+    height: 3.61rem;
+    z-index: 35;
+}
+.dp2_dnbzqk_part3 {
+    position: absolute;
+    left: 85.49rem;
+    top: 31.84rem;
+    width: 37.00rem;
+    height: 3.61rem;
+    z-index: 14;
+}
+.dp2_dnbzqk_part4 {
+    position: absolute;
+    left: 91.09rem;
+    top: 36.48rem;
+    width: 26.12rem;
+    height: 2.05rem;
+    z-index: 44;
+}

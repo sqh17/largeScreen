@@ -1,0 +1,138 @@
+.dp2_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12600px;
+    height: 4200px;
+    z-index: 3;
+}
+.dp2_dydwjg_title{
+    position: absolute;
+    left: 285px;
+    top: 445px;
+    width: 3858px;
+    height: 205px;
+    z-index: 192;
+}
+.dp2_dydwjg_dyzb{
+    position: absolute;
+    left: 281px;
+    top: 852px;
+    width: 1898px;
+    height: 1109px;
+    z-index: 193;
+}
+.dp2_dydwjg_dyrs{
+    position: absolute;
+    left: 2406px;
+    top: 757px;
+    width: 1739px;
+    height: 1205px;
+    z-index: 234;
+}
+.dp2_dydwjg_dylb{
+    position: absolute;
+    left: 283px;
+    top: 2286px;
+    width: 1680px;
+    height: 1306px;
+    z-index: 194;
+}
+.dp2_dydwjg_gsxt {
+  position: absolute;
+  left: 2399px;
+  top: 2284px;
+  width: 1786px;
+  height: 1329px;
+  z-index: 251;
+}
+
+.dp2_map {
+    position: absolute;
+    left: 4606px;
+    top: 906px;
+    width: 3034px;
+    height: 2560px;
+    z-index: 171;
+}
+.dp2_gcdyfwd_title {
+    position: absolute;
+    left: 8502px;
+    top: 445px;
+    width: 3861px;
+    height: 205px;
+    z-index: 86;
+}
+.dp2_gcdyfwd_part1 {
+    position: absolute;
+    left: 8544px;
+    top: 746px;
+    width: 596px;
+    height: 870px;
+    z-index: 45;
+}
+.dp2_gcdyfwd_part2 {
+    position: absolute;
+    left: 9499px;
+    top: 746px;
+    width: 601px;
+    height: 873px;
+    z-index: 32;
+}
+.dp2_gcdyfwd_part3 {
+    position: absolute;
+    left: 10522px;
+    top: 746px;
+    width: 568px;
+    height: 876px;
+    z-index: 48;
+}
+.dp2_gcdyfwd_part4 {
+  position: absolute;
+  left: 11473px;
+  top: 746px;
+  width: 756px;
+  height: 873px;
+  z-index: 62;
+}
+
+.dp2_dnbzqk_title {
+    position: absolute;
+    left: 8503px;
+    top: 1840px;
+    width: 3860px;
+    height: 205px;
+    z-index: 13;
+}
+.dp2_dnbzqk_part1{
+    position: absolute;
+    left: 8549px;
+    top: 2204px;
+    width: 3700px;
+    height: 361px;
+    z-index: 58;
+}
+.dp2_dnbzqk_part2 {
+    position: absolute;
+    left: 8549px;
+    top: 2694px;
+    width: 3700px;
+    height: 361px;
+    z-index: 35;
+}
+.dp2_dnbzqk_part3 {
+    position: absolute;
+    left: 8549px;
+    top: 3184px;
+    width: 3700px;
+    height: 361px;
+    z-index: 14;
+}
+.dp2_dnbzqk_part4 {
+    position: absolute;
+    left: 9109px;
+    top: 3648px;
+    width: 2612px;
+    height: 205px;
+    z-index: 44;
+}

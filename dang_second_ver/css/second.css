@@ -1,0 +1,103 @@
+.second_dp3_dydw{
+    height:126px;
+    top:383px;
+}
+.second_page .span_hong{
+    color:#fef29f;
+}
+.second_page .span_hei{
+    color:#fff;
+}
+.second_page .dp3_hei_zhong{
+    color:#fff;
+}
+.second_page .bar-bg{
+    background: url(../second_img/bar-bg.png) no-repeat
+}
+.second_page #dp3_zhuzi_shqk .bar-bg{
+    background: url(../second_img/bar-bg.png) no-repeat
+}
+.second_page .center_col_bg{
+    background: url(../second_img/bar-bg.png) no-repeat
+}
+.second_page .bar-num{
+    color: #fff;
+}
+.second_page .dp3_zhu_y li{
+    color:#fff;
+}
+.second_page .dp3_zzbh{
+    top: 2150px;
+}
+.second_page .dp3_zhu_x .dp3_zhu_icon_box{
+    top:35px;
+}
+.second_page .dp3_zhu_x li {
+    color:#fff;
+    /*line-height: 1*/
+}
+.second_page .bar-main-top{
+    background: url(../img/col_top_red.png);
+}
+.second_page .bar-main-down{
+    background: url(../img/col_bottom_red.png);
+}
+.second_page .bar-main{
+    background-image: -moz-linear-gradient( 0deg, rgb(200,55,44) 0%, rgb(255,112,80) 51%, rgb(200,55,44) 100%);
+	background-image: -webkit-linear-gradient( 0deg, rgb(200,55,44) 0%, rgb(255,112,80) 51%, rgb(200,55,44) 100%);
+	background-image: -ms-linear-gradient( 0deg, rgb(200,55,44) 0%, rgb(255,112,80) 51%, rgb(200,55,44) 100%);
+}
+.second_page .dp3_zzbh_icon{
+    height:auto;
+}
+.second_page .dp3_shqk{
+    top: 2640px;
+    height: auto;
+}
+.second_page .dp3_shqk_box{
+    top:2830px;
+}
+.second_page .dp3_title_zbwydh{
+    width:457px;
+}
+.second_page .dp3_title_dxzh{
+    left: 1328px;
+}
+.second_page .dp3_jkyj{
+    top:385px;
+    height:auto;
+}
+.second_page .dp3_hjjk_hong_name{
+    color:#fff;
+}
+/* .second_page .dp3_hjjk_title{
+    width:2213px;
+}
+.second_page .dp3_xxqk_title{
+    width:1590px;
+} */
+.second_page .dfjn_text_box{
+    color:#fff;
+}
+.second_page .dp3_zbkb{
+    height:auto;
+    top:388px;
+}
+.second_page .shyk-list-bar-y li{
+    color:#fff;
+}
+.second_page .company_name{
+    color:#fff;
+}
+.second_page .shyk_legend li{
+	color:#fff
+}
+.second_page .second_right_shyk_lists{
+	position:relative;
+	top:-518px;
+	left:8478px;
+	z-index:3000;
+}
+#second_lists div{
+	top:8px;
+}

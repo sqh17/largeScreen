@@ -1,0 +1,4848 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>大屏版</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link href="css/conmon2.css" rel="stylesheet" />
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.jquery.min.js文件同时使用 -->
+		<link href="css/swiper.min.css" rel="stylesheet" />
+		<!-- 载入CSS3动画库，配合Swiper动画控制器swiper.animate.js文件同时使用 -->
+		<link href="css/animate.min.css" rel="stylesheet" />
+		<!-- 载入loading进度条显示样式，与loading.js文件同时使用 -->
+		<link href="css/loading.css" rel="stylesheet" />
+		<!-- 载入index.css文件，用于控制页面中动画元素的显示样式 -->
+		<!--<link href="css/index.css" rel="stylesheet" />-->
+		<link rel="stylesheet" type="text/css" href="css/jc2.css" />
+		<link rel="stylesheet" type="text/css" href="css/dp1.css" />
+		<link rel="stylesheet" type="text/css" href="css/hqk.css" />
+		<link rel="stylesheet" type="text/css" href="css/dp3_jkyj2.css" />
+		<link rel="stylesheet" type="text/css" href="css/g.css" />
+		<link rel="stylesheet" type="text/css" href="css/g2.css" />
+		<link rel="stylesheet" href="css/second.css">
+		<script src="js/rem.js"></script>
+		<!-- 载入jQuery核心框架 -->
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<!-- 载入Swiper移动端触摸滑动插件，与swiper.min.css文件同时使用 -->
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<!-- 载入Swiper动画控制器，与swiper.animate.param.js文件同时使用 -->
+		<script src="js/swiper.animate.min.js"></script>
+		<!-- 载入Swiper动画控制器初始化文件，与swiper.animate.js文件同时使用 -->
+		<script src="js/swiper.animate.param.js"></script>
+		<!-- 载入loading进度条控制脚本，与loading.css文件同时使用 -->
+		<script src="js/echarts.min.js"></script>
+<!-- 		<script src="js/china.js"></script> -->
+		<script src="js/loading.js"></script>
+		<script src="js/jc.js" type="text/javascript" charset="utf-8"></script>
+		<script language="javascript">
+			// 在全局范围内创建主动画控制器与子动画控制器
+			var myAC_main1 = new animateControl("main1_ani_");
+			var myAC_child1 = new animateControl("child1_ani_");
+			var myAC_child2 = new animateControl("child2_ani_");
+			//var myAC_child3 = new animateControl("child3_ani_");
+			// 在文档结构加载完成之后，载入swiper幻灯片，并初始化所有的动画控制器
+			$(document).ready(function() {
+				//第二屏
+				// 第 1 个子swiper幻灯片 
+				var mySwiper_child1 = new Swiper('.swiper-container-child1', {
+					direction: 'horizontal',
+					grabCursor: true,
+					//loop: true,
+					onInit: function(swiper) {
+						myAC_child1.init(swiperAnimateParam_child1, swiper);
+						var $wrapper = $(swiper.wrapper);
+					},
+					onSlideChangeEnd: function(swiper) {
+						//console.log(swiper)
+						myAC_child1.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+				//第三屏
+				// 第 2 个子swiper幻灯片 
+				var mySwiper_child2 = new Swiper('.swiper-container-child2', {
+					direction: 'horizontal',
+					grabCursor: true,
+					//loop: true,
+					onInit: function(swiper) {
+						myAC_child2.init(swiperAnimateParam_child2, swiper);
+						var $wrapper = $(swiper.wrapper);
+						//------------假数据start-------------
+						dp3_data = {};
+						jc_jiadata('1'); //生成假数据
+						//假数据方法
+						function jc_jiadata(par_id) {
+							dp3_data = {
+								//党员队伍
+								dydw: [663,2421,4221,1.2,1.8],
+								//党员队伍--饼图
+                                dydw_pie_zzdy: [608,55],
+								dydw_pie_ybdy: [2314,107],
+								dydw_pie_fzdx: [3983,238],
+								dydw_pie_jjfz: [10910,603],
+								dydw_pie_rdsqr: [16758,771],
+								//党员队伍--柱状图
+								dydw_bar_zzdy: [
+								    {xdata:["中共国家电网公司直属委员会","国网华北分部党委","国网华东分部党委","国网华中分部党委","国网东北分部党委","国网西北分部党委","国网西南分部党委","国网北京市电力公司党委","国网天津电力党委","国网河北省电力有限公司党委"],
+									 ydata:[55,0,0,0,0,0,0,43,47,1]},
+									{xdata:["国网山西电力公司委员会","国网山东电力党委","国网上海市电力公司党委","国网江苏省电力有限公司党委","国网浙江电力党委","国网安徽电力公司党委","国网福建省电力有限公司党委","国网湖北电力有限公司党委","国网湖南省电力有限公司党委","国网河南省电力公司党委"],
+									 ydata:[0,1,0,249,262,0,0,0,1,0]},
+                                    {xdata:["国网江西电力有限公司党委","国网四川省电力公司党委","国网重庆市电力公司党委","国网辽宁电力公司党委","国网吉林电力党委","国网黑龙江电力公司党委","国网蒙东电力党委","国网陕西省电力公司党委","国网甘肃省电力公司党委","国网青海电力公司党委"],
+									 ydata:[0,0,2,0,0,0,0,0,0,0]},
+                                    {xdata:["国网宁夏电力有限公司党委","国网新疆电力有限公司党委","国网西藏电力有限公司党委","南瑞集团公司党委","许继集团党委","平高集团党委","山东电工电气集团有限公司党委","国网技术学院党委"],
+                                     ydata:[0,2,0,0,0,0,0,0]},
+										],
+								dydw_bar_ybdy: [
+								    {xdata:["中共国家电网公司直属委员会", "国网天津电力党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委"],
+								     ydata:[107,0,0,0,4,0,0,58,40,114]},
+								    {xdata:["国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委", "国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委"],
+								     ydata:[45,88,8,144,126,192,108,92,188,52]},
+								    {xdata:["国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委"],
+								     ydata:[54,38,75,162,132,122,78,66,9,6]},
+								    {xdata:["国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", "国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+								     ydata:[20,140,0,29,5,16,3,0]},
+								],
+								dydw_bar_fzdx: [
+								    {xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委"],
+								     ydata:[238, 0, 0,0,7,0,1,86,66,89]},
+								    {xdata:["国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委", "国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委"],
+									 ydata:[17,303,46,378,721,313,115,1,132,126]},
+									{xdata:["国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委"],
+							         ydata:[32, 431, 229,57,156,79,114,48,80,7]},
+								    {xdata:["国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", "国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+								     ydata:[21,140,2,127,4,55,0,0]},
+								],
+								dydw_bar_jjfz: [
+									{xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委"],
+									 ydata:[603, 0, 0,0,36,0,0,164,103,424]},
+									{xdata:["国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委", "国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委"],
+								     ydata:[31,1237,144,514,1311,848,265,12,365,366]},
+								    {xdata:["国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委"],
+									 ydata:[77,1379, 601,258,442,446,408,272,148,22]},
+									{xdata:["国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", "国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+									 ydata:[95,419,2,269,116,132,4,0]},
+								     ],
+								dydw_bar_rdsqr: [
+									{xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委"],
+								     ydata:[771, 0, 0,0,40,0,0,311,321,531]},
+								    {xdata:["国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委", "国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委"],
+									 ydata:[56,1747,376,694,2095,1415,497,34,486,513]},
+									{xdata:["国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委"],
+									 ydata:[154,1965, 778,273,509,478,669,377,215,36]},
+								    {xdata:["国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", "国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+									 ydata:[137,1108,0,462,116,208,263,3]},
+							    ],
+								//组织变化
+								zzbh: [7670, 3799],
+								//三会情况
+								shqk: [84115, 90364, 57279],
+								//三会情况--柱状图
+								shqk_bar_zbdydh: [
+									{xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委","国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委",],
+									 ydata:[]},
+								    {xdata:["国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委","国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委","国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", ],
+									 ydata:[]},
+								    {xdata:["国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+									 ydata:[]},
+									],
+								shqk_bar_zbwyh: [
+									{xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委","国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委",],
+									 ydata:[]},
+									{xdata:["国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委","国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委","国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", ],
+									 ydata:[]},
+									{xdata:["国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+								     ydata:[]},
+								     ],
+								shqk_bar_dxzh: [
+									{xdata:["中共国家电网公司直属委员会", "国网华北分部党委", "国网华东分部党委", "国网华中分部党委", "国网东北分部党委", "国网西北分部党委", "国网西南分部党委", "国网北京市电力公司党委", "国网天津电力党委", "国网河北省电力有限公司党委","国网山西电力公司委员会", "国网山东电力党委", "国网上海市电力公司党委", "国网江苏省电力有限公司党委", "国网浙江电力党委", "国网安徽电力公司党委",],
+									 ydata:[1768, 0, 0,0,240,0,0,155,3420,6551,5286,5793,1279,15717,10513,2455]},
+									{xdata:["国网福建省电力有限公司党委", "国网湖北电力有限公司党委", "国网湖南省电力有限公司党委", "国网河南省电力公司党委","国网江西电力有限公司党委", "国网四川省电力公司党委", "国网重庆市电力公司党委", "国网辽宁电力公司党委", "国网吉林电力党委", "国网黑龙江电力公司党委", "国网蒙东电力党委", "国网陕西省电力公司党委", "国网甘肃省电力公司党委", "国网青海电力公司党委","国网宁夏电力有限公司党委", "国网新疆电力有限公司党委", ],
+								     ydata:[1876,25,2185,559,153,1176,247,0,450,269,314,2709,706,2,102,782]},
+									{xdata:["国网西藏电力有限公司党委", "南瑞集团公司党委", "许继集团党委", "平高集团党委", "山东电工电气集团有限公司党委", "国网技术学院党委"],
+								     ydata:[0,244,0,0,0,0]},
+								    ],
+								//监控预警--柱状图
+								hjjk_dw: [181,1216,14.88],
+								hjjk_dzb: [6356,19192,33.12],
+								//监控预警——党费缴纳
+								jkyj_dfjn: {
+									huang: {
+										num: '9',
+										percent: '45.13'
+									}
+									// lan: {
+									// 	num: '二',
+									// 	percent: '100%'
+									// }
+								},
+								//监控预警--党员集体参加学习情况
+								jkyj_xxqk: {
+									num: '3.5',
+									// percent: '20%',
+								},
+								jkyj_dyjtcjxxqk: {
+									xdata: ["04月", "05月", "06月", "07月", "08月", "09月"],
+									ydata: [0, 0, 0, 0, 2496, 21400]
+								},
+								//监控预警中心组学习情况——折线图
+								jkyj_zxzxxqk: {
+									xdata: ["第一季度", "第二季度", "第三季度"],
+									ydata1: [0, 1238, 666],
+									ydata2: [88, 88, 88]
+								},
+								//党组织书记讲党课情况
+								jkyj_dzzsjjdkqk: {
+									xdata: ["04月", "05月", "06月", "07月", "08月", "09月"],
+									ydata: [3, 6, 12, 7, 2, 2]
+								},
+								zbdydh: [],
+								zbwyh: [],
+								dxzh: [],
+								dk: [],
+								gdwhjwcl: [],
+								gdwxjdxslfb: [],
+								zbdydh1: [
+									{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+									{PAR_SHORT_NAME: "国网党委分部党委", percent1: 0},
+									{PAR_SHORT_NAME: "国网华东分部党委", percent1: 0},
+									{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 0},
+									{PAR_SHORT_NAME: "国网东北分部党委", percent1: 90},
+									{PAR_SHORT_NAME: "国网西北分部党委", percent1: 0},
+									{PAR_SHORT_NAME: "国网西南分部党委", percent1: 0},
+									{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 95},
+									{PAR_SHORT_NAME: "国家天津电力党委",percent1: 80},
+									{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 90},
+									{PAR_SHORT_NAME: "国网山东电力党委", percent1: 88},
+									{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 95},
+									{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 90},
+									{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 93},
+									{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 94},
+									{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1: 96},
+									{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 93},
+									{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 92},
+									{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 95},
+									{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "许继集团党委", percent1: 86.31},
+									{PAR_SHORT_NAME: "平高集团党委", percent1: 85.11},
+									{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 88.31},
+									{PAR_SHORT_NAME: "国网技术学院党委", percent1: 89.31}],
+								zbwyh1: [{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+										{PAR_SHORT_NAME: "国网党委分部党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网华东分部党委", percent1: 7},
+										{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 2},
+										{PAR_SHORT_NAME: "国网东北分部党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网西北分部党委", percent1: 4},
+										{PAR_SHORT_NAME: "国网西南分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 9.35},
+										{PAR_SHORT_NAME: "国家天津电力党委",percent1: 8},
+										{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 8.31},
+										{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 9},
+										{PAR_SHORT_NAME: "国网山东电力党委", percent1: 88},
+										{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 9.3},
+										{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 3.94},
+										{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1:1.96},
+										{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 9.3},
+										{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 92},
+										{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "许继集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "平高集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网技术学院党委", percent1: 88.31}],
+								dxzh1: [{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+										{PAR_SHORT_NAME: "国网党委分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网华东分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 0},
+										{PAR_SHORT_NAME: "国网东北分部党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网西北分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网西南分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国家天津电力党委",percent1: 80},
+										{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 90},
+										{PAR_SHORT_NAME: "国网山东电力党委", percent1: 88},
+										{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 93},
+										{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 94},
+										{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1: 96},
+										{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 93},
+										{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 92},
+										{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "许继集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "平高集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网技术学院党委", percent1: 88.31}],
+								dk1: [{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+										{PAR_SHORT_NAME: "国网党委分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网华东分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 0},
+										{PAR_SHORT_NAME: "国网东北分部党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网西北分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网西南分部党委", percent1: 0},
+										{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国家天津电力党委",percent1: 80},
+										{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 90},
+										{PAR_SHORT_NAME: "国网山东电力党委", percent1: 88},
+										{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 90},
+										{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 93},
+										{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 94},
+										{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1: 96},
+										{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 93},
+										{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 92},
+										{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 95},
+										{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "许继集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "平高集团党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 88.31},
+										{PAR_SHORT_NAME: "国网技术学院党委", percent1: 88.31}],
+								gdwhjwcl1: [{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+											{PAR_SHORT_NAME: "国网党委分部党委", percent1: 10},
+											{PAR_SHORT_NAME: "国网华东分部党委", percent1: 20},
+											{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 30},
+											{PAR_SHORT_NAME: "国网东北分部党委", percent1: 15},
+											{PAR_SHORT_NAME: "国网西北分部党委", percent1: 20},
+											{PAR_SHORT_NAME: "国网西南分部党委", percent1: 5},
+											{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 9.5},
+											{PAR_SHORT_NAME: "国家天津电力党委",percent1: 8},
+											{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 19},
+											{PAR_SHORT_NAME: "国网山东电力党委", percent1: 58},
+											{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 25},
+											{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 30},
+											{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 13},
+											{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 14},
+											{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1: 6},
+											{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 9},
+											{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 2},
+											{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 5},
+											{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 6.31},
+											{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 18.31},
+											{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 28.31},
+											{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 58.31},
+											{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 0.31},
+											{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 10.31},
+											{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 3.1},
+											{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 6.31},
+											{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 7.31},
+											{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "许继集团党委", percent1: 31},
+											{PAR_SHORT_NAME: "平高集团党委", percent1: 25},
+											{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网技术学院党委", percent1: 1}],
+								gdwxjdxslfb1:[{PAR_SHORT_NAME: "中共国家电网公司直属委员会", percent1: 0.31},
+											{PAR_SHORT_NAME: "国网党委分部党委", percent1: 10},
+											{PAR_SHORT_NAME: "国网华东分部党委", percent1: 20},
+											{PAR_SHORT_NAME: "国网华中分部党委",  percent1: 30},
+											{PAR_SHORT_NAME: "国网东北分部党委", percent1: 90},
+											{PAR_SHORT_NAME: "国网西北分部党委", percent1: 50},
+											{PAR_SHORT_NAME: "国网西南分部党委", percent1: 60},
+											{PAR_SHORT_NAME: "国网北京市电力公司党委", percent1: 55},
+											{PAR_SHORT_NAME: "国家天津电力党委",percent1: 30},
+											{PAR_SHORT_NAME: "国网河北省电力有限公司党委", percent1: 2.31},
+											{PAR_SHORT_NAME: "山西电力公司党委会", percent1: 90},
+											{PAR_SHORT_NAME: "国网山东电力党委", percent1: 30},
+											{PAR_SHORT_NAME: "国网上海市电力公司党委", percent1: 55},
+											{PAR_SHORT_NAME: "国网江苏省电力有限公司党委", percent1: 9},
+											{PAR_SHORT_NAME: "国网浙江电力党委", percent1: 3},
+											{PAR_SHORT_NAME: "国网安徽电力公司党委", percent1: 4},
+											{PAR_SHORT_NAME: "国网福建省电力有限公司党委", percent1: 6},
+											{PAR_SHORT_NAME: "国网湖北电力有限公司党委", percent1: 9},
+											{PAR_SHORT_NAME: "国网湖南省电力有限公司党委", percent1: 2},
+											{PAR_SHORT_NAME: "国网河南省电力公司党委", percent1: 9},
+											{PAR_SHORT_NAME: "国网江西电力有限公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "国网四川电力公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网重庆电力公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网辽宁电力公司党委", percent1: 5.31},
+											{PAR_SHORT_NAME: "国网吉林电力公司党委", percent1: 50.31},
+											{PAR_SHORT_NAME: "国网黑龙江电力公司党委", percent1: 20.31},
+											{PAR_SHORT_NAME: "国网蒙东电力公司党委", percent1: 18.31},
+											{PAR_SHORT_NAME: "国网陕西省电力公司党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "国网甘肃省电力公司党委", percent1: 5.31},
+											{PAR_SHORT_NAME: "国网青海电力公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "国网宁夏电力公司党委", percent1: 10},
+											{PAR_SHORT_NAME: "国网新疆电力有限公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "国网西藏电力有限公司党委", percent1: 22},
+											{PAR_SHORT_NAME: "南瑞集团公司党委", percent1: 31},
+											{PAR_SHORT_NAME: "许继集团党委", percent1: 8.31},
+											{PAR_SHORT_NAME: "平高集团党委", percent1: 7.31},
+											{PAR_SHORT_NAME: "山东电工电气集团有限公司党委", percent1: 4.31},
+											{PAR_SHORT_NAME: "国网技术学院党委", percent1: 8.31}]
+							};
+						}
+                        jc_setdata();
+						//---------假数据end----------
+						//下拉框
+						//首次加载下拉框
+						$('#dp3_xiala_box .dp3_title_top').eq(0).find('ul').append('<li par_id="1">国网公司党组</li>');
+						$('#dp3_xiala_box .dp3_title_top').click(function(event) {
+							//var index = $(this).index();
+							var $xiala_items = $(this).find('.dp3_xiala_items');
+							event.stopPropagation(); /*阻止事件冒泡*/
+							if($(this).find('li').length == 0) {
+								return;
+							} else {
+								if($xiala_items.is(':hidden')) {
+									$xiala_items.show();
+								} else {
+									$xiala_items.hide();
+								}
+							}
+						});
+						$('.dp3_xiala_items').on("click", "li", function() {
+								//alert(1)
+								var txt = $(this).text();
+								var parentindex = $(this).closest('.dp3_title_top').index();
+								event.stopPropagation(); /*阻止事件冒泡*/
+								//console.log(txt)
+								$(this).addClass('hover').siblings().removeClass('hover');
+								$(this).closest('.dp3_title_top').find('.dp3_title_text').text(txt);
+								$(this).closest('.dp3_xiala_items').hide();
+								//刷新第三页
+								var par_id = $(this).attr('par_id');
+								jc_jiadata(par_id);
+
+								//请求下一级数据
+								var $ul = $wrapper.find('#dp3_xiala_box .dp3_title_top').eq(parentindex + 1).find('ul');
+								$ul.empty();
+								$.ajax({
+									type: 'get',
+									url: '/dangjian/largescreen/rest/largescreenData/queryData',
+									data: {
+										largescreenId: "7D4AEEAFA79841F4964864741A304A9F",
+										JsonObjectCodes: "page03_partree",
+										par_id: par_id
+									},
+									//async: false,
+									//dataType: 'json',
+									success: function(data) {
+										console.log(data)
+										var xiala_data = data.resultValue.page03_partree;
+										var dom = '';
+										for(var i = 0; i < xiala_data.length; i++) {
+											dom += '<li title="' + xiala_data[i].PAR_SHORT_NAME + '" par_id="' + xiala_data[i].PAR_ID + '">' + xiala_data[i].PAR_SHORT_NAME + '</li>'
+										};
+										$ul.append(dom);
+									}
+								})
+								jc_setdata();
+
+							})
+							//定时刷新第三屏内容
+//						setInterval(function() {
+//								jc_jiadata('1');
+//								jc_setdata();
+//							}, 3600000)
+							//定时轮播柱形图
+						setInterval(function() {
+								$wrapper.find(".icon_next").click();
+								//$wrapper.find("#dp3_zhuzi_shqk .icon_next").click();
+							}, 8000)
+							//tabs切换
+						$wrapper.find('#dp3_tabs1 .dp3_title,#dp3_tabs2 .dp3_title').click(function() {
+							$(this).addClass('hover').siblings().removeClass('hover');
+							if($(this).parent().attr('id') == 'dp3_tabs1') { //党员队伍tabs
+								var index = $(this).index();
+								//console.log(index)
+								switch(index) {
+									case 0:
+										jc_dydw('zzdy');
+										break;
+									case 1:
+										jc_dydw('ybdy');
+										break;
+									case 2:
+										jc_dydw('fzdx');
+										break;
+									case 3:
+										jc_dydw('jjfz');
+										break;
+									case 4:
+										jc_dydw('rdsqr');
+										break;
+								};
+
+								function jc_dydw(name) {
+									//党员队伍--饼图
+									jc_setpie('jc_dp3pie', eval('dp3_data.dydw_pie_' + name));
+									//党员队伍--柱子
+									dp3_zhuzi('#zhuzi_dydw', eval('dp3_data.dydw_bar_' + name)[0], 5);
+									//党员队伍--柱子圆点
+									dp3_zhuzi_point('#zhuzi_dydw', eval('dp3_data.dydw_bar_' + name));
+								}
+							} else { //三会情况tabs
+								var index = $(this).index();
+								switch(index) {
+									case 0:
+										jc_shqk('zbdydh');
+										break;
+									case 1:
+										jc_shqk('zbwyh');
+										break;
+									case 2:
+										jc_shqk('dxzh');
+										break;
+								};
+
+								function jc_shqk(name) {
+									//三会情况--柱子
+									dp3_zhuzi('#dp3_zhuzi_shqk', eval('dp3_data.shqk_bar_' + name)[0], 2);
+									//三会情况--柱子圆点
+									dp3_zhuzi_point('#dp3_zhuzi_shqk', eval('dp3_data.shqk_bar_' + name));
+								};
+							}
+						});
+
+						//第三屏设置数据方法
+
+						function jc_setdata() {
+							//tabs复位
+							$wrapper.find('#dp3_tabs1 .dp3_title').eq(0).click();
+							$wrapper.find('#dp3_tabs2 .dp3_title').eq(0).click();
+							$wrapper.find('.shyk-list').eq(0).click();
+
+							$wrapper.find('#shyk_list_page_zbdydh').empty();
+							$wrapper.find('#shyk_list_page_zbwyh').empty();
+							$wrapper.find('#shyk_list_page_dxzh').empty();
+							$wrapper.find('#shyk_list_page_dk').empty();
+							//党员队伍
+							//党员队伍--数字
+							for(var i = 0; i < 5; i++) {
+								$wrapper.find('#dp3_dydw_iconbox .span_hong').eq(i).text(dp3_data.dydw[i]);
+							};
+							//第二屏发展党员数回显
+
+							$('#fzdys_ren').text(dp3_data.dydw[1]);
+							//党员队伍--饼图
+							jc_setpie('jc_dp3pie', dp3_data.dydw_pie_zzdy);
+							//dp3_zhuzi('#zhuzi_dydw', {xdata:['上海0','上海1','上海2','上海0','上海8'],ydata:[0,1,2,0,5]}, 5);
+							//组织变化
+							//组织变化--数字
+							for(var i = 0; i < 2; i++) {
+								$wrapper.find('#dp3_zzbh_txt .span_hong').eq(i).text(dp3_data.zzbh[i]);
+							};
+							//三会情况
+							//三会情况--数字
+							for(var i = 0; i < 3; i++) {
+								$wrapper.find('.dp3_shqk_box .span_hong').eq(i).text(dp3_data.shqk[i]);
+							};
+							//监控预警
+							//监控预警--柱子
+							jc_jkyj_bar('#dp3_hjjk_hong', 'hjjk_dw');
+							jc_jkyj_bar('#dp3_hjjk_lan', 'hjjk_dzb');
+							//监控预警--党员集体参加学习情况
+							$('#dp3_xxqk_txt_p_num').text(dp3_data.jkyj_xxqk.num);
+							// $('#dp3_xxqk_txt_p_percent').text(dp3_data.jkyj_xxqk.percent);
+							g_dyjtcjxxqk('dfjn_xxqk_chart', dp3_data.jkyj_dyjtcjxxqk);
+							//监控预警--党费缴纳
+							jc_jkyj_dfjn('#dp3_dfjn_huang_left', 'huang');
+							// jc_jkyj_dfjn('#dp3_dfjn_lan_left', 'lan');
+							//监控预警--中心组学习情况
+							g_zxzxxqk('zxzxxqk_chart', dp3_data.jkyj_zxzxxqk);
+							//监控预警--党组织书记讲党课情况
+							g_dzzsjjdkqk('jdkqk_chart', dp3_data.jkyj_dzzsjjdkqk);
+
+							//柱子
+							//党员队伍--柱子
+							dp3_zhuzi('#zhuzi_dydw', dp3_data.dydw_bar_zzdy[0], 5);
+							dp3_zhuzi_point('#zhuzi_dydw', dp3_data.dydw_bar_zzdy);
+							//三会情况--柱子
+							dp3_zhuzi('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh[0], 2);
+							dp3_zhuzi_point('#dp3_zhuzi_shqk', dp3_data.shqk_bar_zbdydh);
+							//三会一课
+							//updateData()
+
+						};
+						console.log()
+						// 三会一课tabs点击hover
+						$('#first_lists').find('div').on('click',function() {
+							$(this).addClass('hover').siblings().removeClass('hover');
+							var index = $(this).index();
+							$wrapper.find('.shyk-list').eq(index).show().siblings('.shyk-list').hide();
+
+						})
+						$('#second_lists').find('div').on('click',function() {
+							$(this).addClass('hover').siblings().removeClass('hover');
+							var index = $(this).index();
+							$wrapper.find('.second').find('.shyk-list').eq(index).show().siblings('.shyk-list').hide();
+
+						})
+						updateData()
+						function updateData() {
+							dp3_data.zbdydh = gdwhjwcl_transform(dp3_data.zbdydh1, 16);
+							dp3_data.zbwyh = gdwhjwcl_transform(dp3_data.zbwyh1, 16);
+							dp3_data.dxzh = gdwhjwcl_transform(dp3_data.dxzh1, 16);
+							dp3_data.dk = gdwhjwcl_transform(dp3_data.dk1, 16);
+							dp3_data.gdwhjwcl = gdwhjwcl_transform(dp3_data.gdwhjwcl1, 16);
+							dp3_data.gdwxjdxslfb = gdwxjdxslfb_transform(dp3_data.gdwxjdxslfb1, 16);
+							console.log($wrapper.find('#shyk_list_page_zbdydh'))
+							if(dp3_data.zbdydh.length == 0) {
+								//alert(0)
+								$('#shyk_list_page_zbdydh').empty();
+							}
+							// 支部党员大会
+							dataShow('zbdydh_con', 'zbdydh_yAxis', ['参与率'], dp3_data.zbdydh, 0);
+							click_page('shyk_list_page_zbdydh', 'zbdydh_con', 'zbdydh_yAxis', ['参与率'], dp3_data.zbdydh, 0)
+							// 支部委员会
+							dataShow('zbwyh_con', 'zbwyh_yAxis', ['参与率'], dp3_data.zbwyh, 0);
+							click_page('shyk_list_page_zbwyh', 'zbwyh_con', 'zbwyh_yAxis', ['参与率'], dp3_data.zbwyh, 0)
+							
+
+							// 党小组会
+							dataShow('dxzh_con', 'dxzh_yAxis', ['参与率'], dp3_data.dxzh, 0);
+							click_page('shyk_list_page_dxzh', 'dxzh_con', 'dxzh_yAxis', ['参与率'], dp3_data.dxzh, 0)
+
+							// 党课
+							dataShow('dk_con', 'dk_yAxis', ['参与率'], dp3_data.dk, 0);
+							click_page('shyk_list_page_dk', 'dk_con', 'dk_yAxis', ['参与率'], dp3_data.dk, 0)
+							
+							// 第二部分
+							
+							// 支部党员大会
+							dataShow('second_zbdydh_con', 'second_zbdydh_yAxis', ['完成率'], dp3_data.zbdydh, 0);
+							click_page('second_shyk_list_page_zbdydh', 'second_zbdydh_con', 'second_zbdydh_yAxis', ['完成率'], dp3_data.zbdydh, 0)
+							// 支部委员会
+							dataShow('second_zbwyh_con', 'second_zbwyh_yAxis', ['完成率'], dp3_data.zbwyh, 0);
+							click_page('second_shyk_list_page_zbwyh', 'second_zbwyh_con', 'second_zbwyh_yAxis', ['完成率'], dp3_data.zbwyh, 0)
+							
+
+							// 党小组会
+							dataShow('second_dxzh_con', 'second_dxzh_yAxis', ['完成率'], dp3_data.dxzh, 0);
+							click_page('second_shyk_list_page_dxzh', 'second_dxzh_con', 'second_dxzh_yAxis', ['完成率'], dp3_data.dxzh, 0)
+
+							// 党课
+							dataShow('second_dk_con', 'second_dk_yAxis', ['完成率'], dp3_data.dk, 0);
+							click_page('second_shyk_list_page_dk', 'second_dk_con', 'second_dk_yAxis', ['完成率'], dp3_data.dk, 0)
+							
+							// 各单位换届完成率
+
+							dataShow('gdwyxcg_con', 'gdwyxcg_yAxis', ['换届完成率'], dp3_data.gdwhjwcl, 0);
+							click_page('gdwyxcg_page', 'gdwyxcg_con', 'gdwyxcg_yAxis', ['换届完成率'], dp3_data.gdwhjwcl, 0)
+
+							// 各单位先进典型数量分布
+							//dataShow('xjdxslfb_con', 'xjdxslfb_yAxis', ['个人', '集体'], dp3_data.gdwxjdxslfb, 0);
+							//click_page('xjdxslfb_page', 'xjdxslfb_con', 'xjdxslfb_yAxis', ['个人', '集体'], dp3_data.gdwxjdxslfb, 0)
+						}
+
+						// --------------------------右侧上方列表 start------------------------------------------------------
+
+						// 将ajax的数据转化为自己想要的数据  --------三会一课
+						function shyk_transform(data, num) {
+							var wcl = [],
+								chl = [],
+								name = [],
+								length = data.length,
+								all_obj = [];
+							for(var i = 0; i < length; i++) {
+								wcl.push(data[i].WCL);
+								chl.push(data[i].CHL);
+								name.push(data[i].PAR_SHORT_NAME);
+							}
+							var page_length = Math.ceil(name.length / num);
+							for(var i = 0; i < page_length; i++) {
+								all_obj[i] = {
+									xData: [],
+									finishRate: [],
+									participantRate: []
+								};
+								if(page_length == 1) {
+									for(var j = i; j < name.length; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].finishRate.push(wcl[j]);
+										all_obj[i].participantRate.push(chl[j]);
+									}
+								} else {
+									for(var j = i * num; j < i * num + num; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].finishRate.push(wcl[j]);
+										all_obj[i].participantRate.push(chl[j]);
+									}
+								}
+
+							}
+							if(all_obj.length == 0) {
+								return all_obj;
+							}
+							var last_obj = all_obj[all_obj.length - 1];
+							all_obj.pop();
+							var new_obj = {
+								xData: [],
+								finishRate: [],
+								participantRate: []
+							}
+							for(var i = 0; i < last_obj.xData.length; i++) {
+								if(typeof last_obj.xData[i] !== 'undefined') {
+									new_obj.xData.push(last_obj.xData[i]);
+									new_obj.finishRate.push(last_obj.finishRate[i]);
+									new_obj.participantRate.push(last_obj.participantRate[i])
+								}
+							}
+							all_obj.push(new_obj);
+							return all_obj;
+						}
+						// 将ajax的数据转化为自己想要的数据 -------------各单位换届完成率
+						function gdwhjwcl_transform(data, num) {
+							var y_data1 = [],
+								name = [],
+								length = data.length,
+								all_obj = [];
+							for(var i = 0; i < length; i++) {
+								y_data1.push(data[i].percent1);
+								name.push(data[i].PAR_SHORT_NAME);
+							}
+							var page_length = Math.ceil(name.length / num);
+							for(var i = 0; i < page_length; i++) {
+								all_obj[i] = {
+									xData: [],
+									yData1: []
+								};
+								if(page_length == 1 || i == page_length - 1) {
+									for(var j = i; j < name.length; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+									}
+								} else {
+									for(var j = i * num; j < i * num + num; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+									}
+								}
+
+							}
+							if(all_obj.length == 0) {
+								return all_obj;
+							}
+							var last_obj = all_obj[all_obj.length - 1];
+							all_obj.pop();
+							var new_obj = {
+								xData: [],
+								yData1: []
+							}
+							for(var i = 0; i < last_obj.xData.length; i++) {
+								if(typeof last_obj.xData[i] !== 'undefined') {
+									new_obj.xData.push(last_obj.xData[i]);
+									new_obj.finishRate.push(last_obj.finishRate[i]);
+									new_obj.participantRate.push(last_obj.participantRate[i])
+								}
+							}
+							all_obj.push(new_obj);
+							return all_obj;
+						}
+						// 将ajax的数据转化为自己想要的数据 -------------各单位换届完成率
+						function gdwhjwcl_transform(data, num) {
+							var y_data1 = [],
+								name = [],
+								length = data.length,
+								all_obj = [];
+							for(var i = 0; i < length; i++) {
+								y_data1.push(data[i].percent1);
+								name.push(data[i].PAR_SHORT_NAME);
+							}
+							var page_length = Math.ceil(name.length / num);
+							for(var i = 0; i < page_length; i++) {
+								all_obj[i] = {
+									xData: [],
+									yData1: []
+								};
+								if(page_length == 1 || i == page_length - 1) {
+									for(var j = i; j < name.length; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+									}
+								} else {
+									for(var j = i * num; j < i * num + num; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+									}
+								}
+
+							}
+							if(all_obj.length == 0) {
+								return all_obj;
+							}
+							var last_obj = all_obj[all_obj.length - 1];
+							all_obj.pop();
+							var new_obj = {
+								xData: [],
+								yData1: []
+							}
+							for(var i = 0; i < last_obj.xData.length; i++) {
+								if(typeof last_obj.xData[i] !== 'undefined') {
+									new_obj.xData.push(last_obj.xData[i]);
+									new_obj.yData1.push(last_obj.yData1[i]);
+								}
+							}
+							all_obj.push(new_obj);
+							return all_obj;
+						}
+						// 将ajax的数据转化为自己想要的数据 ---------------- 各单位先进典型数量分布
+						function gdwxjdxslfb_transform(data, num) {
+							var y_data1 = [],
+								y_data2 = [],
+								name = [],
+								length = data.length,
+								all_obj = [];
+							for(var i = 0; i < length; i++) {
+								y_data1.push(data[i].JTRY);
+								y_data2.push(data[i].GRRY)
+								name.push(data[i].PAR_SHORT_NAME);
+							}
+							var page_length = Math.ceil(name.length / num);
+							for(var i = 0; i < page_length; i++) {
+								all_obj[i] = {
+									xData: [],
+									yData1: [],
+									yData2: [],
+								};
+								if(page_length == 1) {
+									for(var j = i; j < name.length; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+										all_obj[i].yData2.push(y_data2[j]);
+									}
+								} else {
+									for(var j = i * num; j < i * num + num; j++) {
+										all_obj[i].xData.push(name[j]);
+										all_obj[i].yData1.push(y_data1[j]);
+										all_obj[i].yData2.push(y_data2[j]);
+									}
+								}
+
+							}
+							if(all_obj.length == 0) {
+								return all_obj;
+							}
+							var last_obj = all_obj[all_obj.length - 1];
+							all_obj.pop();
+							var new_obj = {
+								xData: [],
+								yData1: [],
+								yData2: [],
+							}
+							for(var i = 0; i < last_obj.xData.length; i++) {
+								if(typeof last_obj.xData[i] !== 'undefined') {
+									new_obj.xData.push(last_obj.xData[i]);
+									new_obj.yData1.push(last_obj.yData1[i]);
+									new_obj.yData2.push(last_obj.yData2[i])
+								}
+							}
+							all_obj.push(new_obj);
+							return all_obj;
+						}
+
+						// 数据回显
+						function shyk_data_show(xId, data, index) {
+							if(data.length == 0) {
+								$wrapper.find('#' + xId + ' .center_each').each(function(i) {
+									$(this).find('.shyk-list-bar-left .center_col_top').height(0);
+									$(this).find('.shyk-list-bar-left .center_col_top .hideData').text('');
+									$(this).find('.shyk-list-bar-right .center_col_top').height(0);
+									$(this).find('.shyk-list-bar-right .center_col_top .hideData').text('');
+									$(this).find('.company_name').text('');
+									$(this).find('.company_name').attr('title', '');
+								})
+								$wrapper.find('#' + xId + ' .center_each').each(function(i) {
+									$(this).find('.shyk-list-bar-left').find('.center_col_top').hide();
+									$(this).find('.shyk-list-bar-right').find('.center_col_top').hide()
+								})
+							} else {
+								$wrapper.find('#' + xId + ' .center_each').each(function(i) {
+									$(this).find('.shyk-list-bar-left .center_col_top').height(0);
+									$(this).find('.shyk-list-bar-left .center_col_top .hideData').text('');
+									$(this).find('.shyk-list-bar-right .center_col_top').height(0);
+									$(this).find('.shyk-list-bar-right .center_col_top .hideData').text('');
+									$(this).find('.company_name').text('');
+									$(this).find('.company_name').attr('title', '');
+									$(this).find('.shyk-list-bar-left .center_col_top').height(`${data[index].finishRate[i]}%`);
+									$(this).find('.shyk-list-bar-left .center_col_top .hideData').text(`${data[index].finishRate[i]}`);
+									$(this).find('.shyk-list-bar-right .center_col_top').height(`${data[index].participantRate[i]}%`);
+									$(this).find('.shyk-list-bar-right .center_col_top .hideData').text(`${data[index].participantRate[i]}`);
+									$(this).find('.company_name').text(data[index].xData[i]);
+									$(this).find('.company_name').attr('title', data[index].xData[i]);
+								})
+
+								//x轴
+								$wrapper.find('#' + xId + ' .company_name').each(function(i) {
+//									var sub = '';
+//									if($(this).text().length > 9) {
+//										$(this).css('lineHeight', '1');
+//										if($(this).text().length > 18) {
+//											sub = data[index].xData[i].substring(0, 9) + '\n' + data[index].xData[i].substring(9, 16) + '..';
+//											$(this).text(sub)
+//										}
+//
+//									} else {
+//										$(this).css('lineHeight', '100px')
+//									}
+									$(this).text(data[index].xData[i]);
+								})
+								$wrapper.find('#' + xId + ' .center_each').each(function(i) {
+									if($(this).find('.shyk-list-bar-left').find('.hideData').text() == 0 || $(this).find('.shyk-list-bar-left').find('.hideData').text() == 'undefined') {
+										$(this).find('.shyk-list-bar-left').find('.center_col_top').hide()
+									} else {
+										$(this).find('.shyk-list-bar-left').find('.center_col_top').show()
+									}
+									if($(this).find('.shyk-list-bar-right').find('.hideData').text() == 0 || $(this).find('.shyk-list-bar-right').find('.hideData').text() == 'undefined') {
+										$(this).find('.shyk-list-bar-right').find('.center_col_top').hide()
+									} else {
+										$(this).find('.shyk-list-bar-right').find('.center_col_top').show()
+									}
+								})
+							}
+
+						}
+						// 分页+点击
+						function shyk_click_page(pageId, data, dataId) {
+
+							$wrapper.find('#' + pageId).empty();
+							if(typeof data == 'undefined') {
+								return
+							}
+							var dom = '<i class="icon_prev"></i>';
+							if(data.length <= 1) {
+								return;
+							} else {
+								for(var i = 0; i < data.length; i++) {
+									if(i == 0) {
+										dom += '<i class="icon_circle hover"></i>'
+									} else if(i == data.length - 1) {
+										dom += '<i class="icon_circle" style="padding-right:0"></i>'
+									} else {
+										dom += '<i class="icon_circle"></i>'
+									}
+								};
+								dom += '<i class="icon_next"></i>';
+								$wrapper.find('#' + pageId).append(dom);
+							}
+						}
+
+						// --------------------------右侧上方列表 end -------------------------------------------------------
+
+						//---------------------------右侧 下方叠加柱状图和右侧中间一维柱状图 start-------------------------------------
+						// 柱状图点击分页
+						/*
+						    pageId ： 分页的父元素的id
+						    xDataId : 对应x轴的各个数据父元素的ID。
+						    yAxisId ： y轴的刻度值的父元素的id
+						    legend： 图例
+						    data:数据，必须是对象数组，对象里属性名为：xData和yData,
+						    index：当前的索引
+						*/
+						function click_page(pageId, xDataId, yAxisId, legend, data) {
+							$wrapper.find('#' + pageId).empty();
+							if(typeof data == 'undefined') {
+								return;
+							}
+							var dom = '<i class="icon_prev"></i>';
+							if(data.length <= 1) {
+								return;
+							} else {
+								for(var i = 0; i < data.length; i++) {
+									if(i == 0) {
+										dom += '<i class="icon_circle hover"></i>'
+									} else if(i == data.length - 1) {
+										dom += '<i class="icon_circle" style="padding-right:0"></i>'
+									} else {
+										dom += '<i class="icon_circle"></i>'
+									}
+								};
+								dom += '<i class="icon_next"></i>';
+								$wrapper.find('#' + pageId).append(dom);
+							}
+							//向后
+							$wrapper.find('#' + pageId).on("click", ".icon_prev", function() {
+								var _this = $(this).siblings('.icon_circle.hover').index();
+								$(this).siblings('.icon_circle').eq(_this).addClass('hover').siblings('.icon_circle').removeClass('hover');
+								if(_this == data.length) {
+									_this = 0;
+									$(this).siblings('.icon_circle').eq(0).addClass('hover').siblings('.icon_circle').removeClass('hover');
+								}
+								dataShow(xDataId, yAxisId, legend, data, _this);
+							});
+							//向前
+							$wrapper.find('#' + pageId).on("click", ".icon_next", function() {
+								var _this = $(this).siblings('.icon_circle.hover').index() - 2;
+								$(this).parent().find('i.hover').removeClass('hover').prev().addClass('hover');
+								if(_this == -1) {
+									_this = data.length - 1;
+									$(this).siblings('.icon_circle').eq(data.length - 1).addClass('hover');
+								}
+								dataShow(xDataId, yAxisId, legend, data, _this);
+							});
+							//圆点
+							$wrapper.find('#' + pageId).on('click', '.icon_circle', function(e) {
+								var _this = $(this).index() - 1;
+								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
+								dataShow(xDataId, yAxisId, legend, data, _this);
+							});
+						}
+
+						// 数据回显
+						/*
+						    xDataId : 对应x轴的各个数据父元素的ID。
+						    yAxisId ： y轴的刻度值的父元素的id
+						    legend： 图例
+						    data:数据，必须是对象数组，对象里属性名为：xData和yData,
+						    index：当前的索引
+						*/
+						function dataShow(xDataId, yAxisId, legend, data, index) {
+							var sum = [];
+							if(data.length == 0) {
+								// x轴各个值
+								if(legend.length == 2) {
+									$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.count_item').text('');
+
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').find('.count_item').text('');
+									})
+								} else if(legend.length == 1) {
+									$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.hideData').text('');
+									})
+								}
+
+								$wrapper.find('#' + xDataId + ' .center_each').each(function(i) {
+									if(legend.length == 2) {
+										$(this).find('.center_col_cen').hide();
+										$(this).find('.center_col_top').hide();
+									} else if(legend.length == 1) {
+										$(this).find('.center_col_top').hide();
+									}
+								})
+							}
+							if(typeof data != 'undefined' && data.length != 0) {
+								if(legend.length == 1) {
+									for(var i = 0; i < data[index].yData1.length; i++) {
+										sum.push(data[index].yData1[i])
+									}
+								} else {
+									for(var i = 0; i < data[index].yData1.length; i++) {
+										sum.push(data[index].yData1[i] + data[index].yData2[i])
+									}
+								}
+
+								var YAxisMax = Math.ceil(Math.max.apply(null, sum) / 4) * 4; // 获取sumData的最大值
+								//x轴
+								$wrapper.find('#' + xDataId).find('.company_name').each(function(i) {
+										$(this).text('');
+										$(this).attr('title', '');
+										$(this).attr('title', data[index].xData[i]);
+										$(this).text(data[index].xData[i]);
+//										if($(this).text().length <= 4) {
+//											sub = data[index].xData[i];
+//											$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
+//												lineHeight: '120px',
+//											})
+//											$(this).text(sub);
+//										} else if($(this).text().length > 4 && $(this).text().length <= 8) {
+//											sub = data[index].xData[i].substring(0, 4) + '\n' + data[index].xData[i].substring(4, 8);;
+//											$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
+//												lineHeight: '1.3',
+//											})
+//											$(this).text(sub);
+//										} else {
+//											sub = data[index].xData[i].substring(0, 4) + '\n' + data[index].xData[i].substring(4, 7) + '..';
+//											$wrapper.find('#' + xDataId + ' .company_name').eq(i).css({
+//												lineHeight: '1.3',
+//											})
+//											$(this).text(sub);
+//										}
+
+									})
+									// y轴刻度
+								if(legend.length != 1) {
+									$wrapper.find('#' + yAxisId).find('li').each(function(i) {
+										$wrapper.find('#' + yAxisId + ' li').eq(i).text(YAxisMax * (1 - 0.25 * i))
+									})
+								}
+
+								// x轴各个值
+								if(legend.length == 2) {
+									$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.count_item').text('');
+
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(Math.round(data[index].yData1[i] / YAxisMax * 100) + '%');
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.count_item').text(data[index].yData1[i]);
+
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').find('.count_item').text('');
+
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').height(Math.round(data[index].yData2[i] / YAxisMax * 100) + '%');
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).siblings('.center_col_cen').find('.count_item').text(data[index].yData2[i]);
+									})
+								} else if(legend.length == 1) {
+									$wrapper.find('#' + xDataId).find('.center_col_top').each(function(i) {
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(0);
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.hideData').text('');
+
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).height(Math.round(data[index].yData1[i]) + '%');
+										$wrapper.find('#' + xDataId + ' .center_col_top').eq(i).find('.hideData').text(data[index].yData1[i]);
+									})
+								}
+
+								$wrapper.find('#' + xDataId + ' .center_each').each(function(i) {
+									if(legend.length == 2) {
+										if($(this).find('.center_col_cen .count_item').text() == 0 || $(this).find('.center_col_cen .count_item').text() == 'undefined') {
+											$(this).find('.center_col_cen').hide();
+										} else {
+											$(this).find('.center_col_cen').show();
+										}
+										if($(this).find('.center_col_top .count_item').text() == 0 || $(this).find('.center_col_top .count_item').text() == 'undefined') {
+											$(this).find('.center_col_top').hide();
+										} else {
+											$(this).find('.center_col_top').show();
+										}
+									} else if(legend.length == 1) {
+										if($(this).find('.hideData').text() == 0 || $(this).find('hideData').text() == 'undefined') {
+											$(this).find('.center_col_top').hide();
+										} else {
+											$(this).find('.center_col_top').show()
+										}
+									}
+								})
+							}
+
+						}
+
+						//-----------------------------叠加柱状图和右侧中间一维柱状图end ------------------------------------------------------------
+						//----------------------------- by jc start-----------------------------
+						function jc_jkyj_bar(id, name) {
+							var data = dp3_data[name];
+							if(data[2] < 30) {
+								var minheight = 50 + data[2];
+							} else {
+								var minheight = data[2];
+							}
+							$(id + ' .dp3_hjjk_percent_hong').height(minheight + '%');
+							$(id + ' .dp3_hjjk_hong_num .num').text(data[0]);
+							$(id + ' .dp3_hjjk_hong_num1 .num').text(data[1]);
+							$(id + ' .dp3_hjjk_hong_percent .num').text(data[2]);
+						};
+
+						function jc_jkyj_dfjn(id, name) {
+							var data = dp3_data.jkyj_dfjn[name];
+							$(id + ' .dfjn_w').width(parseInt(data.percent) * 2040 / 100);
+							$(id + ' .dfjn_num').text(data.num);
+							$('.dp3_dfjn_huang_right .percent span').text(data.percent);
+						};
+
+						function dp3_zhuzi(id, zhu_data, ybeinum) {
+							//最大值
+							var ydatamax = Math.max.apply(null, zhu_data.ydata);
+							if(ydatamax <= ybeinum) {
+								var num = 1;
+								jc_ydata();
+							} else {
+								// var num=最大值/y轴区间数
+								var num = Math.ceil(ydatamax / ybeinum);
+								jc_ydata();
+							}
+							//x轴名字回显
+							$wrapper.find(id + ' .dp3_zhu_x li').empty(); //清空 复位
+							$wrapper.find(id + ' .dp3_zhu_x li').each(function(i) {
+								$(this).text(zhu_data.xdata[i]);
+							});
+							//y轴回显
+							function jc_ydata() {
+								//保持10的倍数
+								if(num % 2 != 0) {
+									num = parseInt(num) + 1
+								} else {
+									num = num
+								};
+								//y轴刻度回显
+								$wrapper.find(id + ' .dp3_zhu_y li').each(function(i) {
+									$(this).text(num * parseInt(ybeinum - i));
+								});
+								//x轴数字及百分比回显
+								$wrapper.find(id + ' .zhu_ul li').each(function(i) {
+									var percent = parseFloat((zhu_data.ydata[i] * 100 / (num * ybeinum)));
+									var $top = $(this).find('.bar-main-top');
+									var $down = $(this).find('.bar-main-down');
+									//清空 复位
+									$(this).find('.bar-num').text(' ');
+									$(this).find('.bar-main').height(0);
+									$top.hide();
+									$down.hide();
+									//清空结束
+									$(this).find('.bar-num').text(zhu_data.ydata[i]);
+									//console.log(num * ybeinum) y轴最大坐标值
+									$(this).find('.bar-main').height(percent + '%');
+									if(percent == 0) {
+										$top.hide();
+										$down.hide();
+									} else if(!isNaN(percent)) {
+										$top.show();
+										$down.show();
+									}
+								})
+							};
+						};
+
+						function dp3_zhuzi_point(id, zhu_data_arr) {
+							var index;
+							$(id + ' .dp3_zhu_icon_box').empty();
+							if(zhu_data_arr.length == '1') {
+								return;
+							};
+							var dom = '<i class="icon_prev"></i>';
+							for(var i = 0; i < zhu_data_arr.length; i++) {
+								if(i == 0) {
+									dom += '<i class="icon_circle hover"></i>'
+								} else if(i == zhu_data_arr.length - 1) {
+									dom += '<i class="icon_circle" style="padding-right:0"></i>'
+								} else {
+									dom += '<i class="icon_circle"></i>'
+								}
+							};
+							dom += '<i class="icon_next"></i>';
+							$wrapper.find(id + ' .dp3_zhu_icon_box').append(dom);
+							//向后
+							$wrapper.find(id + " .icon_prev").click(function() {
+									index = $(this).siblings('.icon_circle.hover').index() - 1;
+									var $circle = $(this).parent().find('.icon_circle');
+									if(index == 0) {
+										dp3_zhuzi(id, zhu_data_arr[zhu_data_arr.length - 1], 5);
+										$circle.eq(zhu_data_arr.length - 1).addClass('hover').siblings().removeClass('hover');
+									} else {
+										dp3_zhuzi(id, zhu_data_arr[index - 1], 5);
+										$circle.eq(index - 1).addClass('hover').siblings().removeClass('hover');
+									}
+								})
+								//向前
+							$wrapper.find(id + " .icon_next").click(function() {
+								index = $(this).siblings('.icon_circle.hover').index() - 1;
+								var $circle = $(this).parent().find('.icon_circle');
+								if(index == zhu_data_arr.length - 1) {
+									dp3_zhuzi(id, zhu_data_arr[0], 5);
+									$circle.eq(0).addClass('hover').siblings().removeClass('hover');
+								} else {
+									dp3_zhuzi(id, zhu_data_arr[index + 1], 5);
+									$circle.eq(index + 1).addClass('hover').siblings().removeClass('hover');
+								}
+							});
+							//圆点
+							$wrapper.find(id + " .icon_circle").click(function() {
+								index = $(this).index() - 1;
+								$(this).addClass('hover').siblings('.icon_circle').removeClass('hover');
+								dp3_zhuzi(id, zhu_data_arr[index], 5);
+							});
+						};
+						//----------------------------- by jc end-----------------------------
+					},
+					onSlideChangeEnd: function(swiper) {
+						myAC_child2.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+				// 第 3 个子swiper幻灯片
+				//              var mySwiper_child3 = new Swiper('.swiper-container-child3', {
+				//                  direction: 'horizontal',
+				//                  grabCursor: true,
+				//                  //loop: true,
+				//                  onInit: function(swiper) {
+				//                      myAC_child3.init(swiperAnimateParam_child3, swiper);
+				//                  },
+				//                  onSlideChangeEnd: function(swiper) {
+				//                      myAC_child3.play();
+				//                      //alert(swiper.activeIndex)
+				//                  },
+				//              });
+				//第一屏
+				// 主swiper幻灯片
+				var mySwiper = new Swiper('.swiper-container-main1', {
+					//              direction: 'normal',
+					grabCursor: true,
+					loop: true,
+					threshold: 1200,
+					//onlyExternal : true,
+					// autoplay: 8500,
+					prevButton: '.swiper-button-prev',
+					nextButton: '.swiper-button-next',
+					onInit: function(swiper) {
+						myAC_main1.init(swiperAnimateParam_main1, swiper);
+						myAC_main1.addChild(2, myAC_child1);
+						myAC_main1.addChild(3, myAC_child2);
+						//myAC_main1.addChild(4, myAC_child3);
+						var comtainer = document.getElementById('jc_content');
+						var $wrapper = $(swiper.wrapper);
+						comtainer.onmouseenter = function() {
+							swiper.stopAutoplay();
+						};
+						comtainer.onmouseleave = function() {
+							swiper.startAutoplay();
+						}
+						myAC_main1.play(); // 如果页面中未使用Loading效果，则必须取消本行代码的注释，以开启myAC_main1主动画控制器中动画的播放
+					},
+					onSlideChangeEnd: function(swiper) {
+						myAC_main1.play();
+						//alert(swiper.activeIndex)
+					},
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="swiper-container swiper-container-main1" id="jc_content">
+			<div class="swiper-wrapper second_page">
+				<div id="dp1" class="swiper-slide dp1_content" data-swiper-autoplay="8500" style="background: url(img2/dp1_bg.png)no-repeat;width:100%;height:100%;">
+					<div class="dp1_center main1_ani_0">
+						<img src="img2/dp1_center.png" />
+					</div>
+					<div class="dp1_center1 main1_ani_01">
+						<img src="img2/dp1_center1.png" />
+					</div>
+					<div class="dp1_1_bg main1_ani_01_1">
+						<img src="img2/dp1_1_bg.png" />
+					</div>
+					<div class="dp1_center2 main1_ani_02">
+						<img src="img2/dp1_center2.png" />
+					</div>
+					<div class="dp1_center3 main1_ani_03">
+						<img src="img2/dp1_center3.png" />
+					</div>
+					<div class="dp1_3_bg main1_ani_03_1">
+						<img src="img2/dp1_3_bg.png" />
+					</div>
+					<div class="dp1_center4 main1_ani_04">
+						<img src="img2/dp1_center4.png" />
+					</div>
+					<div class="dp1_4_bg main1_ani_04_1">
+						<img src="img2/dp1_4_bg.png" />
+					</div>
+					<div class="dp1_yuan main1_ani_04_2">
+						<img src="img2/dp1_yuan.png" />
+					</div>
+				  	<div class="dp1_dzzgk_title main1_ani_05">
+						<img src="img2/dp1_dzzgk_title.png" />
+					</div>
+					<div class="dp1_dzzgk main1_ani_05_1">
+						<img src="img2/dp1_dzzgk.png" />
+					</div>
+					<div class="dp1_dzzlsgx_title main1_ani_06">
+						<img src="img2/dp1_dzzlsgx_title.png" />
+					</div>
+					<div class="dp1_dzzlsgx_1 main1_ani_06_1">
+						<img src="img2/dp1_dzzlsgx_1.png" />
+					</div>
+					<div class="dp1_dzzlsgx_2 main1_ani_06_2">
+						<img src="img2/dp1_dzzlsgx_2.png" />
+					</div>
+				</div>
+				<div id="dp2" class="swiper-slide" data-swiper-autoplay="5000">
+					<div class="swiper-container swiper-container-child1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">	
+								<div class="dp2_bg">
+									<img src="img3/dp2_bg.png"/>
+								</div>
+								<div class="dp2_dydwjg_title child1_ani_02">
+									<img src="img3/dp2_dydwjg_title.png"/>
+								</div>
+								<div class="dp2_dydwjg_dyzb child1_ani_03">
+									<img src="img3/dp2_dydwjg_dyzb.png"/>
+								</div>
+								<div class="dp2_dydwjg_dyrs child1_ani_04">
+									<img src="img3/dp2_dydwjg_dyrs.png"/>
+								</div>
+								<div class="dp2_dydwjg_dylb child1_ani_05">
+									<img src="img3/dp2_dydwjg_dylb.png"/>
+								</div>
+								<div class="dp2_dydwjg_gsxt child1_ani_06">
+									<img src="img3/dp2_dydwjg_gsxt.png"/>
+								</div>
+								<div class="dp2_map child1_ani_01">
+									<img src="img3/dp2_map.png"/>
+								</div>
+								<div class="dp2_gcdyfwd_title child1_ani_07">
+									<img src="img3/dp2_gcdyfwd_title.png"/>
+								</div>
+								<div class="dp2_gcdyfwd_part1 child1_ani_08">
+									<img src="img3/dp2_gcdyfwd_part1.png"/>
+								</div>
+								<div class="dp2_gcdyfwd_part2 child1_ani_09">
+									<img src="img3/dp2_gcdyfwd_part2.png"/>
+								</div>
+								<div class="dp2_gcdyfwd_part3 child1_ani_10">
+									<img src="img3/dp2_gcdyfwd_part3.png"/>
+								</div>
+								<div class="dp2_gcdyfwd_part4 child1_ani_11">
+									<img src="img3/dp2_gcdyfwd_part4.png"/>
+								</div>
+								<div class="dp2_dnbzqk_title child1_ani_12">
+									<img src="img3/dp2_dnbzqk_title.png"/>
+								</div>
+								<div class="dp2_dnbzqk_part1 child1_ani_13">
+									<img src="img3/dp2_dnbzqk_part1.png"/>
+								</div>
+								<div class="dp2_dnbzqk_part2 child1_ani_14">
+									<img src="img3/dp2_dnbzqk_part2.png"/>
+								</div>
+								<div class="dp2_dnbzqk_part3 child1_ani_15">
+									<img src="img3/dp2_dnbzqk_part3.png"/>
+								</div>
+								<div class="dp2_dnbzqk_part4 child1_ani_16">
+									<a href="#"><img src="img3/dp2_dnbzqk_part4.png"/></a>
+								</div>					
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="swiper-container swiper-container-child2">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="dp3_icon_box" id="dp3_dydw_iconbox">
+									<ul class="fit" style="padding-left: 100px;">
+										<li style="background: url(second_img/icon_dydw1.png) no-repeat left;background-size:300px 300px;">
+											<div class="numbox">
+												<span class="span_hong">0</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增转正党员</p>
+										</li>
+										<li style="background: url(second_img/icon_dydw2.png) no-repeat left;background-size:300px 300px;">
+											<div class="numbox">
+												<span class="span_hong">0</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增预备党员</p>
+										</li>
+										<li style="background: url(second_img/icon_dydw3.png) no-repeat left;background-size:300px 300px;">
+											<div class="numbox">
+												<span class="span_hong">0</span><span class="span_hei">人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增发展对象</p>
+										</li>
+										<li style="background: url(second_img/icon_dydw4.png) no-repeat left;background-size:300px 300px;">
+											<div class="numbox">
+												<span class="span_hong">0</span><span class="span_hei">万人</span>
+											</div>
+											<p class="dp3_hei_zhong">新增积极分子</p>
+										</li>
+										<li style="background: url(second_img/icon_dydw5.png) no-repeat left;background-size:300px 300px;">
+											<div class="numbox">
+												<span class="span_hong">0</span><span class="span_hei">万人</span>
+											<p class="dp3_hei_zhong">新增入党申请人</p>
+										</li>
+									</ul>
+								</div>
+								<div class="dp3_bg child2_ani_01">
+
+								</div>
+								<div class="dp3_dydw second_dp3_dydw child2_ani_02">
+									<img src="second_img/title-dydw.png" />
+								</div>
+								<!--党员队伍文本-->
+								<!--<div class="dp3_dydw_txt">
+                                    <ul class="dp3_txt_items dp3_dydw_txt_ul">
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                        <li><span class="span_hong">64</span><span class="span_hei">人</span></li>
+                                    </ul>
+                                </div>-->
+
+								<div class="dp3_zzbh child2_ani_03">
+									<img src="second_img/title-zzbh.png" />
+								</div>
+								<div class="dp3_shqk child2_ani_04">
+									<img src="second_img/title-shqk.png" />
+								</div>
+								<div class="dp3_jkyj child2_ani_05">
+									<img src="second_img/title-jkyj.png" />
+								</div>
+								<div class="dp3_zbkb child2_ani_06">
+									<img src="second_img/title-xxts.png" />
+								</div>
+
+								
+								<!--<div class="dp3_title3 child2_ani_9">
+									<img src="img/dp3_title3.png" />
+								</div>-->
+
+								<!--党员队伍-->
+								<!--<div class="dp3_dydw_part1">
+                                    <img src="img/dp3_dydw_part1.png" />
+                                </div>-->
+								<div class="dp3_dydw_part2_titel" id="dp3_dydw_part2_titel">
+									<img src="second_img/dp3_dydw_part2_title.png" />
+								</div>
+								<div id='dp3_tabs1'>
+									<div class="dp3_title dp3_title_zzdy hover">
+										<img src="img/dp3_title_zzdy.png" />
+									</div>
+									<div class="dp3_title dp3_title_ybdy">
+										<img src="img/dp3_title_ybdy.png" />
+									</div>
+									<div class="dp3_title dp3_title_fzdx">
+										<img src="img/dp3_title_fzdx.png" />
+									</div>
+									<div class="dp3_title dp3_title_jjfz">
+										<img src="img/dp3_title_jjfz.png" />
+									</div>
+									<div class="dp3_title dp3_title_rdsqr">
+										<img src="img/dp3_title_rdsqr.png" />
+									</div>
+								</div>
+
+								<!--柱子-->
+								<!--<div class="dp3_zhu_box" style="padding-top: .76rem;padding-right: 1.1rem;">
+                                    <div class="fl" style="padding-bottom: 1.48rem;
+    padding-top: 1.05px;
+    height: 100%;
+    width: 1.25rem;
+    box-sizing: border-box;">
+                                        
+                                    </div>
+                                    <div class="fr">
+                                        <div class="" style="height: 1.05rem;">
+                                            
+                                        </div>
+                                        <div class="" style="height: 6.96rem;">
+                                            
+                                        </div>
+                                        <div class="">
+                                            
+                                        </div>
+                                    </div>
+                                </div>-->
+								<div class="zhuzi_conmon" id='zhuzi_dydw'>
+									<div class="dp3_zhuzi">
+										<ul class="zhu_ul">
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_y">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_x" style="text-align: center;">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+										<div class="dp3_zhu_icon_box" id="dp3_zhu_icon_box_dydw">
+
+										</div>
+									</div>
+									<div class="dp3_zhudi">
+										<img src="img/dp3_zhudi.png" />
+									</div>
+								</div>
+
+								<!--组织变化-->
+								<div class="dp3_zzbh_icon">
+
+								</div>
+								<div class="dp3_zzbh_box" id="dp3_zzbh_txt">
+									<div class="dp3_icon_box" style="height: 350px;padding-left: -70px;padding-top: 26px;">
+										<ul class="fit">
+											<li style="height: 100%;">
+
+											</li>
+											<li style="background: url(second_img/icon_zzbh_2.png) no-repeat left;background-size:320px 320px;">
+												<div class="numbox">
+													<span class="span_hong">0</span><span class="span_hei">个</span>
+												</div>
+												<p class="dp3_hei_zhong">新增党组织</p>
+											</li>
+
+											<li style="background: url(second_img/icon_zzbh_5.png) no-repeat left;background-size:320px 320px;">
+												<div class="numbox">
+													<span class="span_hong">0</span><span class="span_hei">个</span>
+												</div>
+												<p class="dp3_hei_zhong">撤销党组织</p>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+								<!--三会情况-->
+								<div class="dp3_shqk_icon">
+									<img src="img/dp3_shqk_icon.png" />
+
+								</div>
+								<div class="dp3_shqk_box">
+									<div class="dp3_icon_box" style="height: 350px;padding-left: 200px;padding-top: 10px;">
+										<ul class="fit">
+											<li style="background: url(second_img/icon_shqk_1.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">0</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展支部党员大会</p>
+											</li>
+											<li style="background: url(second_img/icon_shqk_2.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">0</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展支部委员会</p>
+											</li>
+											<li style="background: url(second_img/icon_shqk_3.png) no-repeat left;background-size:290px 290px;">
+												<div class="numbox">
+													<span class="span_hong">0</span><span class="span_hei">次</span>
+												</div>
+												<p class="dp3_hei_zhong">开展党小组会</p>
+											</li>
+
+										</ul>
+									</div>
+									<!--<div class="dp3_tabs_box" style="overflow: hidden;background: url(img/dp3_tabs_bg.png) no-repeat;    padding-left: 1.28rem;">
+                                        <ul class="tabs_head" style="overflow: hidden;">
+                                            <li class="txt_tabs_hei"><span>支部党员大会</span><i style="    background: url(img/dp3_tabs_hover.png);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    top: 0;
+    z-index: 9999;
+    background-size: cover;"></i></li>
+                                            <li class="txt_tabs_hei" style="margin: 0 1.8rem;">支部委员会</li>
+                                            <li class="txt_tabs_hei">党小组会</li>
+                                        </ul>
+                                    </div>-->
+								</div>
+								<div class="dp3_shqk_tabs_head" id="dp3_shqk_tabs_head">
+									<img src="second_img/dp3_shqk_tabs_head.png" />
+								</div>
+								<div id='dp3_tabs2'>
+									<div class="dp3_title dp3_title_zbwydh hover">
+										<img src="img/dp3_title_zbwydh.png">
+									</div>
+									<div class="dp3_title dp3_title_zbwyh">
+										<img src="img/dp3_title_zbwyh.png">
+									</div>
+									<div class="dp3_title dp3_title_dxzh">
+										<img src="img/dp3_title_dxzh.png">
+									</div>
+								</div>
+								<!--三会情况柱子-->
+								<div class="zhuzi_conmon" id="dp3_zhuzi_shqk">
+									<div class="dp3_zhuzi">
+										<ul class="zhu_ul">
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="bar-num">
+
+												</div>
+												<div class="bar-items">
+													<div class="bar-bg"></div>
+													<div class="bar-main-box">
+														<div class="w-bar-main">
+															<div class="bar-main">
+																<i class="bar-main-top"></i>
+																<i class="bar-main-down"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_y">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="dp3_zhu_x">
+										<ul>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+											<li></li>
+										</ul>
+										<div class="dp3_zhu_icon_box" id="dp3_zhu_icon_box_shqk">
+
+										</div>
+									</div>
+									<div class="dp3_zhudi">
+										<img src="img/dp3_shqk_zhudi.png">
+									</div>
+								</div>
+
+								<!--监控预警-->
+								<!--换届监控-->
+								<!--<div class="dp3_hjjk_title">
+                                    <img src="img/dp3_hjjk_title.png">
+                                </div>
+                                <div class="dp3_hjjk_di">
+                                    <img src="img/dp3_hjjk_di.png">
+                                </div>
+                                <div class="dp3_hjjk_hong">
+                                    <div class="fit pos-a" style="bottom: 0;height: 80%;">
+                                        <img src="img/dp3_hjjk_ding.png"/>
+                                        <div class="dp3_hong_zhu"></div>
+                                    </div>
+                                </div>
+                                <div class="dp3_hjjk_lan">
+                                    <div class="fit pos-a" style="bottom: 0;height: 80%;">
+                                        <img src="img/dp3_hjjk_ding.png"/>
+                                    </div>
+                                </div>
+                                <div class="dp3_hjjk_di1">
+                                    <img src="img/dp3_hjjk_di1.png">
+                                </div>
+                                <div class="dp3_hjjk_di2">
+                                    <img src="img/dp3_hjjk_di2.png">
+                                </div>-->
+								<!--学习情况-->
+								<!--<div class="dp3_xxqk_title">
+                                    <img src="img/dp3_xxqk_title.png">
+                                    <div class="dp3_xxqk_txt" style="position: absolute;
+    top: 0;
+    right: 1.24rem;">
+                                        <p class="fl dp3_xxqk_txt_p" style="margin-right:76px;">增加<span style="margin: 24px;" class="dp3_xxqk_txt_p_hong">3.5</span>万小时</p>
+                                        <p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 24px;" class="dp3_xxqk_txt_p_hong">10%</span>同比上周</p>
+                                    </div>
+                                </div>
+                                <div class="dp3_xxqk_line_box">
+
+                                </div>
+                                <div class="dp3_shyk_title">
+                                    <img src="img/dp3_shyk_title.png">
+                                </div>
+                                -->
+								<!--换届监控-->
+								<div class="dp3_hjjk_title">
+									<img src="second_img/dp3_hjjk_title.png">
+								</div>
+								<div class="dp3_hjjk_di">
+									<img src="img/dp3_hjjk_di.png">
+								</div>
+								<div class="dp3_hjjk_hong" id="dp3_hjjk_hong">
+									<div class="dp3_hjjk_percent_hong">
+										<p class="dp3_hjjk_hong_num">
+											<span class="num">700</span><span style="color:#fff;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_percent">
+                                            <span class="num">100</span>%
+                                        </h1>
+										<p class="dp3_hjjk_hong_num1"><span class="num">700</span><span style="color: #ffffff;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_name">党委换届</h1>
+										<img style="height: 100%;" src="img/dp3_hjjk_hong.png">
+									</div>
+								</div>
+								<div class="dp3_hjjk_lan" id="dp3_hjjk_lan">
+									<div class="dp3_hjjk_percent_hong">
+										<p class="dp3_hjjk_hong_num" style="color: #0461df">
+											<span class="num">70</span><span style="color:#fff;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_percent">
+                                            <span class="num">100</span><span>%</span>
+                                        </h1>
+										<p class="dp3_hjjk_hong_num1"><span class="num">68</span><span style="color: #ffffff;font-size: 39px;margin-left: 10px;">个</span></p>
+										<h1 class="dp3_hjjk_hong_name">支部换届</h1>
+										<img src="img/dp3_hjjk_lan.png" style="height: 100%;">
+									</div>
+								</div>
+								<!--<div class="dp3_hjjk_di1">
+                                    <img src="img/dp3_hjjk_di1.png">
+                                </div>
+                                <div class="dp3_hjjk_di2">
+                                    <img src="img/dp3_hjjk_di2.png">
+                                </div>-->
+
+								<!--学习情况-->
+								<div class="dp3_xxqk_title">
+									<img src="second_img/dp3_xxqk_title.png">
+								</div>
+								<div class="dp3_dfjn_huang_left" id="dp3_dfjn_huang_left">
+									<div class="fit dfjn_text_box">
+										<p class="fl" style="font-size: 58px;"><span class="dfjn_num">9</span>月党员缴纳党费百分比</p>
+									</div>
+									<div class="fl">
+										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_left.png">
+									</div>
+									<div class="fl">
+										<div class="dfjn_w" style="width: 2040px;height: 115px;background-image: url('img/dp3_dfjn_huang_center2.png');background-size: contain;background-repeat: repeat-x;"></div>
+									</div>
+									<div class="fl">
+										<img style="width: 58px;height: 115px;" src="img/dp3_dfjn_huang_right.png">
+									</div>
+								</div>
+								<div class="dp3_dfjn_huang_right">
+									<h1 class="fr percent" style="font-size: 120px;color: #ff8a0a;"><span>100</span>%</h1>
+								</div>
+								<div class="dp3_dfjn_huang_bg">
+									<img style="width: 2181px;height: 143px;" src="img/dp3_dfjn_huang_bg.png">
+								</div>
+								<!--党费缴纳-->
+								<!--<div class="dp3_dfjn_title">
+									<img src="img/dp3_dfjn_title.png">
+								</div>-->
+								<div class="dp3_dfjn_title_bg">
+									<img src="second_img/dp3_dfjn_title_bg.png">
+									<!-- 									<div class="dp3_xxqk_txt" id="dp3_xxqk_txt" style="position: absolute;top: 0;right: 43px;line-height: 150px;"> -->
+									<!-- 										<p class="fl dp3_xxqk_txt_p" style="margin-right: .76rem;">增加<span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_num">3.5</span>万小时</p> -->
+									<!-- 										<p class="fl dp3_xxqk_txt_p"> <img class="dp3_xxqk_txt_icon" src="img/dp3_xxqk_txt_icon.png" /><span style="margin: 0 .24rem;" class="dp3_xxqk_txt_p_hong" id="dp3_xxqk_txt_p_percent">10%</span>同比上周</p> -->
+									<!-- 									</div> -->
+								</div>
+								<div class="dp3_xxqk_table_bg">
+									<img src="img/dp3_dkqk_chart_bottom.png">
+								</div>
+								<div class="dp3_xxqk_table" id="dfjn_xxqk_chart">
+									<!--<img src="img/dp3_xxqk_table.png">-->
+								</div>
+								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 4475px;">
+                                    <span style="font-size: 58px;">8月党员缴纳党费百分比</span>
+                                </div>-->
+
+								<!--<div style="top:1709px;z-index: 2600;position: absolute;left: 6466px;">
+                                    <span style="font-size: 58px;">第二季度下级党组织按时上缴党费百分比</span>
+                                </div>-->
+								<!--<div class="dp3_dfjn_lan_left" id="dp3_dfjn_lan_left">-->
+								<!--<div class="fit dfjn_text_box">-->
+								<!--<p class="fl" style="font-size: 58px;">第<span class="dfjn_num"></span>季度下级党组织按时上缴党费百分比</p>-->
+								<!--<h1 class="fr percent">100%</h1>-->
+								<!--</div>-->
+								<!--<div class="fl">-->
+								<!--<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_left.png">-->
+								<!--</div>-->
+								<!--<div class="fl">-->
+								<!--<div class="dfjn_w" style="width: 1554px;height: 115px;background-image: url('img/dp3_dfjn_lan_center.png');background-size: contain;background-repeat: repeat-x;"></div>-->
+								<!--</div>-->
+								<!--<div class="fl">-->
+								<!--<img style="width: 51px;height: 115px;" src="img/dp3_dfjn_lan_right.png">-->
+								<!--</div>-->
+								<!--</div>-->
+
+								<!--中心组学习情况-->
+								<div class="dp3_zxzxxqk_title">
+									<img src="second_img/dp3_zxzxxqk_title.png">
+								</div>
+								<div class="zxzxxqk_bg"></div>
+								<div class="zxzxxqk_chart" id="zxzxxqk_chart">
+								</div>
+
+								<!--党组织书记讲党课情况-->
+								<div class="dp3_dkqk_title">
+									<img src="second_img/dp3_dkqk_title.png">
+								</div>
+								<div class="jdkqk_chart" id="jdkqk_chart">
+								</div>
+								<div class="dp3_dkqk_chart_bottom">
+									<img src="img/dp3_dkqk_chart_bottom.png">
+								</div>
+
+								<!--三会一课-->
+								<div class="dp3_shyk_title">
+									<img src="second_img/shyk_all_icon.png">
+								</div>
+								<div class="right_shyk_lists" id="first_lists">
+									<div class="list-zbdydh hover" style="top:13px;left:82px;">
+										<img src="img/list-zbdydh.png">
+									</div>
+									<div class="list-zbwyh">
+										<img src="img/list-zbwyh.png">
+									</div>
+									<div class="list-dxzh" style="left:1154px">
+										<img src="img/list-dxzh.png">
+									</div>
+									<div class="list-dk" style="left:1562px;">
+										<img src="img/list-dk.png">
+									</div>
+								</div>
+								<div class="shyk-list" id="list_zbdydh">
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+										</ul>
+									</div>
+									<div class="shyk_lists-bar">
+										<div class="shyk-list-bar-y" id="zbdydh_yAxis">
+											<ul>
+												<li>100%</li>
+												<li>75%</li>
+												<li>50%</li>
+												<li>25%</li>
+												<li>0%</li>
+											</ul>
+										</div>
+										<div class="shyk-list-bar-bottom"></div>
+										<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="zbdydh_con" style="top:65px;left:200px">
+											<ul style="height:100%;width:100%">
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+										<div class="dp3_zhu_icon_box" id="shyk_list_page_zbdydh" style="display:inline-block">
+										</div>
+									</div>
+								</div>
+								<div class="shyk-list" id="list_zbwyh" style="display:none">
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+										</ul>
+									</div>
+									<div class="shyk_lists-bar">
+										<div class="shyk-list-bar-y" id="zbwyh_yAxis">
+											<ul>
+												<li>100%</li>
+												<li>75%</li>
+												<li>50%</li>
+												<li>25%</li>
+												<li>0%</li>
+											</ul>
+										</div>
+										<div class="shyk-list-bar-bottom"></div>
+										<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="zbwyh_con" style="top:65px;left:200px">
+											<ul style="height:100%;width:100%">
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+										<div class="dp3_zhu_icon_box" id="shyk_list_page_zbwyh" style="display:inline-block">
+										</div>
+									</div>
+								</div>
+								<div class="shyk-list" id="list_dxzh" style="display:none">
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+										</ul>
+									</div>
+									<div class="shyk_lists-bar">
+										<div class="shyk-list-bar-y" id="dxzh_yAxis">
+											<ul>
+												<li>100%</li>
+												<li>75%</li>
+												<li>50%</li>
+												<li>25%</li>
+												<li>0%</li>
+											</ul>
+										</div>
+										<div class="shyk-list-bar-bottom"></div>
+										<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="dxzh_con" style="top:65px;left:200px">
+											<ul style="height:100%;width:100%">
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+										<div class="dp3_zhu_icon_box" id="shyk_list_page_dxzh" style="display:inline-block">
+										</div>
+									</div>
+								</div>
+								<div class="shyk-list" id="list_dk" style="display:none">
+									<div class="shyk_legend">
+										<ul>
+											<li id="shyk_legend_1"><i></i>参会率</li>
+										</ul>
+									</div>
+									<div class="shyk_lists-bar">
+										<div class="shyk-list-bar-y" id="dk_yAxis">
+											<ul>
+												<li>100%</li>
+												<li>75%</li>
+												<li>50%</li>
+												<li>25%</li>
+												<li>0%</li>
+											</ul>
+										</div>
+										<div class="shyk-list-bar-bottom"></div>
+										<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="dk_con" style="top:65px;left:200px">
+											<ul style="height:100%;width:100%">
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+												<li class="swiper-slide center_each">
+													<div class="center_col_bg"></div>
+													<div class="center_col_con">
+														<ul class="ul_sum">
+															<li class="center_col_top li_four">
+																<div class="blue_top"></div>
+																<div class="blue_bottom"></div>
+																<div class="hideData" style="display:none"></div>
+															</li>
+														</ul>
+													</div>
+													<p class="company_name"></p>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+										<div class="dp3_zhu_icon_box" id="shyk_list_page_dk" style="display:inline-block">
+										</div>
+									</div>
+								</div>
+								<!-- 第二个 -->
+								<div class="second" style="position:relative">
+									<div class="dp3_shyk_title">
+										<img src="second_img/shyk_all_icon.png">
+									</div>
+									<div class="right_shyk_lists" id="second_lists" style="top:606px">
+										<div class="list-zbdydh hover" style="left:82px;top:6px">
+											<img src="img/list-zbdydh.png">
+										</div>
+										<div class="list-zbwyh">
+											<img src="img/list-zbwyh.png">
+										</div>
+										<div class="list-dxzh">
+											<img src="img/list-dxzh.png">
+										</div>
+										<div class="list-dk">
+											<img src="img/list-dk.png">
+										</div>
+									</div>
+									<div class="shyk-list" id="second_list_zbdydh">
+										<div class="shyk_legend">
+											<ul>
+												<li id="shyk_legend_2"><i></i>完成率</li>
+											</ul>
+										</div>
+										<div class="shyk_lists-bar" style="top:830px">
+											<div class="shyk-list-bar-y" id="second_zbdydh_yAxis">
+												<ul>
+													<li>100%</li>
+													<li>75%</li>
+													<li>50%</li>
+													<li>25%</li>
+													<li>0%</li>
+												</ul>
+											</div>
+											<div class="shyk-list-bar-bottom"></div>
+											<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="second_zbdydh_con" style="top:65px;left:200px">
+												<ul style="height:100%;width:100%">
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+											<div class="dp3_zhu_icon_box" id="second_shyk_list_page_zbdydh" style="display:inline-block">
+											</div>
+										</div>
+									</div>
+									<div class="shyk-list" id="second_list_zbwyh" style="display:none">
+										<div class="shyk_legend">
+											<ul>
+												<li id="shyk_legend_1"><i></i>完成率</li>
+											</ul>
+										</div>
+										<div class="shyk_lists-bar" style="top:830px">
+											<div class="shyk-list-bar-y" id="second_zbwyh_yAxis">
+												<ul>
+													<li>100%</li>
+													<li>75%</li>
+													<li>50%</li>
+													<li>25%</li>
+													<li>0%</li>
+												</ul>
+											</div>
+											<div class="shyk-list-bar-bottom"></div>
+											<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="second_zbwyh_con" style="top:65px;left:200px">
+												<ul style="height:100%;width:100%">
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+											<div class="dp3_zhu_icon_box" id="second_shyk_list_page_zbwyh" style="display:inline-block">
+											</div>
+										</div>
+									</div>
+									<div class="shyk-list" id="second_list_dxzh" style="display:none">
+										<div class="shyk_legend">
+											<ul>
+												<li id="shyk_legend_1"><i></i>参会率</li>
+											</ul>
+										</div>
+										<div class="shyk_lists-bar" style="top:830px">
+											<div class="shyk-list-bar-y" id="second_dxzh_yAxis">
+												<ul>
+													<li>100%</li>
+													<li>75%</li>
+													<li>50%</li>
+													<li>25%</li>
+													<li>0%</li>
+												</ul>
+											</div>
+											<div class="shyk-list-bar-bottom"></div>
+											<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="second_dxzh_con" style="top:65px;left:200px">
+												<ul style="height:100%;width:100%">
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+											<div class="dp3_zhu_icon_box" id="second_shyk_list_page_dxzh" style="display:inline-block">
+											</div>
+										</div>
+									</div>
+									<div class="shyk-list" id="second_list_dk" style="display:none">
+										<div class="shyk_legend">
+											<ul>
+												<li id="shyk_legend_1"><i></i>参会率</li>
+											</ul>
+										</div>
+										<div class="shyk_lists-bar" style="top:830px">
+											<div class="shyk-list-bar-y" id="second_dk_yAxis">
+												<ul>
+													<li>100%</li>
+													<li>75%</li>
+													<li>50%</li>
+													<li>25%</li>
+													<li>0%</li>
+												</ul>
+											</div>
+											<div class="shyk-list-bar-bottom"></div>
+											<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="second_dk_con" style="top:65px;left:200px">
+												<ul style="height:100%;width:100%">
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+													<li class="swiper-slide center_each">
+														<div class="center_col_bg"></div>
+														<div class="center_col_con">
+															<ul class="ul_sum">
+																<li class="center_col_top li_third">
+																	<div class="yellow_top"></div>
+																	<div class="yellow_bottom"></div>
+																	<div class="hideData" style="display:none"></div>
+																</li>
+															</ul>
+														</div>
+														<p class="company_name"></p>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div style="position:absolute;left:10220px;z-index:3000;top:1665px;text-align:center">
+											<div class="dp3_zhu_icon_box" id="second_shyk_list_page_dk" style="display:inline-block">
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="gdwyxcg" style="position:relative">
+									<div class="dp3_gdwyxcg_title">
+										<img src="second_img/gdwyxcg_title.png">
+									</div>
+
+									<div class="gdwyxcg_legend" id="gdwyxcg_legend">
+
+									</div>
+
+									<div class="gdwyxcg_x" id="gdwyxcg_yAxis" style="top:1955px">
+										<ul>
+											<li>100%</li>
+											<li>75%</li>
+											<li>50%</li>
+											<li>25%</li>
+											<li>0%</li>
+										</ul>
+									</div>
+
+									<div class="swiper-container swiper-container-xjdxslfb gdwyxcg_center" id="gdwyxcg_con" style="top:1953px">
+										<ul style="height:100%;width:100%">
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+											<li class="swiper-slide center_each">
+												<div class="center_col_bg"></div>
+												<div class="center_col_con">
+													<ul class="ul_sum">
+														<li class="center_col_top li_sec">
+															<div class="red_top"></div>
+															<div class="red_bottom"></div>
+															<div class="hideData" style="display:none"></div>
+														</li>
+													</ul>
+												</div>
+												<p class="company_name"></p>
+											</li>
+										</ul>
+									</div>
+									<div class="gdwyxcg_bottom"></div>
+									<div style="position:absolute;left:10220px;z-index:3000;top:2745px;text-align:center">
+										<div class="dp3_zhu_icon_box gdwyxcg_page" id="gdwyxcg_page" style="display:inline-block">
+
+										</div>
+									</div>
+
+								</div>
+
+								<!--先进典型数量分布-->
+<!-- 								<div class="dp3_xjdxslfb_title"> -->
+<!-- 									<img src="img/dp3_gdwxjdxslfb_title.png"> -->
+<!-- 								</div> -->
+
+<!-- 								<div class="xjdxslfb_legend" id="xjdxslfb_legend"> -->
+<!-- 									<ul> -->
+<!-- 										<li> -->
+<!-- 											<i id="legend_1"></i> 个人 -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<i id="legend_2"></i> 集体 -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
+
+<!-- 								<div class="xjdxslfb_x" id="xjdxslfb_yAxis"> -->
+<!-- 									<ul> -->
+<!-- 										<li></li> -->
+<!-- 										<li></li> -->
+<!-- 										<li></li> -->
+<!-- 										<li></li> -->
+<!-- 										<li></li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
+
+<!-- 								<div class="swiper-container swiper-container-xjdxslfb xjdxslfb_center" id="xjdxslfb_con"> -->
+<!-- 									<ul style="height:100%;width:100%"> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 										<li class="swiper-slide center_each"> -->
+<!-- 											<div class="center_col_bg"></div> -->
+<!-- 											<div class="center_col_con"> -->
+<!-- 												<ul class="ul_sum"> -->
+<!-- 													<li class="center_col_top li_third"> -->
+<!-- 														<div class="yellow_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="yellow_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 													<li class="center_col_cen li_sec"> -->
+<!-- 														<div class="red_top"></div> -->
+<!-- 														<div class="count_item"></div> -->
+<!-- 														<div class="red_bottom"></div> -->
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											<p class="company_name"></p> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
+<!-- 								<div class="dp3_xjdxslfb_bottom"></div> -->
+<!-- 								<div style="position:absolute;left:10220px;z-index:3000;top:3930px;text-align:center"> -->
+<!-- 									<div class="dp3_zhu_icon_box xjdxslfb_page" id="xjdxslfb_page" style="display:inline-block"> -->
+
+<!-- 									</div> -->
+
+<!-- 								</div> -->
+								<div id="jc_dp3pie">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="swiper-slide">
+                    <div class="swiper-container swiper-container-child3">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_01" src="img/wording_production.png" />
+                                <img class="child3_ani_02" src="img/circle-production.png" />
+                                <img class="child3_ani_03" src="img/people_production.png" />
+                                <img class="child3_ani_04" src="img/check_production.png" />
+                                <img class="child3_ani_05" src="img/floating_production.png" />
+                                <img class="child3_ani_06" src="img/pic_shadow_production.png" />
+                            </div>
+                            <div class="swiper-slide" style="background-color:#FFBF50;">
+                                <img class="child3_ani_07" src="img/introduction_production.png" />
+                                <img class="child3_ani_08" src="img/btn_production.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+				<!--<div class="swiper-slide" style="background-color:#083846;">
+                    <img class="main1_ani_03" src="img/pic_back.png" />
+                    <a href="http://www.zhuhaicec.com"><img class="main1_ani_04" src="img/btn_join.png" /></a>
+                </div>-->
+			</div>
+
+			<div class="swiper-button-next" style="background-image:none;">
+				<img src="img/swiper-button-next.png" />
+			</div>
+			<div class="swiper-button-prev" style="background-image:none;">
+				<img src="img/swiper-button-prev.png" />
+			</div>
+			<script type="text/javascript">
+			</script>
+			<script src="js/zjy.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/hqk.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
